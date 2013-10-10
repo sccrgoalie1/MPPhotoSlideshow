@@ -1,0 +1,164 @@
+<Screen xmlns="www.team-mediaportal.com/2008/mpf/directx" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        Context="{Model Id=C6B0FA5A-288E-405A-A5D5-AA66CC0AA327}">
+  <Canvas Background="Black">
+        <Canvas x:Name="Picture1Grid" Canvas.Top="{Binding Path=Picture1PosYProperty}" Canvas.Left="{Binding Path=Picture1PosXProperty}">
+        <Canvas.RenderTransform>
+            <TransformGroup>
+    						 <RotateTransform CenterX="100" CenterY="75" Angle="0" />
+    					</TransformGroup>
+        </Canvas.RenderTransform>
+            <Grid>
+            <Border x:Name="Picture1Border" BorderBrush="White" 
+                    BorderThickness="10" MaxWidth="{Binding Path=Picture1WidthProperty}" MinWidth="{Binding Path=Picture1WidthProperty}" 
+                    MaxHeight="{Binding Path=Picture1HeightProperty}" MinHeight="{Binding Path=Picture1HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture1Property}" Stretch="UniformToFill"/>
+        </Border>
+            <Label x:Name="Picture1Label" Content="{Binding Path=Picture1DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture1DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture2Grid" Canvas.Top="{Binding Path=Picture2PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture2PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture2Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture2WidthProperty}" MinWidth="{Binding Path=Picture2WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture2HeightProperty}" MinHeight="{Binding Path=Picture2HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture2Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture2Label" Content="{Binding Path=Picture2DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture2DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture3Grid" Canvas.Top="{Binding Path=Picture3PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture3PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture3Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture3WidthProperty}" MinWidth="{Binding Path=Picture3WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture3HeightProperty}" MinHeight="{Binding Path=Picture3HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture3Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture3Label" Content="{Binding Path=Picture3DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture3DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture4Grid" Canvas.Top="{Binding Path=Picture4PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture4PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture4Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture4WidthProperty}" MinWidth="{Binding Path=Picture4WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture4HeightProperty}" MinHeight="{Binding Path=Picture4HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture4Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture4Label" Content="{Binding Path=Picture4DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture4DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture5Grid" Canvas.Top="{Binding Path=Picture5PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture5PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture5Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture5WidthProperty}" MinWidth="{Binding Path=Picture5WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture5HeightProperty}" MinHeight="{Binding Path=Picture5HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture5Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture5Label" Content="{Binding Path=Picture5DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture5DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture6Grid" Canvas.Top="{Binding Path=Picture6PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture6PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture6Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture6WidthProperty}" MinWidth="{Binding Path=Picture6WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture6HeightProperty}" MinHeight="{Binding Path=Picture6HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture6Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture6Label" Content="{Binding Path=Picture6DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture6DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture7Grid" Canvas.Top="{Binding Path=Picture7PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture7PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture7Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture7WidthProperty}" MinWidth="{Binding Path=Picture7WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture7HeightProperty}" MinHeight="{Binding Path=Picture7HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture7Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture7Label" Content="{Binding Path=Picture7DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture7DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+        <Canvas x:Name="Picture8Grid" Canvas.Top="{Binding Path=Picture8PosYProperty}" 
+                Canvas.Left="{Binding Path=Picture8PosXProperty}">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="200" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
+            <Grid>
+                <Border x:Name="Picture8Border" BorderBrush="White" 
+                    BorderThickness="10" 
+                        MaxWidth="{Binding Path=Picture8WidthProperty}" MinWidth="{Binding Path=Picture8WidthProperty}" 
+                        MaxHeight="{Binding Path=Picture8HeightProperty}" MinHeight="{Binding Path=Picture8HeightProperty}"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <Image Source ="{Binding Path=Picture8Property}" Stretch="UniformToFill"/>
+                </Border>
+                <Label x:Name="Picture8Label" Content="{Binding Path=Picture8DateProperty}" 
+              HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+              Color="{Binding Path=Picture8DateColorProperty}" FontSize="8"/>
+            </Grid>
+        </Canvas>
+    </Canvas>
+</Screen>

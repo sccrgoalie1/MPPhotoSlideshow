@@ -1,0 +1,12 @@
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshowCommon\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshowCommon\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.SetupForm.resources
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csproj.GenerateResource.Cache

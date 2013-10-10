@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="MPPhotoSlideshow.MenuEntry">MP Photo Slideshow</string>
+  <string name="MPPhotoSlideshow.StateDisplayLabel">MP PhotoSlideshow State</string>
+  <string name="MPPhotoSlideshow.ScreenTitle">Photo Slideshow</string>
+  <string name="MPPhotoSlideshow.HelloWorldText">Pressing the button will change this text</string>
+  <string name="MPPhotoSlideshow.SampleText">This is the sample screen of the HelloWorld plugin</string>
+  <string name="MPPhotoSlideshow.ButtonText">Press me</string>
+  <string name="MPPhotoSlideshow.ButtonTextCommandExecuted">Congrats, you just triggered a Command!</string>
+</resources>

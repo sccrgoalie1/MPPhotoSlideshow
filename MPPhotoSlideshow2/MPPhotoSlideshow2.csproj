@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{505A94A3-CB41-4149-878F-EE9F076E7A59}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPPhotoSlideshow</RootNamespace>
+    <AssemblyName>MPPhotoSlideshow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MediaPortal.Common">
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MP2-Client\MediaPortal.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaPortal.UI">
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MP2-Client\MediaPortal.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaPortal.Utilities">
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MP2-Client\MediaPortal.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\MPPhotoSlideshowModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\icon.ico" />
+    <Content Include="Language\strings_en.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="plugin.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Setup\LicenseAccessible.txt" />
+    <Content Include="Setup\MPSlideshowTemplates.xml" />
+    <Content Include="Setup\Setup-en-us.wxl" />
+    <Content Include="Setup\Setup.wxs">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Debug\DevInstall.cmd" />
+    <None Include="Setup\Build.cmd" />
+    <None Include="Setup\License.rtf" />
+    <None Include="Skin\default\workflow\mp-photo-slideshow-actions.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\default\screens\mp_photo_slideshow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MPPhotoSlideshowCommon\MPPhotoSlideshowCommon.csproj">
+      <Project>{bd72e997-7d47-4f07-9fd9-b5021a4a47f9}</Project>
+      <Name>MPPhotoSlideshowCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(ProjectDir)Debug\devinstall.cmd" $(ConfigurationName) $(FullyQualifiedOutputPath)"
+call "$(ProjectDir)Setup\Build.cmd" $(ConfigurationName)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,11 @@
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideShowConfig.exe
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideShowConfig.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.Properties.Resources.resources
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.csproj.GenerateResource.Cache
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.exe
+C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.pdb
+C:\dev\Slideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.exe
+C:\dev\Slideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.pdb

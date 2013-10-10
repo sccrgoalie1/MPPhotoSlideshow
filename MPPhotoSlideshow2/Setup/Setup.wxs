@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?define Property_ProductVersion = "1.0.1" ?>
+<?define Property_ProductCode = "*" ?>
+<?define Property_UpgradeCode = "E29F1AFD-9626-4EB7-BEBD-8B052713FF86" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="$(var.Property_ProductCode)"
+           UpgradeCode="$(var.Property_UpgradeCode)"
+           Name="!(loc.Property_ProductName)"
+           Language="!(loc.Property_ProductLanguage)"
+           Version="$(var.Property_ProductVersion)"
+           Manufacturer="!(loc.Property_CompanyName)">
+    <Package Description="!(loc.Package_Description)"
+             Comments="!(loc.Package_Comments)"
+             InstallerVersion="200"
+             Compressed="yes" />
+    <Media Id="1" Cabinet="MPPhotoSlideshow2.cab"
+                  EmbedCab="yes" />
+    <Upgrade Id="$(var.Property_UpgradeCode)">
+      <UpgradeVersion OnlyDetect="no"
+                      Property="OLDERVERSIONBEINGUPGRADED"
+                      Minimum="1.0.0.0"
+                      IncludeMinimum="yes"
+                      Maximum="$(var.Property_ProductVersion)"
+                      IncludeMaximum="no"/>
+      <UpgradeVersion Minimum="$(var.Property_ProductVersion)"
+                      OnlyDetect="yes"
+                      Property="NEWERVERSIONDETECTED" />
+    </Upgrade>
+
+    <Binary Id="License.rtf"
+            SourceFile="..\Setup\License.rtf" />
+    <Binary Id="LicenseAccessible.txt"
+            SourceFile="..\Setup\LicenseAccessible.txt" />
+    <CustomAction Id="CA_BlockOlderVersionInstall"
+                  Error="!(loc.LaunchCondition_LaterVersion)" />
+    <Condition Message="!(loc.LaunchCondition_AdminPrivs)">       
+      <![CDATA[Privileged]]>     
+    </Condition>
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
+      <Directory Id="ProgramFilesFolder"
+                 Name="Program Files">
+        <Directory Id="MyCompany"
+                   Name="Team MediaPortal">
+          <Directory Id="APPROOTDIRECTORY"
+                     Name="MP2-Client">
+          <Directory Id="PLUGINSDIRECTORY"
+                     Name="Plugins">
+            <Directory Id ="SLIDESHOWDIRECTORY"
+                       Name="MPPhotoSlideshow2">
+              <Directory Id ="LANGUAGE"
+                         Name="Language"/>
+              <Directory Id="SKIN"
+                         Name="Skin">
+                <Directory Id="DEFAULT"
+                           Name="default">
+                  <Directory Id="SCREENS"
+                             Name="screens"/>
+                  <Directory Id="WORKFLOW"
+                             Name="workflow"/>
+                </Directory>
+              </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="ProgramMenuFolder">
+          <Directory Id="ApplicationsProgramsFolder" Name ="MPPhotoSlideshow"/>
+        </Directory>
+      </Directory>
+      <!--<Directory Id="SystemFolder"
+                 Name="SystemFolder">
+        <Directory Id="Config"
+                   Name="Config">
+          <Directory Id="systemprofile"
+                     Name="systemprofile">
+            <Directory Id="Desktop"
+                       Name="Desktop">
+              <Component Id="DesktopComponent" Guid ="F388E79A-A68C-4149-AE97-AEE9E7B3AF37">
+                <CreateFolder Directory="Desktop">
+                  <Permission User="Everyone" GenericAll="yes"/>
+                </CreateFolder>
+              </Component >
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>-->
+      <Directory Id="CommonAppDataFolder"
+                 Name="CommonAppDataFolder">
+        <Directory Id="APPPROGRAMDATADIRECTORY"
+                   Name="MPPhotoSlideshow">
+          <Component Id="MPPhotoSlideshowProgramDataComponent" Guid ="3CCCCD09-9654-48F3-9874-7AF9FD08BA36">
+            <CreateFolder Directory="APPPROGRAMDATADIRECTORY">
+              <Permission User="Everyone" GenericAll="yes"/>
+            </CreateFolder>
+          </Component >
+        </Directory>
+      </Directory>
+    </Directory>
+    <DirectoryRef Id="SLIDESHOWDIRECTORY">
+      <Component Id="MPPhotoSlideshowService"
+                 Guid="828AE61D-7DF1-4A6C-B36A-A1DBA77E5149">
+        <File Id="MPPhotoSlideshowWatcher.exe"
+              Name="MPPhotoSlideshowWatcher.exe"
+              KeyPath="yes"
+              Source="..\..\MPPhotoSlideshowWatcher\bin\$(var.BuildType)\MPPhotoSlideshowWatcher.exe"
+              Vital="yes"
+              DiskId="1"/>
+        <ServiceInstall Id="ServiceInstaller"
+                           Type="ownProcess"
+                           Vital="yes"
+                           Name="MPPhotoSlideshowWatcher"
+                           DisplayName="MP Photo Slideshow Watcher"
+                           Description="Service to watch for changes to photo directories"
+                          Start="auto"
+                          Account="LocalSystem"
+                          ErrorControl="ignore"
+                          Interactive="no">
+          <!--<ServiceDependency Id="QSM"/>
+          <ServiceDependency Id="pdl"/>-->
+        </ServiceInstall>
+        <ServiceControl Id="StartService"
+                        Start="install"
+                        Stop="both"
+                        Remove="uninstall"
+                        Name="MPPhotoSlideshowWatcher"
+                        Wait="yes" />
+      </Component>
+      <Component Id="MPPhotoSlideshowCommonDll"
+               Guid="24301159-953A-46D5-B1E3-F96537BBE0DE">
+        <File Id="MPPhotoSlideshowCommon.dll"
+              Name="MPPhotoSlideshowCommon.dll"
+              KeyPath="yes"
+              Source="..\..\MPPhotoSlideshowCommon\bin\$(var.BuildType)\MPPhotoSlideshowCommon.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="MPPhotoSlideshowDll"
+               Guid="CEF8A4DA-E4DB-4163-9090-32C20F1D2625">
+        <File Id="MPPhotoSlideshow.dll"
+              Name="MPPhotoSlideshow.dll"
+              KeyPath="yes"
+              Source="..\bin\$(var.BuildType)\MPPhotoSlideshow.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="MPPhotoSlideshowConfigExe"
+              Guid="53536697-F360-4E94-92C7-11707C0DA0FB">
+        <File Id="MPPhotoSlideshowConfig.exe"
+              Name="MPPhotoSlideshowConfig.exe"
+              KeyPath="yes"
+              Source="..\..\ExecutableProject\bin\$(var.BuildType)\MPPhotoSlideShowConfig.exe"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="MPPhotoSlideshowPlugin"
+              Guid="030A1832-79E9-45DD-8C1F-195F9498FED4">
+        <File Id="plugin.xml"
+              Name="plugin.xml"
+              KeyPath="yes"
+              Source="..\plugin.xml"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <!--<Component Id="OHMTemplateConfiguration"
+                 Guid="9F39773D-7D80-4A23-A81A-50278B167162">
+        <File Id="OHMTemplateSetup.exe"
+              Name="OHMTemplateSetup.exe"
+              KeyPath="yes"
+              Source="..\..\OHMTemplateSetup\bin\$(var.BuildType)\OHMTemplateSetup.exe"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="OHMSharedDll"
+                Guid="B55CA72E-674A-4237-8BAD-D8FF377708D0">
+        <File Id="Shared.dll"
+              Name="Shared.dll"
+              KeyPath="yes"
+              Source="..\..\Shared\bin\$(var.BuildType)\Shared.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="SFTP"
+                  Guid="5CB28E83-7163-41B3-9EC6-733749FEA78A">
+        <File Id="Renci.SshNet.dll"
+              Name="Renci.SshNet.dll"
+              KeyPath="yes"
+              Source="..\..\Shared\bin\$(var.BuildType)\Renci.SshNet.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>-->
+    </DirectoryRef>
+    <DirectoryRef Id="LANGUAGE">
+      <Component Id="MPPhotoSlideshowLanguages"
+                Guid="5CB39700-BE7E-4B04-A65C-E6E630B2386B"
+                Permanent="no"
+                DiskId="1">
+        <File Id="strings_en.xml"
+              Name="strings_en.xml"
+              KeyPath="yes"
+              Source="..\Language\strings_en.xml"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="SCREENS">
+      <Component Id="MPPhotoSlideshowScreen"
+                Guid="600B6718-DCFF-4CF9-BA1F-901570D48669"
+                Permanent="no"
+                DiskId="1">
+        <File Id="mp_photo_slideshow.xaml"
+              Name="mp_photo_slideshow.xaml"
+              KeyPath="yes"
+              Source="..\Skin\default\screens\mp_photo_slideshow.xaml"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="WORKFLOW">
+      <Component Id="MPPhotoSlideshowAction"
+                Guid="1CCF033A-856A-4DEE-BCAC-B3D0C89AFB27"
+                Permanent="no"
+                DiskId="1">
+        <File Id="mpphotoslideshowactions.xml"
+              Name="mp-photo-slideshow-actions.xml"
+              KeyPath="yes"
+              Source="..\Skin\default\workflow\mp-photo-slideshow-actions.xml"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="ApplicationsProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid ="1FDFAC76-04B2-4BB5-9577-3DCB2B700738">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="MP Photo Slideshow Config"
+                  Description="MP Photo Slideshow Configuration"
+                  Target="[SLIDESHOWDIRECTORY]MPPhotoSlideShowConfig.exe"
+                  WorkingDirectory="APPROOTDIRECTORY" Icon ="icon.exe">
+          <Icon Id ="icon.exe" SourceFile ="..\Images\icon.ico"/>
+        </Shortcut>
+        <RemoveFolder Id="ApplicationsProgramsFolder" On ="uninstall"/>
+        <RegistryKey Root="HKCU"
+                     Key="Software\OHMImportTool"
+              Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="integer" Name="installed" Value="1" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="APPPROGRAMDATADIRECTORY">
+      <Component Id="MPPhotoSlideshowTemplates"
+                 Guid="8C7808F8-6C6B-41AB-A7B5-85C243874FD3"
+                 Permanent="yes"
+                 DiskId="1">
+        <File Id="MPSlideshowTemplates.xml"
+              Name="MPSlideshowTemplates.xml"
+              KeyPath="yes"
+              Source="..\Setup\MPSlideshowTemplates.xml"
+              Checksum="no"/>
+      </Component>
+      <!--<Component Id="OHMKey"
+                Guid="485B352C-39D9-41F9-89B7-453015B7C4A6"
+                Permanent="yes"
+                DiskId="1">
+        <File Id="OHMPureSafety.asc"
+              Name="OHMPureSafety.asc"
+              KeyPath="yes"
+              Source="..\Setup\OHMPureSafety.asc"
+              Checksum="no"/>
+      </Component>
+      <Component Id="OHMImportTemplate"
+                 Guid="E4922929-1A14-4C55-8A6D-A36A0F2D0BC0"
+                 Permanent="yes"
+                 DiskId="1">
+        <File Id="Template.xml"
+              Name="Template.xml"
+              KeyPath="yes"
+              Source="..\Setup\Template.xml"
+              Checksum="no"/>
+      </Component>
+      <Component Id="Guide"
+                Guid="2A1689BA-DCBF-42D8-9EEF-1E3143F2B596"
+                Permanent="yes"
+                DiskId="1">
+        <File Id="Guide.pdf"
+              Name="Guide.pdf"
+              KeyPath="yes"
+              Source="..\Setup\Guide.pdf"
+              Checksum="no"/>
+      </Component>-->
+    </DirectoryRef>
+    <Feature Id="FolderPermissions" Title ="InstallerDirectoryPermissions" Level ="1">
+      <ComponentRef Id ="MPPhotoSlideshowProgramDataComponent"/>
+    </Feature>
+    <Feature Id="APPROOTFEATURE"
+             Title="OHMImport"
+             Level="1">      
+      <ComponentRef Id="MPPhotoSlideshowCommonDll"/>
+      <ComponentRef Id="MPPhotoSlideshowConfigExe" />
+      <ComponentRef Id="MPPhotoSlideshowDll" />
+      <ComponentRef Id="MPPhotoSlideshowLanguages" />
+      <ComponentRef Id="MPPhotoSlideshowScreen" />
+      <ComponentRef Id="MPPhotoSlideshowAction" />
+      <ComponentRef Id="MPPhotoSlideshowPlugin" />
+      <ComponentRef Id="MPPhotoSlideshowTemplates"/>
+      <ComponentRef Id="ApplicationShortcut"/>
+      <ComponentRef Id="MPPhotoSlideshowService" />
+    </Feature>
+    <CustomAction Id="SetDataLocationDefault" Property="ProgramDataFolder"
+              Value="[WindowsVolume]ProgramData" />
+
+    <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize" />
+      <LaunchConditions After="AppSearch"/>
+    </InstallExecuteSequence>
+    <InstallUISequence>
+      <Custom Action="CA_BlockOlderVersionInstall"
+              After="FindRelatedProducts">
+        <![CDATA[NEWERVERSIONDETECTED]]>
+      </Custom>
+    </InstallUISequence>
+    <Property Id="ARPHELPLINK"
+              Value="!(loc.Property_ArpHelpLink)" />
+    <Property Id="ARPURLINFOABOUT"
+              Value="!(loc.Property_ArpUrlInfoAbout)" />
+    <Property Id="ALLUSERS">       <![CDATA[1]]>     </Property>
+
+    <Property Id="WIXUI_INSTALLDIR"
+              Value="APPROOTDIRECTORY"/>
+    <Property Id="d4276fcf18d5470b97f3fc6c36408694"
+              Value="License.rtf"/>
+    <Property Id="aefe520afb0145c1bc61ca0463a29e3c"
+              Value="LicenseAccessible.txt"/>
+    <UIRef Id="WixUI_InstallDir"/>
+    <WixVariable Id="WixUILicenseRtf"
+                 Value="License.rtf" />
+  </Product>
+
+
+</Wix>

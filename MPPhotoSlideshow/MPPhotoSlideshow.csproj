@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C4BE1ADE-718D-4ACF-A161-D5666362C85F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MPPhotoSlideshow</RootNamespace>
+    <AssemblyName>MPPhotoSlideshow</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Utils, Version=1.4.100.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Common.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Core, Version=1.4.100.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Databases">
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Databases.dll</HintPath>
+    </Reference>
+    <Reference Include="Dialogs">
+      <HintPath>..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows\Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils, Version=1.4.100.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Team MediaPortal\MediaPortal\Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MPSlideShow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\mpslideshow_background.png" />
+    <Content Include="Images\mpslideshow_image_border.png" />
+    <Content Include="MPPhotoSlideshow.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Setup\Bundle.wxs" />
+    <Content Include="Setup\LicenseAccessible.txt" />
+    <Content Include="Setup\MPSlideshowTemplates.xml" />
+    <Content Include="Setup\Setup-en-us.wxl" />
+    <Content Include="Setup\Setup.wxs">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\DevInstall.cmd" />
+    <None Include="Images\mpslideshow_background.xcf" />
+    <None Include="Images\mpslideshow_image_border.xcf" />
+    <None Include="Setup\Build.cmd" />
+    <None Include="Setup\License.rtf" />
+    <None Include="Setup\MpeSetup.xmp2" />
+    <None Include="Setup\MPPhotoSlideshowInstaller.mpe1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MPPhotoSlideshowCommon\MPPhotoSlideshowCommon.csproj">
+      <Project>{bd72e997-7d47-4f07-9fd9-b5021a4a47f9}</Project>
+      <Name>MPPhotoSlideshowCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(ProjectDir)Debug\devinstall.cmd" $(ConfigurationName) $(FullyQualifiedOutputPath)"
+call "$(ProjectDir)Setup\Build.cmd" $(ConfigurationName)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

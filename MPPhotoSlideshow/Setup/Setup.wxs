@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?define Property_ProductVersion = "1.0.1" ?>
+<?define Property_ProductCode = "*" ?>
+<?define Property_UpgradeCode = "62AD3313-103D-4C75-A6FB-852DA9701E25" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="$(var.Property_ProductCode)"
+           UpgradeCode="$(var.Property_UpgradeCode)"
+           Name="!(loc.Property_ProductName)"
+           Language="!(loc.Property_ProductLanguage)"
+           Version="$(var.Property_ProductVersion)"
+           Manufacturer="!(loc.Property_CompanyName)">
+    <Package Description="!(loc.Package_Description)"
+             Comments="!(loc.Package_Comments)"
+             InstallerVersion="200"
+             Compressed="yes" />
+    <Media Id="1" Cabinet="MPPhotoSlideshow.cab"
+                  EmbedCab="yes" />
+    <Upgrade Id="$(var.Property_UpgradeCode)">
+      <UpgradeVersion OnlyDetect="no"
+                      Property="OLDERVERSIONBEINGUPGRADED"
+                      Minimum="1.0.0.0"
+                      IncludeMinimum="yes"
+                      Maximum="$(var.Property_ProductVersion)"
+                      IncludeMaximum="no"/>
+      <UpgradeVersion Minimum="$(var.Property_ProductVersion)"
+                      OnlyDetect="yes"
+                      Property="NEWERVERSIONDETECTED" />
+    </Upgrade>
+
+    <Binary Id="License.rtf"
+            SourceFile="..\Setup\License.rtf" />
+    <Binary Id="LicenseAccessible.txt"
+            SourceFile="..\Setup\LicenseAccessible.txt" />
+    <CustomAction Id="CA_BlockOlderVersionInstall"
+                  Error="!(loc.LaunchCondition_LaterVersion)" />
+    <Condition Message="!(loc.LaunchCondition_AdminPrivs)">       
+      <![CDATA[Privileged]]>     
+    </Condition>
+    <Directory Id="TARGETDIR"
+               Name="SourceDir">
+      <Directory Id="ProgramFilesFolder"
+                 Name="Program Files">
+        <Directory Id="MyCompany"
+                   Name="!(loc.Property_CompanyName)">
+          <Directory Id="APPROOTDIRECTORY"
+                     Name="!(loc.Property_ProductName)"/>
+        </Directory>
+        <!--<Directory Id="ProgramMenuFolder">
+          <Directory Id="ApplicationsProgramsFolder" Name ="OHM Import Tool"/>
+        </Directory>-->
+      </Directory>
+      <!--<Directory Id="SystemFolder"
+                 Name="SystemFolder">
+        <Directory Id="Config"
+                   Name="Config">
+          <Directory Id="systemprofile"
+                     Name="systemprofile">
+            <Directory Id="Desktop"
+                       Name="Desktop">
+              <Component Id="DesktopComponent" Guid ="F388E79A-A68C-4149-AE97-AEE9E7B3AF37">
+                <CreateFolder Directory="Desktop">
+                  <Permission User="Everyone" GenericAll="yes"/>
+                </CreateFolder>
+              </Component >
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>-->
+      <!--<Directory Id="CommonAppDataFolder"
+                 Name="CommonAppDataFolder">
+        <Directory Id="APPPROGRAMDATADIRECTORY"
+                   Name="MPPhotoSlideshow Watcher">
+          <Component Id="MPPhotoSlideshowServiceComponent" Guid ="50EB4813-D06D-4811-81CB-1CB32B3DDFBD">
+            <CreateFolder Directory="APPPROGRAMDATADIRECTORY">
+              <Permission User="Everyone" GenericAll="yes"/>
+            </CreateFolder>
+          </Component >
+        </Directory>
+      </Directory>-->
+    </Directory>
+    <DirectoryRef Id="APPROOTDIRECTORY">
+      <Component Id="MPPhotoSlideshowService"
+                 Guid="8F536D50-2593-46ED-B903-52940B6C2B38">
+        <File Id="MPPhotoSlideshowWatcher.exe"
+              Name="MPPhotoSlideshowWatcher.exe"
+              KeyPath="yes"
+              Source="..\..\MPPhotoSlideshowWatcher\bin\$(var.BuildType)\MPPhotoSlideshowWatcher.exe"
+              Vital="yes"
+              DiskId="1"/>
+        <ServiceInstall Id="ServiceInstaller"
+                           Type="ownProcess"
+                           Vital="yes"
+                           Name="MPPhotoSlideshowWatcher"
+                           DisplayName="MP Photo Slideshow Watcher"
+                           Description="Service to watch for changes to photo directories"
+                          Start="auto"
+                          Account="LocalSystem"
+                          ErrorControl="ignore"
+                          Interactive="no">
+          <!--<ServiceDependency Id="QSM"/>
+          <ServiceDependency Id="pdl"/>-->
+        </ServiceInstall>
+        <ServiceControl Id="StartService"
+                        Start="install"
+                        Stop="both"
+                        Remove="uninstall"
+                        Name="MPPhotoSlideshowWatcher"
+                        Wait="yes" />
+      </Component>
+      <Component Id="MPPhotoSlideshowCommonDll"
+               Guid="48B98E41-B86B-4839-9677-BDB4D2F1B41F">
+        <File Id="MPPhotoSlideshowCommon.dll"
+              Name="MPPhotoSlideshowCommon.dll"
+              KeyPath="yes"
+              Source="..\..\MPPhotoSlideshowCommon\bin\$(var.BuildType)\MPPhotoSlideshowCommon.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <!--<Component Id="OHMTemplateConfiguration"
+                 Guid="9F39773D-7D80-4A23-A81A-50278B167162">
+        <File Id="OHMTemplateSetup.exe"
+              Name="OHMTemplateSetup.exe"
+              KeyPath="yes"
+              Source="..\..\OHMTemplateSetup\bin\$(var.BuildType)\OHMTemplateSetup.exe"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="OHMSharedDll"
+                Guid="B55CA72E-674A-4237-8BAD-D8FF377708D0">
+        <File Id="Shared.dll"
+              Name="Shared.dll"
+              KeyPath="yes"
+              Source="..\..\Shared\bin\$(var.BuildType)\Shared.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>
+      <Component Id="SFTP"
+                  Guid="5CB28E83-7163-41B3-9EC6-733749FEA78A">
+        <File Id="Renci.SshNet.dll"
+              Name="Renci.SshNet.dll"
+              KeyPath="yes"
+              Source="..\..\Shared\bin\$(var.BuildType)\Renci.SshNet.dll"
+              Vital="yes"
+              DiskId="1"/>
+      </Component>-->
+    </DirectoryRef>
+    <!--<DirectoryRef Id="ApplicationsProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid ="A97A98D2-A921-493D-B45D-AF7B5B9E6A16">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="OHM Import Tool"
+                  Description="OHM Import Tool"
+                  Target="[APPROOTDIRECTORY]OHMTemplateSetup.exe"
+                  WorkingDirectory="APPROOTDIRECTORY" Icon ="icon.exe">
+          <Icon Id ="icon.exe" SourceFile ="..\Images\upload.ico"/>
+        </Shortcut>
+        <RemoveFolder Id="ApplicationsProgramsFolder" On ="uninstall"/>
+        <RegistryKey Root="HKCU"
+                     Key="Software\OHMImportTool"
+              Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="integer" Name="installed" Value="1" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>-->
+    <!--<DirectoryRef Id="APPPROGRAMDATADIRECTORY">
+      <Component Id="OHMImportSettings"
+                 Guid="6B2B4480-C1CA-4115-A26F-2180CAFAC0F6"
+                 Permanent="yes"
+                 DiskId="1">
+        <File Id="OHMImportSettings.xml"
+              Name="OHMImportSettings.xml"
+              KeyPath="yes"
+              Source="..\Setup\OHMImportSettings.xml"
+              Checksum="no"/>
+      </Component>
+      <Component Id="OHMKey"
+                Guid="485B352C-39D9-41F9-89B7-453015B7C4A6"
+                Permanent="yes"
+                DiskId="1">
+        <File Id="OHMPureSafety.asc"
+              Name="OHMPureSafety.asc"
+              KeyPath="yes"
+              Source="..\Setup\OHMPureSafety.asc"
+              Checksum="no"/>
+      </Component>
+      <Component Id="OHMImportTemplate"
+                 Guid="E4922929-1A14-4C55-8A6D-A36A0F2D0BC0"
+                 Permanent="yes"
+                 DiskId="1">
+        <File Id="Template.xml"
+              Name="Template.xml"
+              KeyPath="yes"
+              Source="..\Setup\Template.xml"
+              Checksum="no"/>
+      </Component>
+      <Component Id="Guide"
+                Guid="2A1689BA-DCBF-42D8-9EEF-1E3143F2B596"
+                Permanent="yes"
+                DiskId="1">
+        <File Id="Guide.pdf"
+              Name="Guide.pdf"
+              KeyPath="yes"
+              Source="..\Setup\Guide.pdf"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>-->
+    <!--<Feature Id="FolderPermissions" Title ="InstallerDirectoryPermissions" Level ="1">
+      <ComponentRef Id ="MPPhotoSlideshowServiceComponent"/>
+    </Feature>-->
+    <Feature Id="APPROOTFEATURE"
+             Title="OHMImport"
+             Level="1">
+      <ComponentRef Id="MPPhotoSlideshowService" />
+      <ComponentRef Id="MPPhotoSlideshowCommonDll"/>
+      <!--<ComponentRef Id="OHMTemplateConfiguration" />
+      <ComponentRef Id="OHMSharedDll" />
+      <ComponentRef Id="SFTP"/>
+      <ComponentRef Id="OHMImportSettings"/>
+      <ComponentRef Id="OHMKey"/>
+      <ComponentRef Id="Guide"/>
+      <ComponentRef Id="OHMImportTemplate"/>
+      <ComponentRef Id="DesktopComponent"/>
+      <ComponentRef Id="ApplicationShortcut"/>-->
+    </Feature>
+    <CustomAction Id="SetDataLocationDefault" Property="ProgramDataFolder"
+              Value="[WindowsVolume]ProgramData" />
+
+    <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize" />
+      <LaunchConditions After="AppSearch"/>
+    </InstallExecuteSequence>
+    <InstallUISequence>
+      <Custom Action="CA_BlockOlderVersionInstall"
+              After="FindRelatedProducts">
+        <![CDATA[NEWERVERSIONDETECTED]]>
+      </Custom>
+    </InstallUISequence>
+    <Property Id="ARPHELPLINK"
+              Value="!(loc.Property_ArpHelpLink)" />
+    <Property Id="ARPURLINFOABOUT"
+              Value="!(loc.Property_ArpUrlInfoAbout)" />
+    <Property Id="ALLUSERS">       <![CDATA[1]]>     </Property>
+
+    <Property Id="WIXUI_INSTALLDIR"
+              Value="APPROOTDIRECTORY"/>
+    <Property Id="d4276fcf18d5470b97f3fc6c36408694"
+              Value="License.rtf"/>
+    <Property Id="aefe520afb0145c1bc61ca0463a29e3c"
+              Value="LicenseAccessible.txt"/>
+    <UIRef Id="WixUI_InstallDir"/>
+    <WixVariable Id="WixUILicenseRtf"
+                 Value="License.rtf" />
+  </Product>
+
+
+</Wix>
