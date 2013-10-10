@@ -34,3 +34,13 @@ C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\MPPhotoSlide
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow\obj\Debug\MPPhotoSlideshow.pdb
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\Utils.dll
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\Common.Utils.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\MPPhotoSlideshow.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\MPPhotoSlideshow.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\Common.Utils.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\Utils.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\log4net.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\obj\Debug\MPPhotoSlideshow.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\obj\Debug\MPPhotoSlideshow.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow\obj\Debug\MPPhotoSlideshow.pdb

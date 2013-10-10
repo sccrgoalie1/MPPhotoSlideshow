@@ -94,7 +94,7 @@ namespace MPPhotoSlideshowCommon
         DateTime lastPictureLoad = new DateTime(1901, 1, 1);
         settings = new XMLSettings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MPPhotoSlideshow2.xml");
         _pictureFolders = settings.getXmlAttribute("FolderPaths", "");
-        Int32.TryParse(settings.getXmlAttribute("Interval", ""), out interval);
+        Int32.TryParse(settings.getXmlAttribute("Interval", "10000"), out interval);
         backgroundImageTextBox.Text = settings.getXmlAttribute("BackgroundPath", "mpslideshow_background.png");
         
         //using (Settings xmlreader = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPPhotoSlideshow.xml"))
@@ -114,7 +114,10 @@ namespace MPPhotoSlideshowCommon
         timerTextBox.Text = interval.ToString();
         foreach (string pictureFolder in _pictureFolders.Split(','))
         {
-          photoFoldersListBox.Items.Add(pictureFolder);
+          if (pictureFolder != "")
+          {
+            photoFoldersListBox.Items.Add(pictureFolder);
+          }
         }
       }
       catch (Exception ex)

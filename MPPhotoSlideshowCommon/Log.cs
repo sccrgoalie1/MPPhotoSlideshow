@@ -104,7 +104,7 @@ namespace MPPhotoSlideshowCommon
           checkFileSize();
           using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
           {
-            streamWriter.WriteLine(DateTime.Now.ToString() + "ERROR         " + String.Format(format, arg));
+            streamWriter.WriteLine(DateTime.Now.ToString() + "   ERROR         " + String.Format(format, arg));
           }
         }
         private static void checkFileSize()

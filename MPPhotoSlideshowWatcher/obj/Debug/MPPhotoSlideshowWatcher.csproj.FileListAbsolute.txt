@@ -26,3 +26,10 @@ C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPho
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.csprojResolveAssemblyReference.cache
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.exe
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPhotoSlideshowWatcher.exe
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPhotoSlideshowWatcher.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.exe
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.pdb

@@ -20,3 +20,10 @@ C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MPPhotoSlid
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow2.csprojResolveAssemblyReference.cache
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow.dll
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MPPhotoSlideshow.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MPPhotoSlideshow.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow2.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlideshow.pdb

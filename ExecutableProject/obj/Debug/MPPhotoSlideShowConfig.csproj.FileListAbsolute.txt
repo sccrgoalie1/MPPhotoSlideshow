@@ -9,3 +9,12 @@ C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlid
 C:\dev\MPPhotoSlideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.pdb
 C:\dev\Slideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.exe
 C:\dev\Slideshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.exe
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideShowConfig.exe
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideShowConfig.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideshowCommon.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.Properties.Resources.resources
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.csproj.GenerateResource.Cache
