@@ -92,8 +92,9 @@ namespace MPPhotoSlideshow.Models
     /// <summary>
     /// This property holds a string that we will modify in this tutorial.
     /// </summary>
-    #region Picture1
     protected readonly AbstractProperty _helloStringProperty;
+    protected readonly AbstractProperty _slideshowBackgroundProperty;
+    #region Picture1
     protected readonly AbstractProperty _picture1Property;
     protected readonly AbstractProperty _picture1PosX;
     protected readonly AbstractProperty _picture1PosY;
@@ -178,7 +179,6 @@ namespace MPPhotoSlideshow.Models
     #region private variables
     private static int templateWidth = 1920;
     private static int templateHeight=1080;
-    private string backgroundImagePath = "";
     private int timerInterval = 10000;
     private XMLSettings settings;
     private Timer timer = new Timer();
@@ -203,6 +203,7 @@ namespace MPPhotoSlideshow.Models
         // the system might run into memory leaks.
         Log.Init(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MP2Log", "log", LogType.Debug);
         _helloStringProperty = new WProperty(typeof(string), HELLOWORLD_RESOURCE);
+        _slideshowBackgroundProperty = new WProperty(typeof(object), null);
         _picture1Property = new WProperty(typeof(object), null);
         _picture1Date = new WProperty(typeof(string), null);
         _picture1PosX = new WProperty(typeof(object), null);
@@ -287,6 +288,11 @@ namespace MPPhotoSlideshow.Models
     {
       get { return (string) _helloStringProperty.GetValue(); }
       set { _helloStringProperty.SetValue(value); }
+    }
+    public string SlideshowBackground
+    {
+      get { return (string)_slideshowBackgroundProperty.GetValue(); }
+      set { _slideshowBackgroundProperty.SetValue(value); }
     }
     #region Picture1
     public string Picture1Date
@@ -613,6 +619,10 @@ namespace MPPhotoSlideshow.Models
     {
       get { return _helloStringProperty; }
     }
+    public AbstractProperty SlideshowBackgroundProperty
+    {
+      get { return _slideshowBackgroundProperty; }
+    }
     #region Picture1
     public AbstractProperty Picture1Property
     {
@@ -881,7 +891,7 @@ namespace MPPhotoSlideshow.Models
       {
         settings = new XMLSettings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MPPhotoSlideshow2.xml");
         Int32.TryParse(settings.getXmlAttribute("Interval","10000"), out timerInterval);
-        backgroundImagePath = settings.getXmlAttribute("BackgroundPath");
+        SlideshowBackground= settings.getXmlAttribute("BackgroundPath");
         List<Picture> _allPictures = new List<Picture>();
         string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow";
         if (File.Exists(folder + @"\MPSlideshowCache.xml"))
@@ -908,6 +918,8 @@ namespace MPPhotoSlideshow.Models
             }
             streamReader.Close();
           }
+          //only use enabled templates
+          _photoTemplates = _photoTemplates.FindAll(p => p.Enabled);
 
         }
         //}

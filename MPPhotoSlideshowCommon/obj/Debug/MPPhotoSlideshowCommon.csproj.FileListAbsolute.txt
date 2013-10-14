@@ -16,3 +16,4 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhoto
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csproj.GenerateResource.Cache
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.pdb
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csprojResolveAssemblyReference.cache

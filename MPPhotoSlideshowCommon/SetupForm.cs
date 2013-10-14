@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MPPhotoSlideshowCommon;
+using System.ServiceProcess;
 
 namespace MPPhotoSlideshowCommon
 {
@@ -40,6 +41,7 @@ namespace MPPhotoSlideshowCommon
       {
         previousSelectedTemplateIndex = 0;
         templateComboBox.SelectedIndex = 0;
+        templateEnabledCheckBox.Checked = photoTemplates[0].Enabled;
       }
       if (photoControls.Count > 0)
       {
@@ -300,6 +302,7 @@ namespace MPPhotoSlideshowCommon
             //templateComboBox.SelectedIndex = 0;
             previousSelectedPictureIndex = 0;
             pictureSelectorComboBox.SelectedIndex = 0;
+            templateEnabledCheckBox.Checked = photoTemplates[templateComboBox.SelectedIndex].Enabled;
             SetupGUI();
           }
         }
@@ -341,6 +344,20 @@ namespace MPPhotoSlideshowCommon
         Int32.TryParse(timerTextBox.Text, out interval);
         settings.writeToXMLFile("Interval", interval.ToString());
         settings.writeToXMLFile("BackgroundPath", backgroundImageTextBox.Text);
+
+        //restart the service for new settings
+        TimeSpan timeout = TimeSpan.FromMilliseconds(20000);
+        if (watcherService.Status == ServiceControllerStatus.Running)
+        {
+          int millisec1 = Environment.TickCount;
+          watcherService.Stop();
+          watcherService.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+          // count the rest of the timeout
+          int millisec2 = Environment.TickCount;
+          timeout = TimeSpan.FromMilliseconds(2000 - (millisec2 - millisec1));
+        }
+        watcherService.Start();
+        watcherService.WaitForStatus(ServiceControllerStatus.Running, timeout);
         //using (Settings xmlreader = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPPhotoSlideshow.xml"))
         //{
         //  int interval=10000;          
@@ -389,6 +406,7 @@ namespace MPPhotoSlideshowCommon
         borderTopTextBox.Text = "";
         borderRightTextBox.Text = "";
         pictureEnabledTextBox.Checked = false;
+        templateEnabledCheckBox.Checked = false;
       }
       catch (Exception ex)
       {
@@ -404,6 +422,7 @@ namespace MPPhotoSlideshowCommon
         {
           PhotoTemplate template = (PhotoTemplate)photoTemplates[previousSelectedTemplateIndex];
           template.Photos = photoControls;
+          template.Enabled = templateEnabledCheckBox.Checked;
         }
         previousSelectedTemplateIndex = templateComboBox.SelectedIndex;
       }
@@ -499,7 +518,7 @@ namespace MPPhotoSlideshowCommon
       bool saveMe = true;
         if (pictureEnabledTextBox.Checked)
         {
-          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelWidthTextBox.Text == "" | labelHeightTextBox.Text == "" | labelXPosTextBox.Text == "" | labelYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" | backgroundImageTextBox.Text == "")
+          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" | backgroundImageTextBox.Text == "")
           {
             pictureSelectorComboBox.SelectedIndex = previousSelectedPictureIndex;
             saveMe=false;
@@ -564,7 +583,7 @@ namespace MPPhotoSlideshowCommon
       bool saveMe = true;
         if (pictureEnabledTextBox.Checked)
         {
-          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelWidthTextBox.Text == "" | labelHeightTextBox.Text == "" | labelXPosTextBox.Text == "" | labelYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "")
+          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "")
           {
             saveMe=false;
             MessageBox.Show("No picture field can be left blank");
@@ -649,6 +668,17 @@ namespace MPPhotoSlideshowCommon
           string[] res = metaData.ImageDimensions.DisplayValue.Split('x');
           Int32.TryParse(res[0], out width);
           Int32.TryParse(res[1], out height);
+          double aspectratio = 0;
+          if (width > height)
+          {
+            double value = (double)width / height;
+            aspectratio = Math.Truncate(10 * (value)) / 10;
+          }
+          else
+          {
+            double value = (double)height / width;
+            aspectratio = Math.Truncate(10 * (value)) / 10;
+          }
           //string orientation = metaData.Orientation.DisplayValue;
           //if (orientation == "Rotate 90")
           //{
@@ -671,7 +701,7 @@ namespace MPPhotoSlideshowCommon
           //}
           progress++;
           photoCacheWorker.ReportProgress(progress);
-          _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = height, Width = width });
+          _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = height, Width = width, AspectRatio=Convert.ToString(aspectratio)});
         }
         if ((photoCacheWorker.CancellationPending == true))
         {
@@ -694,7 +724,12 @@ namespace MPPhotoSlideshowCommon
         }
       }
     }
-
+    public decimal TruncateDecimal(decimal value, int precision)
+    {
+      decimal step = (decimal)Math.Pow(10, precision);
+      int tmp = (int)Math.Truncate(step * value);
+      return tmp / step;
+    }
     private void buildCacheButton_Click(object sender, EventArgs e)
     {
       progressLabel.Text = "";
@@ -743,16 +778,16 @@ namespace MPPhotoSlideshowCommon
 
     private void photoYPosTextBox_TextChanged(object sender, EventArgs e)
     {
-      int YPos = 0;
-      int height = 0;
-      Int32.TryParse(photoYPosTextBox.Text, out YPos);
-      Int32.TryParse(photoHeightTextBox.Text, out height);
-      labelYPosTextBox.Text = (YPos + height).ToString();
+      //int YPos = 0;
+      //int height = 0;
+      //Int32.TryParse(photoYPosTextBox.Text, out YPos);
+      //Int32.TryParse(photoHeightTextBox.Text, out height);
+      //labelYPosTextBox.Text = (YPos + height).ToString();
     }
 
     private void photoWidthTextBox_TextChanged(object sender, EventArgs e)
     {
-      labelWidthTextBox.Text = photoWidthTextBox.Text;
+      //labelWidthTextBox.Text = photoWidthTextBox.Text;
     }
 
     private void backgroundImageTextBox_DoubleClick(object sender, EventArgs e)
@@ -775,7 +810,7 @@ namespace MPPhotoSlideshowCommon
 
     private void labelHeightTextBox_TextChanged(object sender, EventArgs e)
     {
-      borderBottomTextBox.Text = labelHeightTextBox.Text;
+      //borderBottomTextBox.Text = labelHeightTextBox.Text;
     }
 
     private void SetupForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -784,7 +819,7 @@ namespace MPPhotoSlideshowCommon
       {
         if (pictureEnabledTextBox.Checked)
         {
-          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelWidthTextBox.Text == "" | labelHeightTextBox.Text == "" | labelXPosTextBox.Text == "" | labelYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" |backgroundImageTextBox.Text=="")
+          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" |backgroundImageTextBox.Text=="")
           {
             MessageBox.Show("All fields must be filled in");
           }

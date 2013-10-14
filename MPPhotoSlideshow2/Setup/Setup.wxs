@@ -58,6 +58,8 @@
                              Name="screens"/>
                   <Directory Id="WORKFLOW"
                              Name="workflow"/>
+                  <Directory Id="IMAGES"
+                             Name="images"/>
                 </Directory>
               </Directory>
               </Directory>
@@ -226,6 +228,18 @@
               Checksum="no"/>
       </Component>
     </DirectoryRef>
+    <DirectoryRef Id="IMAGES">
+      <Component Id="MPPhotoSlideshowBackgroundImage"
+                Guid="7283A5B3-35C5-429C-8D56-62B4B28B333E"
+                Permanent="no"
+                DiskId="1">
+        <File Id="mpslideshow_background.png"
+              Name="mpslideshow_background.png"
+              KeyPath="yes"
+              Source="..\Skin\default\images\mpslideshow_background.png"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>
     <DirectoryRef Id="ApplicationsProgramsFolder">
       <Component Id="ApplicationShortcut" Guid ="1FDFAC76-04B2-4BB5-9577-3DCB2B700738">
         <Shortcut Id="ApplicationStartMenuShortcut"
@@ -297,6 +311,7 @@
       <ComponentRef Id="MPPhotoSlideshowLanguages" />
       <ComponentRef Id="MPPhotoSlideshowScreen" />
       <ComponentRef Id="MPPhotoSlideshowAction" />
+      <ComponentRef Id="MPPhotoSlideshowBackgroundImage"/>
       <ComponentRef Id="MPPhotoSlideshowPlugin" />
       <ComponentRef Id="MPPhotoSlideshowTemplates"/>
       <ComponentRef Id="ApplicationShortcut"/>

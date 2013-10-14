@@ -1,21 +1,26 @@
 <Screen xmlns="www.team-mediaportal.com/2008/mpf/directx" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         Context="{Model Id=C6B0FA5A-288E-405A-A5D5-AA66CC0AA327}">
-  <Canvas Background="Black">
+    <Canvas>
+        <Canvas.Background>
+            <ImageBrush ImageSource="{Binding Path=SlideshowBackgroundProperty}" Stretch="Fill"/>
+        </Canvas.Background>
         <Canvas x:Name="Picture1Grid" Canvas.Top="{Binding Path=Picture1PosYProperty}" Canvas.Left="{Binding Path=Picture1PosXProperty}">
-        <Canvas.RenderTransform>
-            <TransformGroup>
-    						 <RotateTransform CenterX="100" CenterY="75" Angle="0" />
-    					</TransformGroup>
-        </Canvas.RenderTransform>
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterX="100" CenterY="75" Angle="0" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
             <Grid>
-            <Border x:Name="Picture1Border" BorderBrush="White" 
-                    BorderThickness="10" MaxWidth="{Binding Path=Picture1WidthProperty}" MinWidth="{Binding Path=Picture1WidthProperty}" 
+                <Border x:Name="Picture1Border" MaxWidth="{Binding Path=Picture1WidthProperty}" MinWidth="{Binding Path=Picture1WidthProperty}" 
                     MaxHeight="{Binding Path=Picture1HeightProperty}" MinHeight="{Binding Path=Picture1HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture1Property}" Stretch="UniformToFill"/>
-        </Border>
-            <Label x:Name="Picture1Label" Content="{Binding Path=Picture1DateProperty}" 
+                    <Border.Background>
+                        <ImageBrush ImageSource="mpslideshow_image_border.png" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture1Property}" Stretch="UniformToFill" Margin ="10,10,10,10"/>
+                </Border>
+                <Label x:Name="Picture1Label" Content="{Binding Path=Picture1DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
               Color="{Binding Path=Picture1DateColorProperty}" FontSize="8"/>
             </Grid>

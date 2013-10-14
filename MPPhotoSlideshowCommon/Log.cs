@@ -90,7 +90,7 @@ namespace MPPhotoSlideshowCommon
             checkFileSize();
             using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
             {
-              streamWriter.WriteLine(DateTime.Now.ToString() + "DEBUG         " + String.Format(format, arg));
+              streamWriter.WriteLine(DateTime.Now.ToString() + "   DEBUG         " + String.Format(format, arg));
             }
           }
         }

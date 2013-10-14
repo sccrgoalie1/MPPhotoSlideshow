@@ -9,6 +9,7 @@ namespace MPPhotoSlideshowCommon
   public class PhotoTemplate
   {
     public string TemplateName { get; set; }
+    public bool Enabled { get; set; }
     public BindingList<PhotoControl> Photos { get; set; }
     public PhotoTemplate(){}
   }

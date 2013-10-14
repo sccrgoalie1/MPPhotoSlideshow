@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\icon.ico" />
+    <Content Include="Skin\default\images\mpslideshow_background.png" />
     <Content Include="Language\strings_en.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -68,6 +69,7 @@
     <Content Include="Setup\Setup.wxs">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skin\default\images\mpslideshow_image_border.png" />
     <None Include="Debug\DevInstall.cmd" />
     <None Include="Setup\Build.cmd" />
     <None Include="Setup\License.rtf" />

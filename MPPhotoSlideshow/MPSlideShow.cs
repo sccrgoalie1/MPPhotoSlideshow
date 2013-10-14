@@ -53,15 +53,27 @@ namespace MPPhotoSlideshow
     protected GUIImage picture8 = null;
     [SkinControlAttribute(741)]
     protected GUILabelControl picture8Label = null;
-    private Random _verticalRnd = new Random();
-    private Random _horizontalRnd = new Random();
+    private Random _vertical4x3Rnd = new Random();
+    private Random _horizontal4x3Rnd = new Random();
+    private Random _verticalPanoramasRnd = new Random();
+    private Random _horizontalPanoramasRnd = new Random();
+    private Random _verticalSquareRnd = new Random();
+    private Random _horizontalSquareRnd = new Random();
+    private Random _vertical16x9Rnd = new Random();
+    private Random _horizontal16x9Rnd = new Random();
     private Random _templateRnd = new Random();
     private XMLSettings settings;
     private Timer timer = new Timer();
     private string _backgroundImagePath;
     private List<Picture> _allPictures = new List<Picture>();
-    private List<Picture> _verticalPictures = new List<Picture>();
-    private List<Picture> _horizontalPictures = new List<Picture>();
+    private List<Picture> _vertical4x3Pictures = new List<Picture>();
+    private List<Picture> _horizontal4x3Pictures = new List<Picture>();
+    private List<Picture> _verticalPanoramasPictures = new List<Picture>();
+    private List<Picture> _horizontalPanoramasPictures = new List<Picture>();
+    private List<Picture> _verticalSquarePictures = new List<Picture>();
+    private List<Picture> _horizontalSquarePictures = new List<Picture>();
+    private List<Picture> _vertical16x9Pictures = new List<Picture>();
+    private List<Picture> _horizontal16x9Pictures = new List<Picture>();
     private List<PhotoTemplate> _photoTemplates = new List<PhotoTemplate>();
     public MPSlideShow()
     {
@@ -150,6 +162,7 @@ namespace MPPhotoSlideshow
     //Called before loading the page
     protected override void OnPageLoad()
     {
+      MPPhotoSlideshowCommon.Log.Init(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MP1Log", "log", LogType.Debug);
       int interval = 10000;
       settings = new XMLSettings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MPPhotoSlideshow2.xml");
         Int32.TryParse(settings.getXmlAttribute("Interval"),out interval);
@@ -186,32 +199,65 @@ namespace MPPhotoSlideshow
             }
             streamReader.Close();
           }
-
+          //only use enabled templates
+          _photoTemplates = _photoTemplates.FindAll(p => p.Enabled);
         }
       //}
         if (_allPictures.Count > 0)
         {
           foreach (Picture picture in _allPictures)
           {
+            double aspectratio=0;
+            double.TryParse(picture.AspectRatio, out aspectratio);
             if (picture.Width > picture.Height)
             {
-              _horizontalPictures.Add(picture);
+              if (aspectratio == 1)
+              {
+                _horizontalSquarePictures.Add(picture);
+              }
+              else if (1 < aspectratio & aspectratio <= 1.5)
+              {
+                _horizontal4x3Pictures.Add(picture);
+              }
+              else if (1.5 < aspectratio & aspectratio < 2)
+              {
+                _horizontal16x9Pictures.Add(picture);
+              }
+              else if (aspectratio >= 2)
+              {
+                _horizontalPanoramasPictures.Add(picture);
+              }
             }
             else
             {
-              _verticalPictures.Add(picture);
+              if (aspectratio == 1)
+              {
+                _verticalSquarePictures.Add(picture);
+              }
+              else if (1 < aspectratio & aspectratio <= 1.5)
+              {
+                _vertical4x3Pictures.Add(picture);
+              }
+              else if (1.5 < aspectratio & aspectratio < 2)
+              {
+                _vertical16x9Pictures.Add(picture);
+              }
+              else if (aspectratio >= 2)
+              {
+                _verticalPanoramasPictures.Add(picture);
+              }
             }
           }
-          //_horizontalPictures = _allPictures.Where(s => s.Width > s.Height).ToList<Picture>();
-          //_verticalPictures = _allPictures.Where(s => s.Width < s.Height).ToList<Picture>();
+          //_horizontal4x3Pictures = _allPictures.Where(s => s.Width > s.Height).ToList<Picture>();
+          //_vertical4x3Pictures = _allPictures.Where(s => s.Width < s.Height).ToList<Picture>();
           //_allPictures = null;
           background.SetFileName(_backgroundImagePath);
-          MediaPortal.GUI.Library.Log.Debug("MPSlideshow - Just finished loading horizontal and vertical pictures");
+          MPPhotoSlideshowCommon.Log.Debug("MPSlideshow - Just finished loading horizontal and vertical pictures");
           LoadPage();
           timer.Tick += new EventHandler(timer_Tick);
           timer.Interval = interval;
           timer.Start();
-          MediaPortal.GUI.Library.Log.Debug("MPSlideshow.OnPageLoad() - Pictures count {0}", _allPictures.Count);
+          MPPhotoSlideshowCommon.Log.Debug("MPSlideshow.OnPageLoad() - Pictures count {0}", _allPictures.Count);
         }
         else
         {
@@ -319,54 +365,7 @@ namespace MPPhotoSlideshow
       PhotoTemplate template = _photoTemplates[_templateRnd.Next(_photoTemplates.Count)];
       if (template.Photos[0].Enabled)
       {
-        //picture1.Dispose();
-        Picture picture1FileName;
-        if (template.Photos[0].Image.Height > template.Photos[0].Image.Width)
-        {
-          picture1FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture1FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture1.Height = template.Photos[0].Image.Height;
-        picture1.Width = template.Photos[0].Image.Width;
-        //VisualEffect effect = new VisualEffect();
-        ////effect.AnimationType = AnimationType.VisibleChange;
-        //effect.Effect = EffectType.RotateZ;
-        //effect.Amount = 200;
-        //effect.CenterX = 360;
-        //effect.CenterY = 288;
-        //effect.EndX = 30;
-        //effect.Animate(200, true);
-        //effect.AnimationType = AnimationType.WindowOpen;
-        //effect.Effect = EffectType.Fade;
-        //effect.StartX=100;
-        //effect.StartY=100;
-        //effect.EndX=100;
-        //effect.EndY=105;
-        //effect.Amount = 500;
-        //List<VisualEffect> effects = new List<VisualEffect>();
-        //effects.Add(effect);
-        //picture1.SetAnimations(effects);
-        picture1.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[0].Image.BorderLeft, template.Photos[0].Image.BorderRight, template.Photos[0].Image.BorderTop, template.Photos[0].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[0].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture1.SetPosition(template.Photos[0].Image.posX, template.Photos[0].Image.posY);
-        picture1.SetFileName(picture1FileName.FilePath);
-        //if (picture1FileName.RotateFromExifOrientation)
-        //{
-        //  //rotate the image in memory only
-        //  picture1.MemoryImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
-        //  picture1.set
-        //}
-        picture1.ScaleToScreenResolution();
-        picture1.Refresh();
-        picture1Label.Label = picture1FileName.DateTaken.ToString("d");
-        picture1Label.Height = template.Photos[0].Label.Height;
-        picture1Label.Width = template.Photos[0].Label.Width;
-        picture1Label.SetPosition(template.Photos[0].Label.posX, template.Photos[0].Label.posY);
-        picture1Label.FontName = template.Photos[0].Label.Font;
-        picture1Label.TextColor = ColorTranslator.FromHtml(template.Photos[0].Label.TextColor).ToArgb();
-        picture1Label.ScaleToScreenResolution();
+        SetupTemplate(picture1, picture1Label, template, 0);
       }
       else
       {
@@ -375,30 +374,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[1].Enabled)
       {
-        //picture2.Dispose();
-        Picture picture2FileName;
-        if (template.Photos[1].Image.Height > template.Photos[1].Image.Width)
-        {
-          picture2FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture2FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture2.Height = template.Photos[1].Image.Height;
-        picture2.Width = template.Photos[1].Image.Width;
-        picture2.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[1].Image.BorderLeft, template.Photos[1].Image.BorderRight, template.Photos[1].Image.BorderTop, template.Photos[1].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[1].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture2.SetPosition(template.Photos[1].Image.posX, template.Photos[1].Image.posY);
-        picture2.SetFileName(picture2FileName.FilePath);
-        picture2.ScaleToScreenResolution();
-        picture2.Refresh();
-        picture2Label.Label = picture2FileName.DateTaken.ToString("d");
-        picture2Label.Height = template.Photos[1].Label.Height;
-        picture2Label.Width = template.Photos[1].Label.Width;
-        picture2Label.SetPosition(template.Photos[1].Label.posX, template.Photos[1].Label.posY);
-        picture2Label.FontName = template.Photos[1].Label.Font;
-        picture2Label.TextColor = ColorTranslator.FromHtml(template.Photos[1].Label.TextColor).ToArgb(); ;
-        picture2Label.ScaleToScreenResolution();
+        SetupTemplate(picture2, picture2Label, template, 1);
       }
       else
       {
@@ -407,30 +383,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[2].Enabled)
       {
-        //picture3.Dispose();
-        Picture picture3FileName;
-        if (template.Photos[2].Image.Height > template.Photos[2].Image.Width)
-        {
-          picture3FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture3FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture3.Height = template.Photos[2].Image.Height;
-        picture3.Width = template.Photos[2].Image.Width;
-        picture3.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[2].Image.BorderLeft, template.Photos[2].Image.BorderRight, template.Photos[2].Image.BorderTop, template.Photos[2].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[2].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture3.SetPosition(template.Photos[2].Image.posX, template.Photos[2].Image.posY);
-        picture3.SetFileName(picture3FileName.FilePath);
-        picture3.ScaleToScreenResolution();
-        picture3.Refresh();
-        picture3Label.Label = picture3FileName.DateTaken.ToString("d");
-        picture3Label.Height = template.Photos[2].Label.Height;
-        picture3Label.Width = template.Photos[2].Label.Width;
-        picture3Label.SetPosition(template.Photos[2].Label.posX, template.Photos[2].Label.posY);
-        picture3Label.FontName = template.Photos[2].Label.Font;
-        picture3Label.TextColor = ColorTranslator.FromHtml(template.Photos[2].Label.TextColor).ToArgb(); ;
-        picture3Label.ScaleToScreenResolution();
+        SetupTemplate(picture3, picture3Label, template, 2);
       }
       else
       {
@@ -439,30 +392,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[3].Enabled)
       {
-        //picture4.Dispose();
-        Picture picture4FileName;
-        if (template.Photos[3].Image.Height > template.Photos[3].Image.Width)
-        {
-          picture4FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture4FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture4.Height = template.Photos[3].Image.Height;
-        picture4.Width = template.Photos[3].Image.Width;
-        picture4.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[3].Image.BorderLeft, template.Photos[3].Image.BorderRight, template.Photos[3].Image.BorderTop, template.Photos[3].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[3].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture4.SetPosition(template.Photos[3].Image.posX, template.Photos[3].Image.posY);
-        picture4.SetFileName(picture4FileName.FilePath);
-        picture4.ScaleToScreenResolution();
-        picture4.Refresh();
-        picture4Label.Label = picture4FileName.DateTaken.ToString("d");
-        picture4Label.Height = template.Photos[3].Label.Height;
-        picture4Label.Width = template.Photos[3].Label.Width;
-        picture4Label.SetPosition(template.Photos[3].Label.posX, template.Photos[3].Label.posY);
-        picture4Label.FontName = template.Photos[3].Label.Font;
-        picture4Label.TextColor = ColorTranslator.FromHtml(template.Photos[3].Label.TextColor).ToArgb(); ;
-        picture4Label.ScaleToScreenResolution();
+        SetupTemplate(picture4, picture4Label, template, 3);
       }
       else
       {
@@ -471,30 +401,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[4].Enabled)
       {
-        //picture5.Dispose();
-        Picture picture5FileName;
-        if (template.Photos[4].Image.Height > template.Photos[4].Image.Width)
-        {
-          picture5FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture5FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture5.Height = template.Photos[4].Image.Height;
-        picture5.Width = template.Photos[4].Image.Width;
-        picture5.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[4].Image.BorderLeft, template.Photos[4].Image.BorderRight, template.Photos[4].Image.BorderTop, template.Photos[4].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[4].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture5.SetPosition(template.Photos[4].Image.posX, template.Photos[4].Image.posY);
-        picture5.SetFileName(picture5FileName.FilePath);
-        picture5.ScaleToScreenResolution();
-        picture5.Refresh();
-        picture5Label.Label = picture5FileName.DateTaken.ToString("d");
-        picture5Label.Height = template.Photos[4].Label.Height;
-        picture5Label.Width = template.Photos[4].Label.Width;
-        picture5Label.SetPosition(template.Photos[4].Label.posX, template.Photos[4].Label.posY);
-        picture5Label.FontName = template.Photos[4].Label.Font;
-        picture5Label.TextColor = ColorTranslator.FromHtml(template.Photos[4].Label.TextColor).ToArgb(); ;
-        picture5Label.ScaleToScreenResolution();
+        SetupTemplate(picture5, picture5Label, template, 4);
       }
       else
       {
@@ -503,30 +410,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[5].Enabled)
       {
-        //picture6.Dispose();
-        Picture picture6FileName;
-        if (template.Photos[5].Image.Height > template.Photos[5].Image.Width)
-        {
-          picture6FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture6FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture6.Height = template.Photos[5].Image.Height;
-        picture6.Width = template.Photos[5].Image.Width;
-        picture6.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[5].Image.BorderLeft, template.Photos[5].Image.BorderRight, template.Photos[5].Image.BorderTop, template.Photos[5].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[5].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture6.SetPosition(template.Photos[5].Image.posX, template.Photos[5].Image.posY);
-        picture6.SetFileName(picture6FileName.FilePath);
-        picture6.ScaleToScreenResolution();
-        picture6.Refresh();
-        picture6Label.Label = picture6FileName.DateTaken.ToString("d");
-        picture6Label.Height = template.Photos[5].Label.Height;
-        picture6Label.Width = template.Photos[5].Label.Width;
-        picture6Label.SetPosition(template.Photos[5].Label.posX, template.Photos[5].Label.posY);
-        picture6Label.FontName = template.Photos[5].Label.Font;
-        picture6Label.TextColor = ColorTranslator.FromHtml(template.Photos[5].Label.TextColor).ToArgb(); ;
-        picture6Label.ScaleToScreenResolution();
+        SetupTemplate(picture6, picture6Label, template, 5);
       }
       else
       {
@@ -535,30 +419,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[6].Enabled)
       {
-        //picture7.Dispose();
-        Picture picture7FileName;
-        if (template.Photos[6].Image.Height > template.Photos[6].Image.Width)
-        {
-          picture7FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture7FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture7.Height = template.Photos[6].Image.Height;
-        picture7.Width = template.Photos[6].Image.Width;
-        picture7.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[6].Image.BorderLeft, template.Photos[6].Image.BorderRight, template.Photos[6].Image.BorderTop, template.Photos[6].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[6].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture7.SetPosition(template.Photos[6].Image.posX, template.Photos[6].Image.posY);
-        picture7.SetFileName(picture7FileName.FilePath);
-        picture7.ScaleToScreenResolution();
-        picture7.Refresh();
-        picture7Label.Label = picture7FileName.DateTaken.ToString("d");
-        picture7Label.Height = template.Photos[6].Label.Height;
-        picture7Label.Width = template.Photos[6].Label.Width;
-        picture7Label.SetPosition(template.Photos[6].Label.posX, template.Photos[6].Label.posY);
-        picture7Label.FontName = template.Photos[6].Label.Font;
-        picture7Label.TextColor = ColorTranslator.FromHtml(template.Photos[6].Label.TextColor).ToArgb(); ;
-        picture7Label.ScaleToScreenResolution();
+        SetupTemplate(picture7, picture7Label, template, 6);
       }
       else
       {
@@ -567,30 +428,7 @@ namespace MPPhotoSlideshow
       }
       if (template.Photos[7].Enabled)
       {
-        //picture8.Dispose();
-        Picture picture8FileName;
-        if (template.Photos[7].Image.Height > template.Photos[7].Image.Width)
-        {
-          picture8FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-        }
-        else
-        {
-          picture8FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-        }
-        picture8.Height = template.Photos[7].Image.Height;
-        picture8.Width = template.Photos[7].Image.Width;
-        picture8.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[7].Image.BorderLeft, template.Photos[7].Image.BorderRight, template.Photos[7].Image.BorderTop, template.Photos[7].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[7].Image.BorderPath, 0xFFFFFFFF, false, false);
-        picture8.SetPosition(template.Photos[7].Image.posX, template.Photos[7].Image.posY);
-        picture8.SetFileName(picture8FileName.FilePath);
-        picture8.ScaleToScreenResolution();
-        picture8.Refresh();
-        picture8Label.Label = picture8FileName.DateTaken.ToString("d");
-        picture8Label.Height = template.Photos[7].Label.Height;
-        picture8Label.Width = template.Photos[7].Label.Width;
-        picture8Label.SetPosition(template.Photos[7].Label.posX, template.Photos[7].Label.posY);
-        picture8Label.FontName = template.Photos[7].Label.Font;
-        picture8Label.TextColor = ColorTranslator.FromHtml(template.Photos[7].Label.TextColor).ToArgb(); ;
-        picture8Label.ScaleToScreenResolution();
+        SetupTemplate(picture8, picture8Label, template, 7);
       }
       else
       {
@@ -598,6 +436,72 @@ namespace MPPhotoSlideshow
         picture8Label.Label = String.Empty;
       }
       timer.Start();
+    }
+
+    private void SetupTemplate(GUIImage image, GUILabelControl imageLabel, PhotoTemplate template, int index)
+    {
+      Picture imageFileName = new Picture();
+      double trueHeight = 0;
+      if (template.Photos[index].Image.Height > template.Photos[index].Image.Width)
+      {
+        double value = (double)template.Photos[index].Image.Height / template.Photos[index].Image.Width;
+        double aspectratio = Math.Truncate(10 * (value)) / 10;
+        if (aspectratio == 1)
+        {
+          imageFileName= _verticalSquarePictures[_verticalSquareRnd.Next(_verticalSquarePictures.Count)];
+        }
+        else if (1.3 <= aspectratio & aspectratio <= 1.5)
+        {
+          imageFileName= _vertical4x3Pictures[_vertical4x3Rnd.Next(_vertical4x3Pictures.Count)];
+        }
+        else if (1.5 < aspectratio & aspectratio < 2)
+        {
+          imageFileName= _vertical16x9Pictures[_vertical16x9Rnd.Next(_vertical16x9Pictures.Count)];
+        }
+        else if (aspectratio >= 2)
+        {
+          imageFileName= _verticalPanoramasPictures[_verticalPanoramasRnd.Next(_verticalPanoramasPictures.Count)];
+        }
+        trueHeight=template.Photos[index].Image.Height;
+      }
+      else
+      {
+        double value = (double)template.Photos[index].Image.Width / template.Photos[index].Image.Height;
+        double aspectratio = Math.Truncate(10 * (value)) / 10;
+        if (aspectratio == 1)
+        {
+          imageFileName= _horizontalSquarePictures[_horizontalSquareRnd.Next(_horizontalSquarePictures.Count)];
+        }
+        else if (1.3 <= aspectratio & aspectratio <= 1.5)
+        {
+          imageFileName= _horizontal4x3Pictures[_horizontal4x3Rnd.Next(_horizontal4x3Pictures.Count)];
+        }
+        else if (1.5 < aspectratio & aspectratio < 2)
+        {
+          imageFileName= _horizontal16x9Pictures[_horizontal16x9Rnd.Next(_horizontal16x9Pictures.Count)];
+        }
+        else if (aspectratio >= 2)
+        {
+          imageFileName= _horizontalPanoramasPictures[_horizontalPanoramasRnd.Next(_horizontalPanoramasPictures.Count)];
+        }
+        trueHeight = (double)imageFileName.Height / (imageFileName.Width / template.Photos[index].Image.Width);
+      }
+      image.Height = template.Photos[index].Image.Height;
+      image.Width = template.Photos[index].Image.Width;
+      image.KeepAspectRatio = true;
+      image.SetBorder(String.Format("{0},{1},{2},{3}", template.Photos[index].Image.BorderLeft, template.Photos[index].Image.BorderRight, template.Photos[index].Image.BorderTop, template.Photos[index].Image.BorderBottom), GUIImage.BorderPosition.OutsideImage, false, true, template.Photos[index].Image.BorderPath, 0xFFFFFFFF, false, false);
+      image.SetPosition(template.Photos[index].Image.posX, template.Photos[index].Image.posY);
+      image.SetFileName(imageFileName.FilePath);
+      image.ScaleToScreenResolution();
+      image.Refresh();
+      imageLabel.Label = imageFileName.DateTaken.ToString("d");
+      imageLabel.Height = 10;
+      imageLabel.Width = image.Width + Convert.ToInt32(template.Photos[index].Image.BorderLeft) + Convert.ToInt32(template.Photos[index].Image.BorderRight);
+      //MPPhotoSlideshowCommon.Log.Debug("Picture 1 Original X {0}, Updated X {1}, Original Y {2}, Updated Y {3}", template.Photos[0].Image.posX, image.XPosition, template.Photos[0].Image.posY, image.YPosition);
+      //MPPhotoSlideshowCommon.Log.Debug("Picture 1 Original Width {0}, Updated Width {1}, Original Height {2}, Updated Height {3}", template.Photos[0].Image.Width, image.Width, template.Photos[0].Image.Height, image.Height);
+      imageLabel.SetPosition(image.XPosition, image.YPosition + image.Height + Convert.ToInt32(template.Photos[index].Image.BorderBottom) + Convert.ToInt32(template.Photos[index].Image.BorderTop));
+      imageLabel.FontName = template.Photos[index].Label.Font;
+      imageLabel.TextColor = ColorTranslator.FromHtml(template.Photos[index].Label.TextColor).ToArgb();
     }
     private void DisposePictures()
     {

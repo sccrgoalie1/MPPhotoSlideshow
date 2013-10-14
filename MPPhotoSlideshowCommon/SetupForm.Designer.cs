@@ -82,6 +82,8 @@
       this.photoCacheWorker = new System.ComponentModel.BackgroundWorker();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+      this.watcherService = new System.ServiceProcess.ServiceController();
+      this.templateEnabledCheckBox = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -110,12 +112,14 @@
       // tableLayoutPanel1
       // 
       this.tableLayoutPanel1.AutoScroll = true;
-      this.tableLayoutPanel1.ColumnCount = 5;
+      this.tableLayoutPanel1.ColumnCount = 6;
+      this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.Controls.Add(this.templateEnabledCheckBox, 4, 10);
       this.tableLayoutPanel1.Controls.Add(this.borderFilePathTextBox, 1, 19);
       this.tableLayoutPanel1.Controls.Add(this.borderBottomTextBox, 3, 18);
       this.tableLayoutPanel1.Controls.Add(this.borderRightTextBox, 3, 17);
@@ -192,7 +196,7 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(444, 667);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(516, 667);
       this.tableLayoutPanel1.TabIndex = 2;
       // 
       // borderFilePathTextBox
@@ -395,6 +399,7 @@
       this.label11.TabIndex = 28;
       this.label11.Text = "Label YPos";
       this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.label11.Visible = false;
       // 
       // label10
       // 
@@ -406,6 +411,7 @@
       this.label10.TabIndex = 27;
       this.label10.Text = "Label XPos";
       this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.label10.Visible = false;
       // 
       // label9
       // 
@@ -417,6 +423,7 @@
       this.label9.TabIndex = 26;
       this.label9.Text = "Label Width";
       this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.label9.Visible = false;
       // 
       // label8
       // 
@@ -428,6 +435,7 @@
       this.label8.TabIndex = 25;
       this.label8.Text = "Label Height";
       this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.label8.Visible = false;
       // 
       // label7
       // 
@@ -487,34 +495,42 @@
       // labelWidthTextBox
       // 
       this.labelWidthTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelWidthTextBox.Enabled = false;
       this.labelWidthTextBox.Location = new System.Drawing.Point(103, 423);
       this.labelWidthTextBox.Name = "labelWidthTextBox";
       this.labelWidthTextBox.Size = new System.Drawing.Size(94, 20);
       this.labelWidthTextBox.TabIndex = 16;
+      this.labelWidthTextBox.Visible = false;
       // 
       // labelXPosTextBox
       // 
       this.labelXPosTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelXPosTextBox.Enabled = false;
       this.labelXPosTextBox.Location = new System.Drawing.Point(103, 453);
       this.labelXPosTextBox.Name = "labelXPosTextBox";
       this.labelXPosTextBox.Size = new System.Drawing.Size(94, 20);
       this.labelXPosTextBox.TabIndex = 18;
+      this.labelXPosTextBox.Visible = false;
       // 
       // labelYPosTextBox
       // 
       this.labelYPosTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelYPosTextBox.Enabled = false;
       this.labelYPosTextBox.Location = new System.Drawing.Point(303, 453);
       this.labelYPosTextBox.Name = "labelYPosTextBox";
       this.labelYPosTextBox.Size = new System.Drawing.Size(94, 20);
       this.labelYPosTextBox.TabIndex = 19;
+      this.labelYPosTextBox.Visible = false;
       // 
       // labelHeightTextBox
       // 
       this.labelHeightTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelHeightTextBox.Enabled = false;
       this.labelHeightTextBox.Location = new System.Drawing.Point(303, 423);
       this.labelHeightTextBox.Name = "labelHeightTextBox";
       this.labelHeightTextBox.Size = new System.Drawing.Size(94, 20);
       this.labelHeightTextBox.TabIndex = 17;
+      this.labelHeightTextBox.Visible = false;
       this.labelHeightTextBox.TextChanged += new System.EventHandler(this.labelHeightTextBox_TextChanged);
       // 
       // photoHeightTextBox
@@ -692,11 +708,26 @@
       // 
       this.openFileDialog1.FileName = "openFileDialog1";
       // 
+      // watcherService
+      // 
+      this.watcherService.ServiceName = "MPPhotoSlideshowWatcher";
+      // 
+      // templateEnabledCheckBox
+      // 
+      this.templateEnabledCheckBox.AutoSize = true;
+      this.templateEnabledCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.templateEnabledCheckBox.Location = new System.Drawing.Point(403, 303);
+      this.templateEnabledCheckBox.Name = "templateEnabledCheckBox";
+      this.templateEnabledCheckBox.Size = new System.Drawing.Size(94, 24);
+      this.templateEnabledCheckBox.TabIndex = 44;
+      this.templateEnabledCheckBox.Text = "Enabled";
+      this.templateEnabledCheckBox.UseVisualStyleBackColor = true;
+      // 
       // SetupForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(444, 667);
+      this.ClientSize = new System.Drawing.Size(516, 667);
       this.Controls.Add(this.tableLayoutPanel1);
       this.Name = "SetupForm";
       this.Text = "MPSlideshow Configuration";
@@ -763,6 +794,8 @@
     private System.Windows.Forms.Label label18;
     private System.Windows.Forms.Label label17;
     private System.Windows.Forms.Label label15;
+    private System.ServiceProcess.ServiceController watcherService;
+    private System.Windows.Forms.CheckBox templateEnabledCheckBox;
   }
 }
 

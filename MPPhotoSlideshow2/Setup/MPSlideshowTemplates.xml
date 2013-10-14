@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ArrayOfPhotoTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<ArrayOfPhotoTemplate xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <PhotoTemplate>
     <TemplateName>TwoTallOneWide</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -14,7 +15,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -23,7 +24,7 @@
           <Width>500</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -37,7 +38,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -46,7 +47,7 @@
           <Width>700</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -60,7 +61,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -69,7 +70,7 @@
           <Width>500</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -177,6 +178,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>TwoWidePhotos</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -189,7 +191,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -198,7 +200,7 @@
           <Width>880</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -212,7 +214,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -221,7 +223,7 @@
           <Width>880</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -338,6 +340,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>7Photos1Tall</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -350,7 +353,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -359,7 +362,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -373,7 +376,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -382,7 +385,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -396,7 +399,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -405,7 +408,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -419,7 +422,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -428,7 +431,7 @@
           <Width>480</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -442,7 +445,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -451,7 +454,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -465,7 +468,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -474,7 +477,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -488,7 +491,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -497,7 +500,7 @@
           <Width>400</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -527,6 +530,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>TwoTallPhotos</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -539,7 +543,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -548,7 +552,7 @@
           <Width>690</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -562,7 +566,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -571,7 +575,7 @@
           <Width>690</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -674,6 +678,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>OneTallPhoto</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -686,7 +691,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -695,7 +700,7 @@
           <Width>750</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -814,6 +819,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>OneWidePhoto</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -826,7 +832,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>50</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -835,7 +841,7 @@
           <Width>1200</Width>
           <Height>50</Height>
           <Font>fontB12</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -968,6 +974,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>FourTallTwoWide</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -980,7 +987,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -989,7 +996,7 @@
           <Width>338</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1003,7 +1010,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1012,7 +1019,7 @@
           <Width>338</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1026,7 +1033,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1035,7 +1042,7 @@
           <Width>640</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1049,7 +1056,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1058,7 +1065,7 @@
           <Width>640</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1072,7 +1079,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1081,7 +1088,7 @@
           <Width>338</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1095,7 +1102,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1104,7 +1111,7 @@
           <Width>338</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1143,6 +1150,7 @@
   </PhotoTemplate>
   <PhotoTemplate>
     <TemplateName>8Photos6Wide2Tall</TemplateName>
+    <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
         <PhotoName>Picture1</PhotoName>
@@ -1155,7 +1163,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1164,7 +1172,7 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1178,7 +1186,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1187,7 +1195,7 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1201,7 +1209,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1210,7 +1218,7 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1224,7 +1232,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1233,7 +1241,7 @@
           <Width>210</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1247,7 +1255,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1256,7 +1264,7 @@
           <Width>210</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1270,7 +1278,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1279,7 +1287,7 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1293,7 +1301,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1302,7 +1310,7 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
         </Label>
       </PhotoControl>
       <PhotoControl>
@@ -1316,7 +1324,7 @@
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
-          <BorderBottom>20</BorderBottom>
+          <BorderBottom>10</BorderBottom>
           <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
@@ -1325,7 +1333,148 @@
           <Width>480</Width>
           <Height>20</Height>
           <Font>font10</Font>
-          <TextColor>#000000</TextColor>
+          <TextColor>#FFFFFF</TextColor>
+        </Label>
+      </PhotoControl>
+    </Photos>
+  </PhotoTemplate>
+  <PhotoTemplate>
+    <TemplateName>OnePanorama</TemplateName>
+    <Enabled>true</Enabled>
+    <Photos>
+      <PhotoControl>
+        <PhotoName>Picture1</PhotoName>
+        <Enabled>true</Enabled>
+        <Image>
+          <posX>60</posX>
+          <posY>180</posY>
+          <Width>1800</Width>
+          <Height>780</Height>
+          <BorderLeft>10</BorderLeft>
+          <BorderRight>10</BorderRight>
+          <BorderTop>10</BorderTop>
+          <BorderBottom>10</BorderBottom>
+          <BorderPath>mpslideshow_image_border.png</BorderPath>
+        </Image>
+        <Label>
+          <posX>60</posX>
+          <posY>960</posY>
+          <Width>1800</Width>
+          <Height>20</Height>
+          <Font>fontB12</Font>
+          <TextColor>#FFFFFF</TextColor>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture2</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture3</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture4</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture5</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture6</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture7</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Label>
+      </PhotoControl>
+      <PhotoControl>
+        <PhotoName>Picture8</PhotoName>
+        <Enabled>false</Enabled>
+        <Image>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Image>
+        <Label>
+          <posX>0</posX>
+          <posY>0</posY>
+          <Width>0</Width>
+          <Height>0</Height>
         </Label>
       </PhotoControl>
     </Photos>

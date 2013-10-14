@@ -15,21 +15,19 @@
       <width>1920</width>
       <height>1080</height>
     </control>
-
-    <control>
-      <description>picture 1</description>
-      <type>image</type>
-      <id>67</id>
-     
-    </control>
-    <control>
-      <description>picture 1 date</description>
-      <type>label</type>
-      <id>671</id>
-      <align>center</align>
-      <valign>middle</valign>
-      <label>#plot</label>
-    </control>
+        <control>
+          <description>picture 1</description>
+          <type>image</type>
+          <id>67</id>
+        </control>
+        <control>
+          <description>picture 1 date</description>
+          <type>label</type>
+          <id>671</id>
+          <align>center</align>
+          <valign>middle</valign>
+          <label>#plot</label>
+        </control>
     <control>
       <description>picture 2</description>
       <type>image</type>
