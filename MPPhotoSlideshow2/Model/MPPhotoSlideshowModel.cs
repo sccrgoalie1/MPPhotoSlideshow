@@ -182,11 +182,23 @@ namespace MPPhotoSlideshow.Models
     private int timerInterval = 10000;
     private XMLSettings settings;
     private Timer timer = new Timer();
-    private Random _verticalRnd = new Random();
-    private Random _horizontalRnd = new Random();
+    private Random _vertical4x3Rnd = new Random();
+    private Random _horizontal4x3Rnd = new Random();
+    private Random _verticalPanoramasRnd = new Random();
+    private Random _horizontalPanoramasRnd = new Random();
+    private Random _verticalSquareRnd = new Random();
+    private Random _horizontalSquareRnd = new Random();
+    private Random _vertical16x9Rnd = new Random();
+    private Random _horizontal16x9Rnd = new Random();
     private Random _templateRnd = new Random();
-    private List<Picture> _verticalPictures = new List<Picture>();
-    private List<Picture> _horizontalPictures = new List<Picture>();
+    private List<Picture> _vertical4x3Pictures = new List<Picture>();
+    private List<Picture> _horizontal4x3Pictures = new List<Picture>();
+    private List<Picture> _verticalPanoramasPictures = new List<Picture>();
+    private List<Picture> _horizontalPanoramasPictures = new List<Picture>();
+    private List<Picture> _verticalSquarePictures = new List<Picture>();
+    private List<Picture> _horizontalSquarePictures = new List<Picture>();
+    private List<Picture> _vertical16x9Pictures = new List<Picture>();
+    private List<Picture> _horizontal16x9Pictures = new List<Picture>();
     private List<PhotoTemplate> _photoTemplates = new List<PhotoTemplate>();
     #endregion
 
@@ -927,13 +939,45 @@ namespace MPPhotoSlideshow.Models
         {
           foreach (Picture picture in _allPictures)
           {
+            double aspectratio = 0;
+            double.TryParse(picture.AspectRatio, out aspectratio);
             if (picture.Width > picture.Height)
             {
-              _horizontalPictures.Add(picture);
+              if (aspectratio == 1)
+              {
+                _horizontalSquarePictures.Add(picture);
+              }
+              else if (1 < aspectratio & aspectratio <= 1.5)
+              {
+                _horizontal4x3Pictures.Add(picture);
+              }
+              else if (1.5 < aspectratio & aspectratio < 2)
+              {
+                _horizontal16x9Pictures.Add(picture);
+              }
+              else if (aspectratio >= 2)
+              {
+                _horizontalPanoramasPictures.Add(picture);
+              }
             }
             else
             {
-              _verticalPictures.Add(picture);
+              if (aspectratio == 1)
+              {
+                _verticalSquarePictures.Add(picture);
+              }
+              else if (1 < aspectratio & aspectratio <= 1.5)
+              {
+                _vertical4x3Pictures.Add(picture);
+              }
+              else if (1.5 < aspectratio & aspectratio < 2)
+              {
+                _vertical16x9Pictures.Add(picture);
+              }
+              else if (aspectratio >= 2)
+              {
+                _verticalPanoramasPictures.Add(picture);
+              }
             }
           }
           //_horizontalPictures = _allPictures.Where(s => s.Width > s.Height).ToList<Picture>();
@@ -964,18 +1008,10 @@ namespace MPPhotoSlideshow.Models
         PhotoTemplate template = _photoTemplates[_templateRnd.Next(_photoTemplates.Count)];
         if (template.Photos[0].Enabled)
         {
-          Picture picture1FileName;
-          if (template.Photos[0].Image.Height > template.Photos[0].Image.Width)
-          {
-            picture1FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture1FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture1FileName = GetPicture(template, 0);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture1FileName.FilePath), LogInfoType.Debug);
           Picture1 = picture1FileName.FilePath;
-          Size ImageMargin = ScaleToScreen(template.Photos[0].Image.posY,template.Photos[0].Image.posX);
+          Size ImageMargin = ScaleToScreen(template.Photos[0].Image.posY, template.Photos[0].Image.posX);
           Picture1PosX = ImageMargin.Width;
           Picture1PosY = ImageMargin.Height;
           //Picture1GridMargin = String.Format("{0},{1},{2},{3}", ImageMargin.Width, ImageMargin.Height, 0, 0);
@@ -987,22 +1023,14 @@ namespace MPPhotoSlideshow.Models
         }
         else
         {
-          Picture1=String.Empty;
+          Picture1 = String.Empty;
           Picture1Date = String.Empty;
           Picture1Width = 0;
           Picture1Height = 0;
         }
         if (template.Photos[1].Enabled)
         {
-          Picture picture2FileName;
-          if (template.Photos[1].Image.Height > template.Photos[1].Image.Width)
-          {
-            picture2FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture2FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture2FileName = GetPicture(template, 1);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture2FileName.FilePath), LogInfoType.Debug);
           Picture2 = picture2FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[1].Image.posY, template.Photos[1].Image.posX);
@@ -1024,15 +1052,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[2].Enabled)
         {
-          Picture picture3FileName;
-          if (template.Photos[2].Image.Height > template.Photos[2].Image.Width)
-          {
-            picture3FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture3FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture3FileName = GetPicture(template, 2);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture3FileName.FilePath), LogInfoType.Debug);
           Picture3 = picture3FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[2].Image.posY, template.Photos[2].Image.posX);
@@ -1054,15 +1074,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[3].Enabled)
         {
-          Picture picture4FileName;
-          if (template.Photos[3].Image.Height > template.Photos[3].Image.Width)
-          {
-            picture4FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture4FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture4FileName = GetPicture(template, 3);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture4FileName.FilePath), LogInfoType.Debug);
           Picture4 = picture4FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[3].Image.posY, template.Photos[3].Image.posX);
@@ -1084,15 +1096,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[4].Enabled)
         {
-          Picture picture5FileName;
-          if (template.Photos[4].Image.Height > template.Photos[4].Image.Width)
-          {
-            picture5FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture5FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture5FileName = GetPicture(template, 4);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture5FileName.FilePath), LogInfoType.Debug);
           Picture5 = picture5FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[4].Image.posY, template.Photos[4].Image.posX);
@@ -1114,15 +1118,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[5].Enabled)
         {
-          Picture picture6FileName;
-          if (template.Photos[5].Image.Height > template.Photos[5].Image.Width)
-          {
-            picture6FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture6FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture6FileName = GetPicture(template, 5);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture6FileName.FilePath), LogInfoType.Debug);
           Picture6 = picture6FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[5].Image.posY, template.Photos[5].Image.posX);
@@ -1144,15 +1140,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[6].Enabled)
         {
-          Picture picture7FileName;
-          if (template.Photos[6].Image.Height > template.Photos[6].Image.Width)
-          {
-            picture7FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture7FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture7FileName = GetPicture(template, 6);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture7FileName.FilePath), LogInfoType.Debug);
           Picture7 = picture7FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[6].Image.posY, template.Photos[6].Image.posX);
@@ -1174,15 +1162,7 @@ namespace MPPhotoSlideshow.Models
         }
         if (template.Photos[7].Enabled)
         {
-          Picture picture8FileName;
-          if (template.Photos[7].Image.Height > template.Photos[7].Image.Width)
-          {
-            picture8FileName = _verticalPictures[_verticalRnd.Next(_verticalPictures.Count)];
-          }
-          else
-          {
-            picture8FileName = _horizontalPictures[_horizontalRnd.Next(_horizontalPictures.Count)];
-          }
+          Picture picture8FileName = GetPicture(template, 7);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture8FileName.FilePath), LogInfoType.Debug);
           Picture8 = picture8FileName.FilePath;
           Size ImageMargin = ScaleToScreen(template.Photos[7].Image.posY, template.Photos[7].Image.posX);
@@ -1208,6 +1188,54 @@ namespace MPPhotoSlideshow.Models
       {
         Log.Error(ex.ToString());
       }
+    }
+    private Picture GetPicture(PhotoTemplate template, int index)
+    {
+      Picture imageFileName = new Picture();
+      if (template.Photos[index].Image.Height > template.Photos[index].Image.Width)
+      {
+        double value = (double)template.Photos[index].Image.Height / template.Photos[index].Image.Width;
+        double aspectratio = Math.Truncate(10 * (value)) / 10;
+        if (aspectratio == 1)
+        {
+          imageFileName = _verticalSquarePictures[_verticalSquareRnd.Next(_verticalSquarePictures.Count)];
+        }
+        else if (1.3 <= aspectratio & aspectratio <= 1.5)
+        {
+          imageFileName = _vertical4x3Pictures[_vertical4x3Rnd.Next(_vertical4x3Pictures.Count)];
+        }
+        else if (1.5 < aspectratio & aspectratio < 2)
+        {
+          imageFileName = _vertical16x9Pictures[_vertical16x9Rnd.Next(_vertical16x9Pictures.Count)];
+        }
+        else if (aspectratio >= 2)
+        {
+          imageFileName = _verticalPanoramasPictures[_verticalPanoramasRnd.Next(_verticalPanoramasPictures.Count)];
+        }
+      }
+      else
+      {
+        double value = (double)template.Photos[index].Image.Width / template.Photos[index].Image.Height;
+        double aspectratio = Math.Truncate(10 * (value)) / 10;
+        if (aspectratio == 1)
+        {
+          imageFileName = _horizontalSquarePictures[_horizontalSquareRnd.Next(_horizontalSquarePictures.Count)];
+        }
+        else if (1.3 <= aspectratio & aspectratio <= 1.5)
+        {
+          imageFileName = _horizontal4x3Pictures[_horizontal4x3Rnd.Next(_horizontal4x3Pictures.Count)];
+        }
+        else if (1.5 < aspectratio & aspectratio < 2)
+        {
+          imageFileName = _horizontal16x9Pictures[_horizontal16x9Rnd.Next(_horizontal16x9Pictures.Count)];
+        }
+        else if (aspectratio >= 2)
+        {
+          imageFileName = _horizontalPanoramasPictures[_horizontalPanoramasRnd.Next(_horizontalPanoramasPictures.Count)];
+        }
+      }
+      return imageFileName;
+     
     }
     private void timer_Tick(Object sender, EventArgs e)
     {

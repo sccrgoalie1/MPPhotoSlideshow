@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?define Property_ProductVersion = "1.0.1" ?>
+<?define Property_ProductVersion = "1.0.2" ?>
 <?define Property_ProductCode = "*" ?>
 <?define Property_UpgradeCode = "E29F1AFD-9626-4EB7-BEBD-8B052713FF86" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">

@@ -339,7 +339,7 @@
     </Photos>
   </PhotoTemplate>
   <PhotoTemplate>
-    <TemplateName>7Photos1Tall</TemplateName>
+    <TemplateName>6Wide1Tall</TemplateName>
     <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
@@ -348,8 +348,8 @@
         <Image>
           <posX>150</posX>
           <posY>45</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -371,8 +371,8 @@
         <Image>
           <posX>150</posX>
           <posY>390</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -394,8 +394,8 @@
         <Image>
           <posX>150</posX>
           <posY>735</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -440,8 +440,8 @@
         <Image>
           <posX>1370</posX>
           <posY>45</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -463,8 +463,8 @@
         <Image>
           <posX>1370</posX>
           <posY>390</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -486,8 +486,8 @@
         <Image>
           <posX>1370</posX>
           <posY>735</posY>
-          <Width>400</Width>
-          <Height>300</Height>
+          <Width>380</Width>
+          <Height>285</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -515,7 +515,7 @@
           <BorderRight />
           <BorderTop />
           <BorderBottom>0</BorderBottom>
-          <BorderPath />
+          <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
           <posX>0</posX>
@@ -686,8 +686,8 @@
         <Image>
           <posX>585</posX>
           <posY>40</posY>
-          <Width>750</Width>
-          <Height>1000</Height>
+          <Width>720</Width>
+          <Height>960</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -1027,9 +1027,9 @@
         <Enabled>true</Enabled>
         <Image>
           <posX>616</posX>
-          <posY>40</posY>
-          <Width>640</Width>
-          <Height>480</Height>
+          <posY>25</posY>
+          <Width>600</Width>
+          <Height>450</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -1050,9 +1050,9 @@
         <Enabled>true</Enabled>
         <Image>
           <posX>616</posX>
-          <posY>560</posY>
-          <Width>640</Width>
-          <Height>480</Height>
+          <posY>545</posY>
+          <Width>600</Width>
+          <Height>450</Height>
           <BorderLeft>10</BorderLeft>
           <BorderRight>10</BorderRight>
           <BorderTop>10</BorderTop>
@@ -1149,7 +1149,7 @@
     </Photos>
   </PhotoTemplate>
   <PhotoTemplate>
-    <TemplateName>8Photos6Wide2Tall</TemplateName>
+    <TemplateName>6WidePhotos</TemplateName>
     <Enabled>true</Enabled>
     <Photos>
       <PhotoControl>
@@ -1405,12 +1405,19 @@
           <posY>0</posY>
           <Width>0</Width>
           <Height>0</Height>
+          <BorderLeft />
+          <BorderRight />
+          <BorderTop />
+          <BorderBottom />
+          <BorderPath>mpslideshow_image_border.png</BorderPath>
         </Image>
         <Label>
           <posX>0</posX>
           <posY>0</posY>
           <Width>0</Width>
           <Height>0</Height>
+          <Font />
+          <TextColor />
         </Label>
       </PhotoControl>
       <PhotoControl>

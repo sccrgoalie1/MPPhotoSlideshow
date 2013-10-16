@@ -31,6 +31,7 @@
       this.buildCacheButton = new System.Windows.Forms.Button();
       this.addNewTemplateButton = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.templateEnabledCheckBox = new System.Windows.Forms.CheckBox();
       this.borderFilePathTextBox = new System.Windows.Forms.TextBox();
       this.borderBottomTextBox = new System.Windows.Forms.TextBox();
       this.borderRightTextBox = new System.Windows.Forms.TextBox();
@@ -83,7 +84,6 @@
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.watcherService = new System.ServiceProcess.ServiceController();
-      this.templateEnabledCheckBox = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -198,6 +198,17 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(516, 667);
       this.tableLayoutPanel1.TabIndex = 2;
+      // 
+      // templateEnabledCheckBox
+      // 
+      this.templateEnabledCheckBox.AutoSize = true;
+      this.templateEnabledCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.templateEnabledCheckBox.Location = new System.Drawing.Point(403, 303);
+      this.templateEnabledCheckBox.Name = "templateEnabledCheckBox";
+      this.templateEnabledCheckBox.Size = new System.Drawing.Size(94, 24);
+      this.templateEnabledCheckBox.TabIndex = 44;
+      this.templateEnabledCheckBox.Text = "Enabled";
+      this.templateEnabledCheckBox.UseVisualStyleBackColor = true;
       // 
       // borderFilePathTextBox
       // 
@@ -711,17 +722,6 @@
       // watcherService
       // 
       this.watcherService.ServiceName = "MPPhotoSlideshowWatcher";
-      // 
-      // templateEnabledCheckBox
-      // 
-      this.templateEnabledCheckBox.AutoSize = true;
-      this.templateEnabledCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.templateEnabledCheckBox.Location = new System.Drawing.Point(403, 303);
-      this.templateEnabledCheckBox.Name = "templateEnabledCheckBox";
-      this.templateEnabledCheckBox.Size = new System.Drawing.Size(94, 24);
-      this.templateEnabledCheckBox.TabIndex = 44;
-      this.templateEnabledCheckBox.Text = "Enabled";
-      this.templateEnabledCheckBox.UseVisualStyleBackColor = true;
       // 
       // SetupForm
       // 

@@ -528,9 +528,10 @@ namespace MPPhotoSlideshowCommon
         if (saveMe)
         {
           StoreCurrentPhoto();
-          previousSelectedPictureIndex = pictureSelectorComboBox.SelectedIndex;
+          previousSelectedPictureIndex = pictureSelectorComboBox.SelectedIndex;         
           ResetGUI();
           SetupGUI();
+          templateEnabledCheckBox.Checked = photoTemplates[templateComboBox.SelectedIndex].Enabled;
         }
     }
 
