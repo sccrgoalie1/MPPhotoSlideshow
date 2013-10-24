@@ -70,6 +70,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Skin\default\images\mpslideshow_image_border.png" />
+    <Content Include="Skin\default\themes\default\images\B78F4A38-D719-4FE3-BE56-D24F8C568400.png" />
     <None Include="Debug\DevInstall.cmd" />
     <None Include="Setup\Build.cmd" />
     <None Include="Setup\License.rtf" />

@@ -60,7 +60,16 @@
                              Name="workflow"/>
                   <Directory Id="IMAGES"
                              Name="images"/>
+                  <Directory Id="THEMES"
+                           Name="themes">
+                    <Directory Id="DEFAULTTHEMES"
+                               Name="default">
+                      <Directory Id="DEFAULTTHEMESIMAGES"
+                                 Name ="images"/>
+                    </Directory>
+                  </Directory>
                 </Directory>
+                
               </Directory>
               </Directory>
             </Directory>
@@ -228,6 +237,18 @@
               Checksum="no"/>
       </Component>
     </DirectoryRef>
+    <DirectoryRef Id="DEFAULTTHEMESIMAGES">
+      <Component Id="MPPhotoSlideshowIcon"
+                Guid="BA159E87-EEA8-454D-895F-EFE03066C9FA"
+                Permanent="no"
+                DiskId="1">
+        <File Id="B78F4A38D7194FE3BE56D24F8C568400.png"
+              Name="B78F4A38-D719-4FE3-BE56-D24F8C568400.png"
+              KeyPath="yes"
+              Source="..\Skin\default\themes\default\images\B78F4A38-D719-4FE3-BE56-D24F8C568400.png"
+              Checksum="no"/>
+      </Component>
+    </DirectoryRef>
     <DirectoryRef Id="IMAGES">
       <Component Id="MPPhotoSlideshowBackgroundImage"
                 Guid="7283A5B3-35C5-429C-8D56-62B4B28B333E"
@@ -237,6 +258,16 @@
               Name="mpslideshow_background.png"
               KeyPath="yes"
               Source="..\Skin\default\images\mpslideshow_background.png"
+              Checksum="no"/>
+      </Component>
+      <Component Id="MPPhotoSlideshowBorderImage"
+               Guid="935D3F06-7CE0-4B1D-BEA5-4BFD053A596B"
+               Permanent="no"
+               DiskId="1">
+        <File Id="mpslideshow_image_border.png"
+              Name="mpslideshow_image_border.png"
+              KeyPath="yes"
+              Source="..\Skin\default\images\mpslideshow_image_border.png"
               Checksum="no"/>
       </Component>
     </DirectoryRef>
@@ -312,6 +343,8 @@
       <ComponentRef Id="MPPhotoSlideshowScreen" />
       <ComponentRef Id="MPPhotoSlideshowAction" />
       <ComponentRef Id="MPPhotoSlideshowBackgroundImage"/>
+      <ComponentRef Id ="MPPhotoSlideshowBorderImage"/>
+      <ComponentRef Id="MPPhotoSlideshowIcon"/>
       <ComponentRef Id="MPPhotoSlideshowPlugin" />
       <ComponentRef Id="MPPhotoSlideshowTemplates"/>
       <ComponentRef Id="ApplicationShortcut"/>

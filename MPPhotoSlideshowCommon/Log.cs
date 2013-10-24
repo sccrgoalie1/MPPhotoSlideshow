@@ -75,7 +75,7 @@ namespace MPPhotoSlideshowCommon
             Extension = extension;
             logType = type;
             AppendLog = true;
-            MaxLogSize = 10000;
+            MaxLogSize = 5242880; //5MB
             FullPath = String.Format(@"{0}\{1}.{2}", DirectoryPath, FileName, Extension);
         }
         ///<summary>
@@ -114,7 +114,7 @@ namespace MPPhotoSlideshowCommon
             FileInfo logInfo = new FileInfo(FullPath);
             if (logInfo.Length > MaxLogSize)
             {
-              string changeName = String.Format(@"{0}\{1}{2}.{3}", DirectoryPath, FileName, DateTime.Now.ToString(), Extension);
+              string changeName = String.Format(@"{0}\{1}{2}.{3}", DirectoryPath, FileName, Guid.NewGuid().ToString(), Extension);
               File.Copy(FullPath, changeName);
               File.Delete(FullPath);
             }

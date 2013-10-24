@@ -16,9 +16,9 @@
                     MaxHeight="{Binding Path=Picture1HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
                     <Border.Background>
-                        <ImageBrush ImageSource="mpslideshow_image_border.png" Tile="Tile"/>
+                        <ImageBrush ImageSource="{Binding Path=Picture1BorderProperty}" Tile="Tile"/>
                     </Border.Background>
-                    <Image Source ="{Binding Path=Picture1Property}" Stretch="Uniform" Margin ="10,10,10,10"/>
+                    <Image Source ="{Binding Path=Picture1Property}" Stretch="Uniform" Margin ="{Binding Path=Picture1BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture1Label" Content="{Binding Path=Picture1DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -33,12 +33,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture2Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture2Border"
                         MaxWidth="{Binding Path=Picture2WidthProperty}"
                         MaxHeight="{Binding Path=Picture2HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture2Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture2BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture2Property}" Stretch="Uniform" Margin ="{Binding Path=Picture2BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture2Label" Content="{Binding Path=Picture2DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -53,12 +55,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture3Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture3Border"
                         MaxWidth="{Binding Path=Picture3WidthProperty}"
                         MaxHeight="{Binding Path=Picture3HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture3Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture3BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture3Property}" Stretch="Uniform" Margin ="{Binding Path=Picture3BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture3Label" Content="{Binding Path=Picture3DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -73,12 +77,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture4Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture4Border"
                         MaxWidth="{Binding Path=Picture4WidthProperty}"
                         MaxHeight="{Binding Path=Picture4HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture4Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture4BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture4Property}" Stretch="Uniform" Margin ="{Binding Path=Picture4BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture4Label" Content="{Binding Path=Picture4DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -93,12 +99,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture5Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture5Border"
                         MaxWidth="{Binding Path=Picture5WidthProperty}"
                         MaxHeight="{Binding Path=Picture5HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture5Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture5BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture5Property}" Stretch="Uniform" Margin ="{Binding Path=Picture5BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture5Label" Content="{Binding Path=Picture5DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -113,12 +121,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture6Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture6Border"
                         MaxWidth="{Binding Path=Picture6WidthProperty}"
                         MaxHeight="{Binding Path=Picture6HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture6Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture6BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture6Property}" Stretch="Uniform" Margin ="{Binding Path=Picture6BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture6Label" Content="{Binding Path=Picture6DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -133,12 +143,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture7Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture7Border" 
                         MaxWidth="{Binding Path=Picture7WidthProperty}"
                         MaxHeight="{Binding Path=Picture7HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture7Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture7BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture7Property}" Stretch="Uniform" Margin ="{Binding Path=Picture7BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture7Label" Content="{Binding Path=Picture7DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
@@ -153,12 +165,14 @@
                 </TransformGroup>
             </Canvas.RenderTransform>
             <Grid>
-                <Border x:Name="Picture8Border" BorderBrush="White" 
-                    BorderThickness="10" 
+                <Border x:Name="Picture8Border" 
                         MaxWidth="{Binding Path=Picture8WidthProperty}"
                         MaxHeight="{Binding Path=Picture8HeightProperty}"
                     HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    <Image Source ="{Binding Path=Picture8Property}" Stretch="Uniform"/>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding Path=Picture8BorderProperty}" Tile="Tile"/>
+                    </Border.Background>
+                    <Image Source ="{Binding Path=Picture8Property}" Stretch="Uniform" Margin ="{Binding Path=Picture8BorderMarginsProperty}"/>
                 </Border>
                 <Label x:Name="Picture8Label" Content="{Binding Path=Picture8DateProperty}" 
               HorizontalAlignment="Center" VerticalAlignment="Bottom" 

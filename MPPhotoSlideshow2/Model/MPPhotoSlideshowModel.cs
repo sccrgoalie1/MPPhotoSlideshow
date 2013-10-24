@@ -1,27 +1,3 @@
-#region Copyright (C) 2007-2013 Team MediaPortal
-
-/*
-    Copyright (C) 2007-2013 Team MediaPortal
-    http://www.team-mediaportal.com
-
-    This file is part of MediaPortal 2
-
-    MediaPortal 2 is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    MediaPortal 2 is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with MediaPortal 2. If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#endregion
-
 using MediaPortal.Common.General;
 using MediaPortal.UI.Presentation.Models;
 using MediaPortal.UI.Presentation.DataObjects;
@@ -96,6 +72,8 @@ namespace MPPhotoSlideshow.Models
     protected readonly AbstractProperty _slideshowBackgroundProperty;
     #region Picture1
     protected readonly AbstractProperty _picture1Property;
+    protected readonly AbstractProperty _picture1BorderProperty;
+    protected readonly AbstractProperty _picture1BorderMarginsProperty;
     protected readonly AbstractProperty _picture1PosX;
     protected readonly AbstractProperty _picture1PosY;
     protected readonly AbstractProperty _picture1Date;
@@ -106,6 +84,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture2
     protected readonly AbstractProperty _picture2Property;
+    protected readonly AbstractProperty _picture2BorderProperty;
+    protected readonly AbstractProperty _picture2BorderMarginsProperty;
     protected readonly AbstractProperty _picture2PosX;
     protected readonly AbstractProperty _picture2PosY;
     protected readonly AbstractProperty _picture2Date;
@@ -116,6 +96,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture3
     protected readonly AbstractProperty _picture3Property;
+    protected readonly AbstractProperty _picture3BorderProperty;
+    protected readonly AbstractProperty _picture3BorderMarginsProperty;
     protected readonly AbstractProperty _picture3PosX;
     protected readonly AbstractProperty _picture3PosY;
     protected readonly AbstractProperty _picture3Date;
@@ -126,6 +108,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture4
     protected readonly AbstractProperty _picture4Property;
+    protected readonly AbstractProperty _picture4BorderProperty;
+    protected readonly AbstractProperty _picture4BorderMarginsProperty;
     protected readonly AbstractProperty _picture4PosX;
     protected readonly AbstractProperty _picture4PosY;
     protected readonly AbstractProperty _picture4Date;
@@ -136,6 +120,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture5
     protected readonly AbstractProperty _picture5Property;
+    protected readonly AbstractProperty _picture5BorderProperty;
+    protected readonly AbstractProperty _picture5BorderMarginsProperty;
     protected readonly AbstractProperty _picture5PosX;
     protected readonly AbstractProperty _picture5PosY;
     protected readonly AbstractProperty _picture5Date;
@@ -146,6 +132,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture6
     protected readonly AbstractProperty _picture6Property;
+    protected readonly AbstractProperty _picture6BorderProperty;
+    protected readonly AbstractProperty _picture6BorderMarginsProperty;
     protected readonly AbstractProperty _picture6PosX;
     protected readonly AbstractProperty _picture6PosY;
     protected readonly AbstractProperty _picture6Date;
@@ -156,6 +144,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture7
     protected readonly AbstractProperty _picture7Property;
+    protected readonly AbstractProperty _picture7BorderProperty;
+    protected readonly AbstractProperty _picture7BorderMarginsProperty;
     protected readonly AbstractProperty _picture7PosX;
     protected readonly AbstractProperty _picture7PosY;
     protected readonly AbstractProperty _picture7Date;
@@ -166,6 +156,8 @@ namespace MPPhotoSlideshow.Models
 
     #region Picture8
     protected readonly AbstractProperty _picture8Property;
+    protected readonly AbstractProperty _picture8BorderProperty;
+    protected readonly AbstractProperty _picture8BorderMarginsProperty;
     protected readonly AbstractProperty _picture8PosX;
     protected readonly AbstractProperty _picture8PosY;
     protected readonly AbstractProperty _picture8Date;
@@ -217,6 +209,8 @@ namespace MPPhotoSlideshow.Models
         _helloStringProperty = new WProperty(typeof(string), HELLOWORLD_RESOURCE);
         _slideshowBackgroundProperty = new WProperty(typeof(object), null);
         _picture1Property = new WProperty(typeof(object), null);
+        _picture1BorderProperty = new WProperty(typeof(object), null);
+        _picture1BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture1Date = new WProperty(typeof(string), null);
         _picture1PosX = new WProperty(typeof(object), null);
         _picture1PosY = new WProperty(typeof(object), null);
@@ -225,6 +219,8 @@ namespace MPPhotoSlideshow.Models
         _picture1Height = new WProperty(typeof(object), null);
 
         _picture2Property = new WProperty(typeof(object), null);
+        _picture2BorderProperty = new WProperty(typeof(object), null);
+        _picture2BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture2Date = new WProperty(typeof(string), null);
         _picture2PosX = new WProperty(typeof(object), null);
         _picture2PosY = new WProperty(typeof(object), null);
@@ -233,6 +229,8 @@ namespace MPPhotoSlideshow.Models
         _picture2Height = new WProperty(typeof(object), null);
 
         _picture3Property = new WProperty(typeof(object), null);
+        _picture3BorderProperty = new WProperty(typeof(object), null);
+        _picture3BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture3Date = new WProperty(typeof(string), null);
         _picture3PosX = new WProperty(typeof(object), null);
         _picture3PosY = new WProperty(typeof(object), null);
@@ -241,6 +239,8 @@ namespace MPPhotoSlideshow.Models
         _picture3Height = new WProperty(typeof(object), null);
 
         _picture4Property = new WProperty(typeof(object), null);
+        _picture4BorderProperty = new WProperty(typeof(object), null);
+        _picture4BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture4Date = new WProperty(typeof(string), null);
         _picture4PosX = new WProperty(typeof(object), null);
         _picture4PosY = new WProperty(typeof(object), null);
@@ -249,6 +249,8 @@ namespace MPPhotoSlideshow.Models
         _picture4Height = new WProperty(typeof(object), null);
 
         _picture5Property = new WProperty(typeof(object), null);
+        _picture5BorderProperty = new WProperty(typeof(object), null);
+        _picture5BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture5Date = new WProperty(typeof(string), null);
         _picture5PosX = new WProperty(typeof(object), null);
         _picture5PosY = new WProperty(typeof(object), null);
@@ -257,6 +259,8 @@ namespace MPPhotoSlideshow.Models
         _picture5Height = new WProperty(typeof(object), null);
 
         _picture6Property = new WProperty(typeof(object), null);
+        _picture6BorderProperty = new WProperty(typeof(object), null);
+        _picture6BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture6Date = new WProperty(typeof(string), null);
         _picture6PosX = new WProperty(typeof(object), null);
         _picture6PosY = new WProperty(typeof(object), null);
@@ -265,6 +269,8 @@ namespace MPPhotoSlideshow.Models
         _picture6Height = new WProperty(typeof(object), null);
 
         _picture7Property = new WProperty(typeof(object), null);
+        _picture7BorderProperty = new WProperty(typeof(object), null);
+        _picture7BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture7Date = new WProperty(typeof(string), null);
         _picture7PosX = new WProperty(typeof(object), null);
         _picture7PosY = new WProperty(typeof(object), null);
@@ -273,6 +279,8 @@ namespace MPPhotoSlideshow.Models
         _picture7Height = new WProperty(typeof(object), null);
 
         _picture8Property = new WProperty(typeof(object), null);
+        _picture8BorderProperty = new WProperty(typeof(object), null);
+        _picture8BorderMarginsProperty = new WProperty(typeof(object), null);
         _picture8Date = new WProperty(typeof(string), null);
         _picture8PosX = new WProperty(typeof(object), null);
         _picture8PosY = new WProperty(typeof(object), null);
@@ -317,6 +325,16 @@ namespace MPPhotoSlideshow.Models
       get { return (object)_picture1Property.GetValue(); }
       set { _picture1Property.SetValue(value); }
     }
+    public object Picture1Border
+    {
+      get { return (object)_picture1BorderProperty.GetValue(); }
+      set { _picture1BorderProperty.SetValue(value); }
+    }
+    public object Picture1BorderMargins
+    {
+      get { return (object)_picture1BorderMarginsProperty.GetValue(); }
+      set { _picture1BorderMarginsProperty.SetValue(value); }
+    }
     public object Picture1PosX
     {
       get { return (object)_picture1PosX.GetValue(); }
@@ -354,6 +372,16 @@ namespace MPPhotoSlideshow.Models
     {
       get { return (object)_picture2Property.GetValue(); }
       set { _picture2Property.SetValue(value); }
+    }
+    public object Picture2Border
+    {
+      get { return (object)_picture2BorderProperty.GetValue(); }
+      set { _picture2BorderProperty.SetValue(value); }
+    }
+    public object Picture2BorderMargins
+    {
+      get { return (object)_picture2BorderMarginsProperty.GetValue(); }
+      set { _picture2BorderMarginsProperty.SetValue(value); }
     }
     public object Picture2PosX
     {
@@ -393,6 +421,16 @@ namespace MPPhotoSlideshow.Models
       get { return (object)_picture3Property.GetValue(); }
       set { _picture3Property.SetValue(value); }
     }
+    public object Picture3Border
+    {
+      get { return (object)_picture3BorderProperty.GetValue(); }
+      set { _picture3BorderProperty.SetValue(value); }
+    }
+    public object Picture3BorderMargins
+    {
+      get { return (object)_picture3BorderMarginsProperty.GetValue(); }
+      set { _picture3BorderMarginsProperty.SetValue(value); }
+    }
     public object Picture3PosX
     {
       get { return (object)_picture3PosX.GetValue(); }
@@ -430,6 +468,16 @@ namespace MPPhotoSlideshow.Models
     {
       get { return (object)_picture4Property.GetValue(); }
       set { _picture4Property.SetValue(value); }
+    }
+    public object Picture4Border
+    {
+      get { return (object)_picture4BorderProperty.GetValue(); }
+      set { _picture4BorderProperty.SetValue(value); }
+    }
+    public object Picture4BorderMargins
+    {
+      get { return (object)_picture4BorderMarginsProperty.GetValue(); }
+      set { _picture4BorderMarginsProperty.SetValue(value); }
     }
     public object Picture4PosX
     {
@@ -469,6 +517,16 @@ namespace MPPhotoSlideshow.Models
       get { return (object)_picture5Property.GetValue(); }
       set { _picture5Property.SetValue(value); }
     }
+    public object Picture5Border
+    {
+      get { return (object)_picture5BorderProperty.GetValue(); }
+      set { _picture5BorderProperty.SetValue(value); }
+    }
+    public object Picture5BorderMargins
+    {
+      get { return (object)_picture5BorderMarginsProperty.GetValue(); }
+      set { _picture5BorderMarginsProperty.SetValue(value); }
+    }
     public object Picture5PosX
     {
       get { return (object)_picture5PosX.GetValue(); }
@@ -506,6 +564,16 @@ namespace MPPhotoSlideshow.Models
     {
       get { return (object)_picture6Property.GetValue(); }
       set { _picture6Property.SetValue(value); }
+    }
+    public object Picture6Border
+    {
+      get { return (object)_picture6BorderProperty.GetValue(); }
+      set { _picture6BorderProperty.SetValue(value); }
+    }
+    public object Picture6BorderMargins
+    {
+      get { return (object)_picture6BorderMarginsProperty.GetValue(); }
+      set { _picture6BorderMarginsProperty.SetValue(value); }
     }
     public object Picture6PosX
     {
@@ -545,6 +613,16 @@ namespace MPPhotoSlideshow.Models
       get { return (object)_picture7Property.GetValue(); }
       set { _picture7Property.SetValue(value); }
     }
+    public object Picture7Border
+    {
+      get { return (object)_picture7BorderProperty.GetValue(); }
+      set { _picture7BorderProperty.SetValue(value); }
+    }
+    public object Picture7BorderMargins
+    {
+      get { return (object)_picture7BorderMarginsProperty.GetValue(); }
+      set { _picture7BorderMarginsProperty.SetValue(value); }
+    }
     public object Picture7PosX
     {
       get { return (object)_picture7PosX.GetValue(); }
@@ -582,6 +660,16 @@ namespace MPPhotoSlideshow.Models
     {
       get { return (object)_picture8Property.GetValue(); }
       set { _picture8Property.SetValue(value); }
+    }
+    public object Picture8Border
+    {
+      get { return (object)_picture8BorderProperty.GetValue(); }
+      set { _picture8BorderProperty.SetValue(value); }
+    }
+    public object Picture8BorderMargins
+    {
+      get { return (object)_picture8BorderMarginsProperty.GetValue(); }
+      set { _picture8BorderMarginsProperty.SetValue(value); }
     }
     public object Picture8PosX
     {
@@ -640,6 +728,14 @@ namespace MPPhotoSlideshow.Models
     {
       get { return _picture1Property; }
     }
+    public AbstractProperty Picture1BorderProperty
+    {
+      get { return _picture1BorderProperty; }
+    }
+    public AbstractProperty Picture1BorderMarginsProperty
+    {
+      get { return _picture1BorderMarginsProperty; }
+    }
     public AbstractProperty Picture1DateProperty
     {
       get { return _picture1Date; }
@@ -670,6 +766,14 @@ namespace MPPhotoSlideshow.Models
     public AbstractProperty Picture2Property
     {
       get { return _picture2Property; }
+    }
+    public AbstractProperty Picture2BorderProperty
+    {
+      get { return _picture2BorderProperty; }
+    }
+    public AbstractProperty Picture2BorderMarginsProperty
+    {
+      get { return _picture2BorderMarginsProperty; }
     }
     public AbstractProperty Picture2DateProperty
     {
@@ -702,6 +806,14 @@ namespace MPPhotoSlideshow.Models
     {
       get { return _picture3Property; }
     }
+    public AbstractProperty Picture3BorderProperty
+    {
+      get { return _picture3BorderProperty; }
+    }
+    public AbstractProperty Picture3BorderMarginsProperty
+    {
+      get { return _picture3BorderMarginsProperty; }
+    }
     public AbstractProperty Picture3DateProperty
     {
       get { return _picture3Date; }
@@ -732,6 +844,14 @@ namespace MPPhotoSlideshow.Models
     public AbstractProperty Picture4Property
     {
       get { return _picture4Property; }
+    }
+    public AbstractProperty Picture4BorderProperty
+    {
+      get { return _picture4BorderProperty; }
+    }
+    public AbstractProperty Picture4BorderMarginsProperty
+    {
+      get { return _picture4BorderMarginsProperty; }
     }
     public AbstractProperty Picture4DateProperty
     {
@@ -764,6 +884,14 @@ namespace MPPhotoSlideshow.Models
     {
       get { return _picture5Property; }
     }
+    public AbstractProperty Picture5BorderProperty
+    {
+      get { return _picture5BorderProperty; }
+    }
+    public AbstractProperty Picture5BorderMarginsProperty
+    {
+      get { return _picture5BorderMarginsProperty; }
+    }
     public AbstractProperty Picture5DateProperty
     {
       get { return _picture5Date; }
@@ -794,6 +922,14 @@ namespace MPPhotoSlideshow.Models
     public AbstractProperty Picture6Property
     {
       get { return _picture6Property; }
+    }
+    public AbstractProperty Picture6BorderProperty
+    {
+      get { return _picture6BorderProperty; }
+    }
+    public AbstractProperty Picture6BorderMarginsProperty
+    {
+      get { return _picture6BorderMarginsProperty; }
     }
     public AbstractProperty Picture6DateProperty
     {
@@ -826,6 +962,14 @@ namespace MPPhotoSlideshow.Models
     {
       get { return _picture7Property; }
     }
+    public AbstractProperty Picture7BorderProperty
+    {
+      get { return _picture7BorderProperty; }
+    }
+    public AbstractProperty Picture7BorderMarginsProperty
+    {
+      get { return _picture7BorderMarginsProperty; }
+    }
     public AbstractProperty Picture7DateProperty
     {
       get { return _picture7Date; }
@@ -856,6 +1000,14 @@ namespace MPPhotoSlideshow.Models
     public AbstractProperty Picture8Property
     {
       get { return _picture8Property; }
+    }
+    public AbstractProperty Picture8BorderProperty
+    {
+      get { return _picture8BorderProperty; }
+    }
+    public AbstractProperty Picture8BorderMarginsProperty
+    {
+      get { return _picture8BorderMarginsProperty; }
     }
     public AbstractProperty Picture8DateProperty
     {
@@ -1011,6 +1163,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture1FileName = GetPicture(template, 0);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture1FileName.FilePath), LogInfoType.Debug);
           Picture1 = picture1FileName.FilePath;
+          Picture1Border = template.Photos[0].Image.BorderPath;
+          Picture1BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[0].Image.BorderLeft, template.Photos[0].Image.BorderTop, template.Photos[0].Image.BorderRight, template.Photos[0].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[0].Image.posY, template.Photos[0].Image.posX);
           Picture1PosX = ImageMargin.Width;
           Picture1PosY = ImageMargin.Height;
@@ -1025,6 +1179,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture1 = String.Empty;
           Picture1Date = String.Empty;
+          Picture1BorderMargins = "0,0,0,0";
           Picture1Width = 0;
           Picture1Height = 0;
         }
@@ -1033,6 +1188,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture2FileName = GetPicture(template, 1);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture2FileName.FilePath), LogInfoType.Debug);
           Picture2 = picture2FileName.FilePath;
+          Picture2Border = template.Photos[1].Image.BorderPath;
+          Picture2BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[1].Image.BorderLeft, template.Photos[1].Image.BorderTop, template.Photos[1].Image.BorderRight, template.Photos[1].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[1].Image.posY, template.Photos[1].Image.posX);
           Picture2PosX = ImageMargin.Width;
           Picture2PosY = ImageMargin.Height;
@@ -1047,6 +1204,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture2 = String.Empty;
           Picture2Date = String.Empty;
+          Picture2BorderMargins = "0,0,0,0";
           Picture2Width = 0;
           Picture2Height = 0;
         }
@@ -1055,6 +1213,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture3FileName = GetPicture(template, 2);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture3FileName.FilePath), LogInfoType.Debug);
           Picture3 = picture3FileName.FilePath;
+          Picture3Border = template.Photos[2].Image.BorderPath;
+          Picture3BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[2].Image.BorderLeft, template.Photos[2].Image.BorderTop, template.Photos[2].Image.BorderRight, template.Photos[2].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[2].Image.posY, template.Photos[2].Image.posX);
           Picture3PosX = ImageMargin.Width;
           Picture3PosY = ImageMargin.Height;
@@ -1069,6 +1229,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture3 = String.Empty;
           Picture3Date = String.Empty;
+          Picture3BorderMargins = "0,0,0,0";
           Picture3Width = 0;
           Picture3Height = 0;
         }
@@ -1077,6 +1238,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture4FileName = GetPicture(template, 3);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture4FileName.FilePath), LogInfoType.Debug);
           Picture4 = picture4FileName.FilePath;
+          Picture4Border = template.Photos[3].Image.BorderPath;
+          Picture4BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[3].Image.BorderLeft, template.Photos[3].Image.BorderTop, template.Photos[3].Image.BorderRight, template.Photos[3].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[3].Image.posY, template.Photos[3].Image.posX);
           Picture4PosX = ImageMargin.Width;
           Picture4PosY = ImageMargin.Height;
@@ -1091,6 +1254,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture4 = String.Empty;
           Picture4Date = String.Empty;
+          Picture4BorderMargins = "0,0,0,0";
           Picture4Width = 0;
           Picture4Height = 0;
         }
@@ -1099,6 +1263,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture5FileName = GetPicture(template, 4);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture5FileName.FilePath), LogInfoType.Debug);
           Picture5 = picture5FileName.FilePath;
+          Picture5Border = template.Photos[4].Image.BorderPath;
+          Picture5BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[4].Image.BorderLeft, template.Photos[4].Image.BorderTop, template.Photos[4].Image.BorderRight, template.Photos[4].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[4].Image.posY, template.Photos[4].Image.posX);
           Picture5PosX = ImageMargin.Width;
           Picture5PosY = ImageMargin.Height;
@@ -1113,6 +1279,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture5 = String.Empty;
           Picture5Date = String.Empty;
+          Picture5BorderMargins = "0,0,0,0";
           Picture5Width = 0;
           Picture5Height = 0;
         }
@@ -1121,6 +1288,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture6FileName = GetPicture(template, 5);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture6FileName.FilePath), LogInfoType.Debug);
           Picture6 = picture6FileName.FilePath;
+          Picture6Border = template.Photos[5].Image.BorderPath;
+          Picture6BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[5].Image.BorderLeft, template.Photos[5].Image.BorderTop, template.Photos[5].Image.BorderRight, template.Photos[5].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[5].Image.posY, template.Photos[5].Image.posX);
           Picture6PosX = ImageMargin.Width;
           Picture6PosY = ImageMargin.Height;
@@ -1135,6 +1304,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture6 = String.Empty;
           Picture6Date = String.Empty;
+          Picture6BorderMargins = "0,0,0,0";
           Picture6Width = 0;
           Picture6Height = 0;
         }
@@ -1143,6 +1313,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture7FileName = GetPicture(template, 6);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture7FileName.FilePath), LogInfoType.Debug);
           Picture7 = picture7FileName.FilePath;
+          Picture7Border = template.Photos[6].Image.BorderPath;
+          Picture7BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[6].Image.BorderLeft, template.Photos[6].Image.BorderTop, template.Photos[6].Image.BorderRight, template.Photos[6].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[6].Image.posY, template.Photos[6].Image.posX);
           Picture7PosX = ImageMargin.Width;
           Picture7PosY = ImageMargin.Height;
@@ -1157,6 +1329,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture7 = String.Empty;
           Picture7Date = String.Empty;
+          Picture7BorderMargins = "0,0,0,0";
           Picture7Width = 0;
           Picture7Height = 0;
         }
@@ -1165,6 +1338,8 @@ namespace MPPhotoSlideshow.Models
           Picture picture8FileName = GetPicture(template, 7);
           //log.writeLog(String.Format("MPSlideshow.LoadPage() - Setting new file name {0}",picture8FileName.FilePath), LogInfoType.Debug);
           Picture8 = picture8FileName.FilePath;
+          Picture8Border = template.Photos[7].Image.BorderPath;
+          Picture8BorderMargins = String.Format("{0},{1},{2},{3}", template.Photos[7].Image.BorderLeft, template.Photos[7].Image.BorderTop, template.Photos[7].Image.BorderRight, template.Photos[7].Image.BorderBottom);
           Size ImageMargin = ScaleToScreen(template.Photos[7].Image.posY, template.Photos[7].Image.posX);
           Picture8PosX = ImageMargin.Width;
           Picture8PosY = ImageMargin.Height;
@@ -1179,6 +1354,7 @@ namespace MPPhotoSlideshow.Models
         {
           Picture8 = String.Empty;
           Picture8Date = String.Empty;
+          Picture8BorderMargins = "0,0,0,0";
           Picture8Width = 0;
           Picture8Height = 0;
         }
@@ -1192,49 +1368,57 @@ namespace MPPhotoSlideshow.Models
     private Picture GetPicture(PhotoTemplate template, int index)
     {
       Picture imageFileName = new Picture();
-      if (template.Photos[index].Image.Height > template.Photos[index].Image.Width)
-      {
-        double value = (double)template.Photos[index].Image.Height / template.Photos[index].Image.Width;
-        double aspectratio = Math.Truncate(10 * (value)) / 10;
-        if (aspectratio == 1)
+      try
+      {        
+        if (template.Photos[index].Image.Height > template.Photos[index].Image.Width)
         {
-          imageFileName = _verticalSquarePictures[_verticalSquareRnd.Next(_verticalSquarePictures.Count)];
+          double value = (double)template.Photos[index].Image.Height / template.Photos[index].Image.Width;
+          double aspectratio = Math.Truncate(10 * (value)) / 10;
+          if (aspectratio == 1)
+          {
+            imageFileName = _verticalSquarePictures[_verticalSquareRnd.Next(_verticalSquarePictures.Count)];
+          }
+          else if (1.3 <= aspectratio & aspectratio <= 1.5)
+          {
+            imageFileName = _vertical4x3Pictures[_vertical4x3Rnd.Next(_vertical4x3Pictures.Count)];
+          }
+          else if (1.5 < aspectratio & aspectratio < 2)
+          {
+            imageFileName = _vertical16x9Pictures[_vertical16x9Rnd.Next(_vertical16x9Pictures.Count)];
+          }
+          else if (aspectratio >= 2)
+          {
+            imageFileName = _verticalPanoramasPictures[_verticalPanoramasRnd.Next(_verticalPanoramasPictures.Count)];
+          }
         }
-        else if (1.3 <= aspectratio & aspectratio <= 1.5)
+        else
         {
-          imageFileName = _vertical4x3Pictures[_vertical4x3Rnd.Next(_vertical4x3Pictures.Count)];
+          double value = (double)template.Photos[index].Image.Width / template.Photos[index].Image.Height;
+          double aspectratio = Math.Truncate(10 * (value)) / 10;
+          if (aspectratio == 1)
+          {
+            imageFileName = _horizontalSquarePictures[_horizontalSquareRnd.Next(_horizontalSquarePictures.Count)];
+          }
+          else if (1.3 <= aspectratio & aspectratio <= 1.5)
+          {
+            imageFileName = _horizontal4x3Pictures[_horizontal4x3Rnd.Next(_horizontal4x3Pictures.Count)];
+          }
+          else if (1.5 < aspectratio & aspectratio < 2)
+          {
+            imageFileName = _horizontal16x9Pictures[_horizontal16x9Rnd.Next(_horizontal16x9Pictures.Count)];
+          }
+          else if (aspectratio >= 2)
+          {
+            imageFileName = _horizontalPanoramasPictures[_horizontalPanoramasRnd.Next(_horizontalPanoramasPictures.Count)];
+          }
         }
-        else if (1.5 < aspectratio & aspectratio < 2)
-        {
-          imageFileName = _vertical16x9Pictures[_vertical16x9Rnd.Next(_vertical16x9Pictures.Count)];
-        }
-        else if (aspectratio >= 2)
-        {
-          imageFileName = _verticalPanoramasPictures[_verticalPanoramasRnd.Next(_verticalPanoramasPictures.Count)];
-        }
+        return imageFileName;
       }
-      else
+      catch (Exception ex)
       {
-        double value = (double)template.Photos[index].Image.Width / template.Photos[index].Image.Height;
-        double aspectratio = Math.Truncate(10 * (value)) / 10;
-        if (aspectratio == 1)
-        {
-          imageFileName = _horizontalSquarePictures[_horizontalSquareRnd.Next(_horizontalSquarePictures.Count)];
-        }
-        else if (1.3 <= aspectratio & aspectratio <= 1.5)
-        {
-          imageFileName = _horizontal4x3Pictures[_horizontal4x3Rnd.Next(_horizontal4x3Pictures.Count)];
-        }
-        else if (1.5 < aspectratio & aspectratio < 2)
-        {
-          imageFileName = _horizontal16x9Pictures[_horizontal16x9Rnd.Next(_horizontal16x9Pictures.Count)];
-        }
-        else if (aspectratio >= 2)
-        {
-          imageFileName = _horizontalPanoramasPictures[_horizontalPanoramasRnd.Next(_horizontalPanoramasPictures.Count)];
-        }
+        Log.Error(ex.ToString());
+        return imageFileName;
       }
-      return imageFileName;
      
     }
     private void timer_Tick(Object sender, EventArgs e)
