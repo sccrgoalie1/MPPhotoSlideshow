@@ -41,9 +41,9 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>AlwaysOverwrite</UpdateOption>
-              <LocalFileName>MPSlideshowTemplates.xml</LocalFileName>
+              <LocalFileName>SlideshowTemplates.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{cb3f8c1e-0e0d-464d-a01e-47562aad1590}-MPSlideshowTemplates.xml</ZipFileName>
-              <DestinationFilename>%CommonApplicationData%\MPPhotoSlideshow\MPSlideshowTemplates.xml</DestinationFilename>
+              <DestinationFilename>%CommonApplicationData%\MPPhotoSlideshow\SlideshowTemplates.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
@@ -290,9 +290,9 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>AlwaysOverwrite</UpdateOption>
-        <LocalFileName>MPSlideshowTemplates.xml</LocalFileName>
+        <LocalFileName>SlideshowTemplates.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{cb3f8c1e-0e0d-464d-a01e-47562aad1590}-MPSlideshowTemplates.xml</ZipFileName>
-        <DestinationFilename>%CommonApplicationData%\MPPhotoSlideshow\MPSlideshowTemplates.xml</DestinationFilename>
+        <DestinationFilename>%CommonApplicationData%\MPPhotoSlideshow\SlideshowTemplates.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />

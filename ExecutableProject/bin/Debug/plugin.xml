@@ -1,0 +1,45 @@
+<Plugin
+    DescriptorVersion="1.0"
+    Name="MPPhotoSlideshow"
+    PluginId="90CD7B37-9E96-4E07-A7AB-8779B31C7C2E"
+    Author="sccrgoalie1"
+    Copyright="GPL"
+    Description="View your photos in customizable templates"
+    PluginVersion="0.1">
+
+  <Runtime>
+    <Assembly FileName="MPPhotoSlideshow.dll"/>
+  </Runtime>
+  <!--Must match .xaml model GUID-->
+  <Register Location="/Models">
+    <Model Id="C6B0FA5A-288E-405A-A5D5-AA66CC0AA327" ClassName="MPPhotoSlideshow.Models.MPPhotoSlideshowModel"/>
+  </Register>
+
+  <Register Location="/Workflow/States">
+    <!-- This is the workflow state which corresponds to the hello world screen. Each workflow state corresponds to
+         a certain UI state. The id is needed to be able to reference the state, for example in the action which
+         navigates to this state, see in file hello-world-actions.xml.
+
+         The Id uniquely identifies the state among all workflow states. Use a GUID generator to create
+         a new state id. The id is referenced from workflow actions which lead to this state as well as from
+         code which tells the WorkflowManager to push a workflow state onto the workflow navigation stack.
+
+         The name of the state is only needed for debug reasons and will not be shown to the user.
+
+         The MainScreen will automatically be shown by the workflow manager when switching to the state.
+         It is also possible to set the screen programmatically when using a workflow model.
+
+         The DisplayLabel is the string which is shown in the Navigation bar for this state. -->
+    <WorkflowState Id="ED2BA7BD-6131-45F4-80E4-05DC789D3797"
+        Name="MPPhotoSlideshowMain" MainScreen="mp_photo_slideshow"
+        DisplayLabel="[MPPhotoSlideshow.StateDisplayLabel]"/> <!-- No workflow model -->
+  </Register>
+
+  <Register Location="/Resources/Skin">
+    <Resource Id="MPPhotoSlideshowSkin" Directory="Skin" Type="Skin"/>
+  </Register>
+
+  <Register Location="/Resources/Language">
+    <Resource Id="MPPhotoSlideshowLanguage" Directory="Language" Type="Language"/>
+  </Register>
+</Plugin>

@@ -11,6 +11,7 @@ namespace MPPhotoSlideshowCommon
     public int posY { get; set; }
     public int Width { get; set; }
     public int Height { get; set; }
+    public int RotateAngle { get; set; }
     public string BorderLeft { get; set; }
     public string BorderRight { get; set; }
     public string BorderTop { get; set; }

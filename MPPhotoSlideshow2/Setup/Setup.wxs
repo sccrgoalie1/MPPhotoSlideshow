@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?define Property_ProductVersion = "1.0.2" ?>
+<?define Property_ProductVersion = "1.0.3" ?>
 <?define Property_ProductCode = "*" ?>
 <?define Property_UpgradeCode = "E29F1AFD-9626-4EB7-BEBD-8B052713FF86" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
@@ -293,10 +293,10 @@
                  Guid="8C7808F8-6C6B-41AB-A7B5-85C243874FD3"
                  Permanent="yes"
                  DiskId="1">
-        <File Id="MPSlideshowTemplates.xml"
-              Name="MPSlideshowTemplates.xml"
+        <File Id="SlideshowTemplates.xml"
+              Name="SlideshowTemplates.xml"
               KeyPath="yes"
-              Source="..\Setup\MPSlideshowTemplates.xml"
+              Source="..\Setup\SlideshowTemplates.xml"
               Checksum="no"/>
       </Component>
       <!--<Component Id="OHMKey"
@@ -363,6 +363,7 @@
         <![CDATA[NEWERVERSIONDETECTED]]>
       </Custom>
     </InstallUISequence>
+    <!--<Property Id="REINSTALLMODE" Value="amus"/>  fORCES OVERWRITE OF FILES-->
     <Property Id="ARPHELPLINK"
               Value="!(loc.Property_ArpHelpLink)" />
     <Property Id="ARPURLINFOABOUT"

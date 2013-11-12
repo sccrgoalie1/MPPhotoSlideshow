@@ -68,16 +68,14 @@
   <ItemGroup>
     <Content Include="Images\mpslideshow_background.png" />
     <Content Include="Images\mpslideshow_image_border.png" />
-    <Content Include="MPPhotoSlideshow.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="MPPhotoSlideshow.xml" />
     <Content Include="Setup\Bundle.wxs" />
     <Content Include="Setup\LicenseAccessible.txt" />
-    <Content Include="Setup\MPSlideshowTemplates.xml" />
     <Content Include="Setup\Setup-en-us.wxl" />
     <Content Include="Setup\Setup.wxs">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Setup\SlideshowTemplates.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug\DevInstall.cmd" />

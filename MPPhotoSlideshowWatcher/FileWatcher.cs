@@ -156,28 +156,42 @@ namespace MPPhotoSlideshowWatcher
         string[] res = metaData.ImageDimensions.DisplayValue.Split('x');
         Int32.TryParse(res[0], out width);
         Int32.TryParse(res[1], out height);
-        //string orientation = metaData.Orientation.DisplayValue;
-        //if (orientation == "Rotate 90")
-        //{
-        //  int orientWidth = 0;
-        //  int orientHeight = 0;
-        //  using (FileStream stream = new FileStream(e.FullPath, FileMode.Open, FileAccess.Read))
-        //  {
-        //    Bitmap pictureImage = new Bitmap(stream);
-        //    orientWidth = pictureImage.Width;
-        //    orientHeight = pictureImage.Height;
-        //    stream.Close();
-        //  }
-        //  if (orientWidth > orientHeight)
-        //  {
-        //    //we need to flip the width and height so when we go to rotate it shows in the right template
-        //    width = orientHeight;
-        //    height = orientWidth;
-        //    rotateFromExifOrientation = true;
-        //  }
-        //}
-
-        return new Picture() { FilePath = filepath, DateTaken = pictureDate, Height = height, Width = width };
+        double aspectratio = 0;
+          if (width > height)
+          {
+            double value = (double)width / height;
+            aspectratio = Math.Truncate(10 * (value)) / 10;
+          }
+          else
+          {
+            double value = (double)height / width;
+            aspectratio = Math.Truncate(10 * (value)) / 10;
+          }
+        string orientation = metaData.Orientation.DisplayValue;
+        bool flipHeightAndWidth = false;
+        if (orientation != null)
+        {
+          if (orientation != "Normal")
+          {
+            switch (orientation)
+            {
+              case "Rotate 90":
+                flipHeightAndWidth = true;
+                break;
+              case "Rotate 270":
+                flipHeightAndWidth = true;
+                break;
+            }
+          }
+        }
+        if (flipHeightAndWidth)
+        {
+          return new Picture() { FilePath = filepath, DateTaken = pictureDate, Height = width, Width = height, AspectRatio = Convert.ToString(aspectratio), ExifOrientation = orientation };
+        }
+        else
+        {
+          return new Picture() { FilePath = filepath, DateTaken = pictureDate, Height = height, Width = width, AspectRatio = Convert.ToString(aspectratio), ExifOrientation = orientation };
+        }
       }
       catch (Exception ex)
       {

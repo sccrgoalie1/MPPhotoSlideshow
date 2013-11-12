@@ -28,9 +28,14 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.buildCacheButton = new System.Windows.Forms.Button();
       this.addNewTemplateButton = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.addPictureButton = new System.Windows.Forms.Button();
+      this.labelColorToggleButton = new System.Windows.Forms.Button();
+      this.borderToggleButton = new System.Windows.Forms.Button();
+      this.exifRotateCheckBox = new System.Windows.Forms.CheckBox();
       this.templateEnabledCheckBox = new System.Windows.Forms.CheckBox();
       this.borderFilePathTextBox = new System.Windows.Forms.TextBox();
       this.borderBottomTextBox = new System.Windows.Forms.TextBox();
@@ -47,20 +52,19 @@
       this.cancelCacheLoadButton = new System.Windows.Forms.Button();
       this.saveButton = new System.Windows.Forms.Button();
       this.label14 = new System.Windows.Forms.Label();
-      this.label13 = new System.Windows.Forms.Label();
+      this.labelFontLabel = new System.Windows.Forms.Label();
       this.label12 = new System.Windows.Forms.Label();
       this.labelFontTextBox = new System.Windows.Forms.TextBox();
       this.labelTextColorTextBox = new System.Windows.Forms.TextBox();
       this.label11 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
-      this.label9 = new System.Windows.Forms.Label();
+      this.rotateAngleLabel = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.labelWidthTextBox = new System.Windows.Forms.TextBox();
       this.labelXPosTextBox = new System.Windows.Forms.TextBox();
       this.labelYPosTextBox = new System.Windows.Forms.TextBox();
       this.labelHeightTextBox = new System.Windows.Forms.TextBox();
@@ -80,11 +84,14 @@
       this.label1 = new System.Windows.Forms.Label();
       this.pictureEnabledTextBox = new System.Windows.Forms.CheckBox();
       this.progressLabel = new System.Windows.Forms.Label();
+      this.rotateAngleNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.photoCacheWorker = new System.ComponentModel.BackgroundWorker();
       this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.watcherService = new System.ServiceProcess.ServiceController();
+      this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
       this.tableLayoutPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.rotateAngleNumericUpDown)).BeginInit();
       this.SuspendLayout();
       // 
       // buildCacheButton
@@ -119,6 +126,10 @@
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.Controls.Add(this.addPictureButton, 4, 11);
+      this.tableLayoutPanel1.Controls.Add(this.labelColorToggleButton, 2, 9);
+      this.tableLayoutPanel1.Controls.Add(this.borderToggleButton, 3, 9);
+      this.tableLayoutPanel1.Controls.Add(this.exifRotateCheckBox, 4, 9);
       this.tableLayoutPanel1.Controls.Add(this.templateEnabledCheckBox, 4, 10);
       this.tableLayoutPanel1.Controls.Add(this.borderFilePathTextBox, 1, 19);
       this.tableLayoutPanel1.Controls.Add(this.borderBottomTextBox, 3, 18);
@@ -135,20 +146,19 @@
       this.tableLayoutPanel1.Controls.Add(this.cancelCacheLoadButton, 3, 8);
       this.tableLayoutPanel1.Controls.Add(this.saveButton, 2, 20);
       this.tableLayoutPanel1.Controls.Add(this.label14, 0, 10);
-      this.tableLayoutPanel1.Controls.Add(this.label13, 0, 16);
+      this.tableLayoutPanel1.Controls.Add(this.labelFontLabel, 0, 16);
       this.tableLayoutPanel1.Controls.Add(this.label12, 2, 16);
       this.tableLayoutPanel1.Controls.Add(this.labelFontTextBox, 1, 16);
       this.tableLayoutPanel1.Controls.Add(this.labelTextColorTextBox, 3, 16);
       this.tableLayoutPanel1.Controls.Add(this.label11, 2, 15);
       this.tableLayoutPanel1.Controls.Add(this.label10, 0, 15);
-      this.tableLayoutPanel1.Controls.Add(this.label9, 0, 14);
+      this.tableLayoutPanel1.Controls.Add(this.rotateAngleLabel, 0, 14);
       this.tableLayoutPanel1.Controls.Add(this.label8, 2, 14);
       this.tableLayoutPanel1.Controls.Add(this.label7, 0, 13);
       this.tableLayoutPanel1.Controls.Add(this.label6, 2, 13);
       this.tableLayoutPanel1.Controls.Add(this.label5, 0, 12);
       this.tableLayoutPanel1.Controls.Add(this.label4, 0, 11);
       this.tableLayoutPanel1.Controls.Add(this.label3, 2, 12);
-      this.tableLayoutPanel1.Controls.Add(this.labelWidthTextBox, 1, 14);
       this.tableLayoutPanel1.Controls.Add(this.labelXPosTextBox, 1, 15);
       this.tableLayoutPanel1.Controls.Add(this.labelYPosTextBox, 3, 15);
       this.tableLayoutPanel1.Controls.Add(this.labelHeightTextBox, 3, 14);
@@ -170,6 +180,7 @@
       this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.pictureEnabledTextBox, 3, 11);
       this.tableLayoutPanel1.Controls.Add(this.progressLabel, 0, 9);
+      this.tableLayoutPanel1.Controls.Add(this.rotateAngleNumericUpDown, 1, 14);
       this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -198,6 +209,52 @@
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(516, 667);
       this.tableLayoutPanel1.TabIndex = 2;
+      // 
+      // addPictureButton
+      // 
+      this.addPictureButton.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.addPictureButton.Location = new System.Drawing.Point(403, 333);
+      this.addPictureButton.Name = "addPictureButton";
+      this.addPictureButton.Size = new System.Drawing.Size(94, 24);
+      this.addPictureButton.TabIndex = 49;
+      this.addPictureButton.Text = "Add Picture";
+      this.addPictureButton.UseVisualStyleBackColor = true;
+      this.addPictureButton.Click += new System.EventHandler(this.addPictureButton_Click);
+      // 
+      // labelColorToggleButton
+      // 
+      this.labelColorToggleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelColorToggleButton.Location = new System.Drawing.Point(203, 273);
+      this.labelColorToggleButton.Name = "labelColorToggleButton";
+      this.labelColorToggleButton.Size = new System.Drawing.Size(94, 24);
+      this.labelColorToggleButton.TabIndex = 48;
+      this.labelColorToggleButton.Text = "Label Clr Tgl";
+      this.toolTip1.SetToolTip(this.labelColorToggleButton, "\"Changes ALL pictures for all templates label color at once");
+      this.labelColorToggleButton.UseVisualStyleBackColor = true;
+      this.labelColorToggleButton.Click += new System.EventHandler(this.labelColorToggleButton_Click);
+      // 
+      // borderToggleButton
+      // 
+      this.borderToggleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.borderToggleButton.Location = new System.Drawing.Point(303, 273);
+      this.borderToggleButton.Name = "borderToggleButton";
+      this.borderToggleButton.Size = new System.Drawing.Size(94, 24);
+      this.borderToggleButton.TabIndex = 47;
+      this.borderToggleButton.Text = "Border Toggle";
+      this.toolTip1.SetToolTip(this.borderToggleButton, "\"Changes ALL pictures for all templates border values at once");
+      this.borderToggleButton.UseVisualStyleBackColor = true;
+      this.borderToggleButton.Click += new System.EventHandler(this.borderToggleButton_Click);
+      // 
+      // exifRotateCheckBox
+      // 
+      this.exifRotateCheckBox.AutoSize = true;
+      this.exifRotateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.exifRotateCheckBox.Location = new System.Drawing.Point(403, 273);
+      this.exifRotateCheckBox.Name = "exifRotateCheckBox";
+      this.exifRotateCheckBox.Size = new System.Drawing.Size(94, 24);
+      this.exifRotateCheckBox.TabIndex = 46;
+      this.exifRotateCheckBox.Text = "EXIF Rotate";
+      this.exifRotateCheckBox.UseVisualStyleBackColor = true;
       // 
       // templateEnabledCheckBox
       // 
@@ -362,16 +419,15 @@
       this.label14.Text = "Template Selector";
       this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // label13
+      // labelFontLabel
       // 
-      this.label13.AutoSize = true;
-      this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.label13.Location = new System.Drawing.Point(3, 480);
-      this.label13.Name = "label13";
-      this.label13.Size = new System.Drawing.Size(94, 30);
-      this.label13.TabIndex = 32;
-      this.label13.Text = "Label Font (fonts.xml)";
-      this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+      this.labelFontLabel.AutoSize = true;
+      this.labelFontLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.labelFontLabel.Location = new System.Drawing.Point(3, 480);
+      this.labelFontLabel.Name = "labelFontLabel";
+      this.labelFontLabel.Size = new System.Drawing.Size(94, 30);
+      this.labelFontLabel.TabIndex = 32;
+      this.labelFontLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // label12
       // 
@@ -424,17 +480,16 @@
       this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       this.label10.Visible = false;
       // 
-      // label9
+      // rotateAngleLabel
       // 
-      this.label9.AutoSize = true;
-      this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.label9.Location = new System.Drawing.Point(3, 420);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(94, 30);
-      this.label9.TabIndex = 26;
-      this.label9.Text = "Label Width";
-      this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.label9.Visible = false;
+      this.rotateAngleLabel.AutoSize = true;
+      this.rotateAngleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.rotateAngleLabel.Location = new System.Drawing.Point(3, 420);
+      this.rotateAngleLabel.Name = "rotateAngleLabel";
+      this.rotateAngleLabel.Size = new System.Drawing.Size(94, 30);
+      this.rotateAngleLabel.TabIndex = 26;
+      this.rotateAngleLabel.Text = "Rotate Angle";
+      this.rotateAngleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // label8
       // 
@@ -502,16 +557,6 @@
       this.label3.TabIndex = 20;
       this.label3.Text = "Photo Height";
       this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      // 
-      // labelWidthTextBox
-      // 
-      this.labelWidthTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.labelWidthTextBox.Enabled = false;
-      this.labelWidthTextBox.Location = new System.Drawing.Point(103, 423);
-      this.labelWidthTextBox.Name = "labelWidthTextBox";
-      this.labelWidthTextBox.Size = new System.Drawing.Size(94, 20);
-      this.labelWidthTextBox.TabIndex = 16;
-      this.labelWidthTextBox.Visible = false;
       // 
       // labelXPosTextBox
       // 
@@ -707,6 +752,24 @@
       this.progressLabel.TabIndex = 35;
       this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
+      // rotateAngleNumericUpDown
+      // 
+      this.rotateAngleNumericUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.rotateAngleNumericUpDown.Location = new System.Drawing.Point(103, 423);
+      this.rotateAngleNumericUpDown.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+      this.rotateAngleNumericUpDown.Minimum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            -2147483648});
+      this.rotateAngleNumericUpDown.Name = "rotateAngleNumericUpDown";
+      this.rotateAngleNumericUpDown.Size = new System.Drawing.Size(94, 20);
+      this.rotateAngleNumericUpDown.TabIndex = 45;
+      // 
       // photoCacheWorker
       // 
       this.photoCacheWorker.WorkerReportsProgress = true;
@@ -734,6 +797,7 @@
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetupForm_FormClosing);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.rotateAngleNumericUpDown)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -759,7 +823,6 @@
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.TextBox labelWidthTextBox;
     private System.Windows.Forms.TextBox labelXPosTextBox;
     private System.Windows.Forms.TextBox labelYPosTextBox;
     private System.Windows.Forms.TextBox labelHeightTextBox;
@@ -767,13 +830,13 @@
     private System.Windows.Forms.TextBox photoWidthTextBox;
     private System.Windows.Forms.TextBox photoYPosTextBox;
     private System.Windows.Forms.TextBox photoXPosTextBox;
-    private System.Windows.Forms.Label label13;
+    private System.Windows.Forms.Label labelFontLabel;
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.TextBox labelFontTextBox;
     private System.Windows.Forms.TextBox labelTextColorTextBox;
     private System.Windows.Forms.Label label11;
     private System.Windows.Forms.Label label10;
-    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Label rotateAngleLabel;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.Label label14;
     private System.Windows.Forms.Button saveButton;
@@ -796,6 +859,12 @@
     private System.Windows.Forms.Label label15;
     private System.ServiceProcess.ServiceController watcherService;
     private System.Windows.Forms.CheckBox templateEnabledCheckBox;
+    private System.Windows.Forms.NumericUpDown rotateAngleNumericUpDown;
+    private System.Windows.Forms.CheckBox exifRotateCheckBox;
+    private System.Windows.Forms.Button borderToggleButton;
+    private System.Windows.Forms.ToolTip toolTip1;
+    private System.Windows.Forms.Button labelColorToggleButton;
+    private System.Windows.Forms.Button addPictureButton;
   }
 }
 

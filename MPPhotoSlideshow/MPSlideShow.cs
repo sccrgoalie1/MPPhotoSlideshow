@@ -53,6 +53,7 @@ namespace MPPhotoSlideshow
     protected GUIImage picture8 = null;
     [SkinControlAttribute(741)]
     protected GUILabelControl picture8Label = null;
+    private ModuleVersion currentTemplateVersion = new ModuleVersion(1, 0, 0, 0);
     private Random _vertical4x3Rnd = new Random();
     private Random _horizontal4x3Rnd = new Random();
     private Random _verticalPanoramasRnd = new Random();
@@ -188,21 +189,44 @@ namespace MPPhotoSlideshow
           }
 
         }
-        if (File.Exists(folder + @"\MPSlideshowTemplates.xml"))
+        if (File.Exists(folder + @"\SlideshowTemplates.xml"))
         {
-          using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowTemplates.xml"))
+          using (StreamReader streamReader = new StreamReader(folder + @"\SlideshowTemplates.xml"))
           {
             string stream = streamReader.ReadToEnd();
             if (stream.Length > 0)
             {
-              _photoTemplates = XMLHelper.Deserialize<List<PhotoTemplate>>(stream);
+              Templates template = XMLHelper.Deserialize<Templates>(stream);
+              foreach (PhotoTemplate ptemp in template.TemplatesList)
+              {
+                _photoTemplates.Add(ptemp);
+              }
+              currentTemplateVersion = template.TemplateVersion;
             }
             streamReader.Close();
           }
           //only use enabled templates
           _photoTemplates = _photoTemplates.FindAll(p => p.Enabled);
+
         }
-      //}
+        else
+        {
+          if (File.Exists(folder + @"\MPSlideshowTemplates.xml"))
+          {
+            using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowTemplates.xml"))
+            {
+              string stream = streamReader.ReadToEnd();
+              if (stream.Length > 0)
+              {
+                _photoTemplates = XMLHelper.Deserialize<List<PhotoTemplate>>(stream);
+              }
+              streamReader.Close();
+            }
+            //only use enabled templates
+            _photoTemplates = _photoTemplates.FindAll(p => p.Enabled);
+
+          }
+        }
         if (_allPictures.Count > 0)
         {
           foreach (Picture picture in _allPictures)

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using MPPhotoSlideshowCommon;
@@ -15,8 +16,10 @@ namespace MPPhotoSlideshowCommon
   public partial class SetupForm : Form
   {
     private string _pictureFolders = "";
+    private bool isMP2 = false;
     private XMLSettings settings;
     private List<Picture> _allPictures = new List<Picture>();
+    private ModuleVersion currentTemplateVersion = new ModuleVersion(1,0,0,0);
     private int previousSelectedTemplateIndex = -1;
     private int previousSelectedPictureIndex = -1;
     private BindingList<PhotoTemplate> photoTemplates = new BindingList<PhotoTemplate>();
@@ -27,6 +30,13 @@ namespace MPPhotoSlideshowCommon
       InitializeComponent();
       Log.Init(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "SetupLog", "log", LogType.Debug);
       LoadSettings();
+      //update and save templates
+      if (BuiltInTemplates.NewTemplatesAvailable(currentTemplateVersion))
+      {
+        photoTemplates = BuiltInTemplates.UpdateTemplates(photoTemplates);
+        currentTemplateVersion = BuiltInTemplates.BuiltInTemplateVersion;
+        Save();
+      }
       if (photoTemplates.Count > 0)
       {        
         photoControls = photoTemplates[0].Photos;       
@@ -48,21 +58,45 @@ namespace MPPhotoSlideshowCommon
         previousSelectedPictureIndex = 0;
         pictureSelectorComboBox.SelectedIndex = 0;
       }
+      ToggleFieldsBasedOnMpSlideShowVersion();
       SetupGUI();
+    }
+
+    
+
+    public void ToggleFieldsBasedOnMpSlideShowVersion()
+    {
+      string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      if (!File.Exists(dir + @"\plugin.xml"))
+      {
+        exifRotateCheckBox.Visible = false;
+        rotateAngleNumericUpDown.Visible = false;
+        rotateAngleLabel.Visible = false;
+        addPictureButton.Visible = false;
+        labelFontLabel.Text = "Label Font (fonts.xml)";
+        isMP2 = false;
+      }
+      else
+      {
+        isMP2 = true;
+        labelFontLabel.Text = "Label Font Size";
+      }
     }
     public void LoadSettings()
     {
       try
       {
         string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\";
-        if (File.Exists(folder + @"\MPSlideshowTemplates.xml"))
+        if (File.Exists(folder + @"\SlideshowTemplates.xml"))
         {
-          using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowTemplates.xml"))
+          using (StreamReader streamReader = new StreamReader(folder + @"\SlideshowTemplates.xml"))
           {
             string stream = streamReader.ReadToEnd();
             if (stream.Length > 0)
             {
-              photoTemplates = XMLHelper.Deserialize<BindingList<PhotoTemplate>>(stream);
+              Templates template = XMLHelper.Deserialize<Templates>(stream);
+              photoTemplates = template.TemplatesList;
+              currentTemplateVersion = template.TemplateVersion;
             }
             streamReader.Close();
           }          
@@ -70,9 +104,9 @@ namespace MPPhotoSlideshowCommon
         //reload from old cache location 
         if (photoTemplates.Count == 0)
         {
-          if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPSlideshowTemplates.xml"))
+          if (File.Exists(folder + @"\MPSlideshowTemplates.xml"))
           {
-            using (StreamReader streamReader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPSlideshowTemplates.xml"))
+            using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowTemplates.xml"))
             {
               string stream = streamReader.ReadToEnd();
               if (stream.Length > 0)
@@ -82,14 +116,19 @@ namespace MPPhotoSlideshowCommon
               streamReader.Close();
             }
             //write to the new file
-            using (StreamWriter streamWriter = new StreamWriter(folder + @"\MPSlideshowTemplates.xml"))
+            Templates templates = new Templates()
             {
-              string serialized = XMLHelper.Serialize<BindingList<PhotoTemplate>>(photoTemplates);
+              TemplatesList = photoTemplates,
+              TemplateVersion = new ModuleVersion(1, 0, 0, 0)
+            };
+            using (StreamWriter streamWriter = new StreamWriter(folder + @"\SlideshowTemplates.xml"))
+            {
+              string serialized = XMLHelper.Serialize<Templates>(templates);
               streamWriter.Write(serialized);
               streamWriter.Close();
             }
             //cleanup the old
-            File.Delete(folder + @"Media Portal\MPSlideshowTemplates.xml");
+            File.Delete(folder + @"\MPSlideshowTemplates.xml");
           }
         }
         int interval = 10000;
@@ -98,6 +137,7 @@ namespace MPPhotoSlideshowCommon
         _pictureFolders = settings.getXmlAttribute("FolderPaths", "");
         Int32.TryParse(settings.getXmlAttribute("Interval", "10000"), out interval);
         backgroundImageTextBox.Text = settings.getXmlAttribute("BackgroundPath", "mpslideshow_background.png");
+        exifRotateCheckBox.Checked = Convert.ToBoolean(settings.getXmlAttribute("EXIFRotate","false"));
         
         //using (Settings xmlreader = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPPhotoSlideshow.xml"))
         //{
@@ -283,7 +323,7 @@ namespace MPPhotoSlideshowCommon
         bool saveMe = true;
         if (pictureEnabledTextBox.Checked)
         {
-          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelWidthTextBox.Text == "" | labelHeightTextBox.Text == "" | labelXPosTextBox.Text == "" | labelYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" | backgroundImageTextBox.Text == "")
+          if (photoHeightTextBox.Text == "" | photoWidthTextBox.Text == "" | photoXPosTextBox.Text == "" | photoYPosTextBox.Text == "" | labelHeightTextBox.Text == "" | labelXPosTextBox.Text == "" | labelYPosTextBox.Text == "" | labelTextColorTextBox.Text == "" | labelFontTextBox.Text == "" | borderBottomTextBox.Text == "" | borderFilePathTextBox.Text == "" | borderLeftTextBox.Text == "" | borderRightTextBox.Text == "" | borderTopTextBox.Text == "" | backgroundImageTextBox.Text == "")
           {
             templateComboBox.SelectedIndex = previousSelectedTemplateIndex;
             saveMe=false;
@@ -320,10 +360,11 @@ namespace MPPhotoSlideshowCommon
         StoreCurrentPhoto();
         StoreCurrentTemplate();
         string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow";
-        File.Delete(folder + @"\MPSlideshowTemplates.xml");
-        using (StreamWriter streamWriter = new StreamWriter(folder + @"\MPSlideshowTemplates.xml"))
+        File.Delete(folder + @"\SlideshowTemplates.xml");
+        Templates template = new Templates() {TemplatesList = photoTemplates, TemplateVersion = currentTemplateVersion};
+        using (StreamWriter streamWriter = new StreamWriter(folder + @"\SlideshowTemplates.xml"))
         {
-          string serialized = XMLHelper.Serialize<BindingList<PhotoTemplate>>(photoTemplates);
+          string serialized = XMLHelper.Serialize<Templates>(template);
           streamWriter.Write(serialized);
           streamWriter.Close();
         }
@@ -344,6 +385,7 @@ namespace MPPhotoSlideshowCommon
         Int32.TryParse(timerTextBox.Text, out interval);
         settings.writeToXMLFile("Interval", interval.ToString());
         settings.writeToXMLFile("BackgroundPath", backgroundImageTextBox.Text);
+        settings.writeToXMLFile("EXIFRotate", exifRotateCheckBox.Checked.ToString());
 
         //restart the service for new settings
         TimeSpan timeout = TimeSpan.FromMilliseconds(20000);
@@ -397,7 +439,7 @@ namespace MPPhotoSlideshowCommon
         labelTextColorTextBox.Text = "";
         labelFontTextBox.Text = "";
         labelHeightTextBox.Text = "";
-        labelWidthTextBox.Text = "";
+        rotateAngleNumericUpDown.Value = 0;
         labelXPosTextBox.Text = "";
         labelYPosTextBox.Text = "";
         borderBottomTextBox.Text = "";
@@ -444,6 +486,7 @@ namespace MPPhotoSlideshowCommon
           photoYPosTextBox.Text = control.Image.posY.ToString();
           borderBottomTextBox.Text = control.Image.BorderBottom;
           borderFilePathTextBox.Text = control.Image.BorderPath;
+          rotateAngleNumericUpDown.Value = control.Image.RotateAngle;
           if (borderFilePathTextBox.Text == "")
           {
             borderFilePathTextBox.Text = "mpslideshow_image_border.png";
@@ -456,11 +499,18 @@ namespace MPPhotoSlideshowCommon
         {
 
           labelHeightTextBox.Text = control.Label.Height.ToString();
-          labelWidthTextBox.Text = control.Label.Width.ToString();
+          //labelWidthTextBox.Text = control.Label.Width.ToString();
           labelXPosTextBox.Text = control.Label.posX.ToString();
           labelYPosTextBox.Text = control.Label.posY.ToString();
           labelTextColorTextBox.Text = control.Label.TextColor;
-          labelFontTextBox.Text = control.Label.Font;
+          if (isMP2)
+          {
+            labelFontTextBox.Text = control.Label.FontSize;
+          }
+          else
+          {
+            labelFontTextBox.Text = control.Label.Font;
+          }
         }
         pictureEnabledTextBox.Checked = control.Enabled;
       }
@@ -492,9 +542,10 @@ namespace MPPhotoSlideshowCommon
           int labelHeight = 0;
           Int32.TryParse(labelHeightTextBox.Text, out labelHeight);
           control.Label.Height = labelHeight;
-          int labelWidth = 0;
-          Int32.TryParse(labelWidthTextBox.Text, out labelWidth);
-          control.Label.Width = labelWidth;
+          control.Image.RotateAngle = (int)rotateAngleNumericUpDown.Value;
+          //int labelWidth = 0;
+          //Int32.TryParse(labelWidthTextBox.Text, out labelWidth);
+          //control.Label.Width = labelWidth;
           int labelPosX = 0;
           Int32.TryParse(labelXPosTextBox.Text, out labelPosX);
           control.Label.posX = labelPosX;
@@ -502,7 +553,14 @@ namespace MPPhotoSlideshowCommon
           Int32.TryParse(labelYPosTextBox.Text, out labelPosY);
           control.Label.posY = labelPosY;
           control.Label.TextColor = labelTextColorTextBox.Text;
-          control.Label.Font = labelFontTextBox.Text;
+          if (isMP2)
+          {
+            control.Label.FontSize = labelFontTextBox.Text;
+          }
+          else
+          {
+            control.Label.Font = labelFontTextBox.Text;
+          }
           control.Enabled = pictureEnabledTextBox.Checked;
           photoControls[previousSelectedPictureIndex] = control;
         }
@@ -539,6 +597,7 @@ namespace MPPhotoSlideshowCommon
     {
       try
       {
+        inputBox.SetupInputBox("New Template", "Enter the new template name");
         DialogResult dialogResult = inputBox.ShowDialog(this);
         if (dialogResult == DialogResult.OK)
         {
@@ -564,7 +623,7 @@ namespace MPPhotoSlideshowCommon
             {
               photoControls.Add(new PhotoControl() { PhotoName = String.Format("Picture{0}", i), Image = new ImageControl(), Label = new LabelControl(), Enabled=false });
             }
-            photoTemplates.Add(new PhotoTemplate() { TemplateName = inputBox.InputText });
+            photoTemplates.Add(new PhotoTemplate() { TemplateName = inputBox.InputText, Id = Guid.NewGuid(), Version=new ModuleVersion(1,0,0,0) });
             templateComboBox.SelectedIndex = photoTemplates.Count - 1;
             previousSelectedTemplateIndex = photoTemplates.Count - 1;
             previousSelectedPictureIndex = 0;
@@ -665,7 +724,7 @@ namespace MPPhotoSlideshowCommon
           DateTime.TryParse(metaData.DatePictureTaken.DisplayValue, out pictureDate);
           int width = 0;
           int height = 0;
-          //bool rotateFromExifOrientation = false;
+          bool rotateFromExifOrientation = false;
           string[] res = metaData.ImageDimensions.DisplayValue.Split('x');
           Int32.TryParse(res[0], out width);
           Int32.TryParse(res[1], out height);
@@ -680,29 +739,33 @@ namespace MPPhotoSlideshowCommon
             double value = (double)height / width;
             aspectratio = Math.Truncate(10 * (value)) / 10;
           }
-          //string orientation = metaData.Orientation.DisplayValue;
-          //if (orientation == "Rotate 90")
-          //{
-          //  int orientWidth = 0;
-          //  int orientHeight = 0;
-          //  using (FileStream stream = new FileStream(pictureFile, FileMode.Open, FileAccess.Read))
-          //  {
-          //    Bitmap pictureImage = new Bitmap(stream);
-          //    orientWidth = pictureImage.Width;
-          //    orientHeight = pictureImage.Height;
-          //    stream.Close();
-          //  }
-          //  if (orientWidth > orientHeight)
-          //  {
-          //    //we need to flip the width and height so when we go to rotate it shows in the right template
-          //    width = orientHeight;
-          //    height = orientWidth;
-          //    rotateFromExifOrientation = true;
-          //  }
-          //}
+          string orientation = metaData.Orientation.DisplayValue;
+          bool flipHeightAndWidth = false;
+          if (orientation != null)
+          {
+            if (orientation != "Normal")
+            {
+              switch (orientation)
+              {
+                case "Rotate 90":
+                  flipHeightAndWidth = true;
+                  break;
+                case "Rotate 270":
+                  flipHeightAndWidth = true;
+                  break;
+              }
+            }
+          }
           progress++;
           photoCacheWorker.ReportProgress(progress);
-          _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = height, Width = width, AspectRatio=Convert.ToString(aspectratio)});
+          if (flipHeightAndWidth)
+          {
+            _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = width, Width = height, AspectRatio = Convert.ToString(aspectratio), ExifOrientation = orientation });
+          }
+          else
+          {
+            _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = height, Width = width, AspectRatio = Convert.ToString(aspectratio), ExifOrientation = orientation });
+          }
         }
         if ((photoCacheWorker.CancellationPending == true))
         {
@@ -835,6 +898,60 @@ namespace MPPhotoSlideshowCommon
         }
       }
     }
+
+    private void borderToggleButton_Click(object sender, EventArgs e)
+    {
+      inputBox.SetupInputBox("New Border Value", "Enter the new border value");
+        DialogResult dialogResult = inputBox.ShowDialog(this);
+      if (dialogResult == DialogResult.OK)
+      {
+        int borderValue = 0;
+        int.TryParse(inputBox.InputText, out borderValue);
+        //Store any changes to the current photo before making the change
+        StoreCurrentPhoto();
+        foreach (PhotoTemplate template in photoTemplates)
+        {
+          foreach (PhotoControl photo in template.Photos)
+          {
+            photo.Image.BorderBottom = borderValue.ToString();
+            photo.Image.BorderLeft = borderValue.ToString();
+            photo.Image.BorderRight = borderValue.ToString();
+            photo.Image.BorderTop = borderValue.ToString();
+          }
+        }
+        //reload the GUI to reflect the change
+        SetupGUI();
+      }
+    }
+
+    private void labelColorToggleButton_Click(object sender, EventArgs e)
+    {
+      inputBox.SetupInputBox("New Label Color Value", "Enter the new label color value");
+      DialogResult dialogResult = inputBox.ShowDialog(this);
+      if (dialogResult == DialogResult.OK)
+      {
+        StoreCurrentPhoto();
+        foreach (PhotoTemplate template in photoTemplates)
+        {
+          foreach (PhotoControl photo in template.Photos)
+          {
+            photo.Label.TextColor = inputBox.InputText;
+          }
+        }
+        //reload the GUI to reflect the change
+        SetupGUI();
+      }
+    }
+
+    private void addPictureButton_Click(object sender, EventArgs e)
+    {
+      photoControls.Add(new PhotoControl() { PhotoName = String.Format("Picture{0}", photoControls.Count + 1), Image = new ImageControl(), Label = new LabelControl(), Enabled = false });
+      StoreCurrentPhoto();
+      previousSelectedPictureIndex = photoControls.Count -1;
+      pictureSelectorComboBox.SelectedIndex = photoControls.Count - 1;
+      ResetGUI();
+    }
+   
 
    
   }
