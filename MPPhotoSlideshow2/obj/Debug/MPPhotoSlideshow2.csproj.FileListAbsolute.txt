@@ -30,3 +30,4 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\obj\Debug\MPPhotoSlide
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MediaPortal.UI.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\HttpServer.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\UPnP.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\Xceed.Wpf.Toolkit.dll

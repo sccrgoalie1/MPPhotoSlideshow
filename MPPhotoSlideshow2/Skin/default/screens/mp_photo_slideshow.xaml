@@ -30,11 +30,25 @@
                             <!--<Image.Source>
                                 <BitmapImageSource DecodePixelWidth="{Binding Path=PictureWidthProperty}" UriSource="{Binding Path=PictureImageProperty}"/>
                             </Image.Source>-->
-                            <Image.Triggers>
-                                <EventTrigger RoutedEvent="Image.Loaded">
-                                    <BeginStoryboard Storyboard="{ThemeResource Storyboard}" />
-                                </EventTrigger>
-                            </Image.Triggers>
+                            <!--<Image.Style>
+                                <Style.Triggers>
+                                    <Trigger Property="Image.IsEnabled" Value="True">
+                                        --><!--<BeginStoryboard Storyboard="{ThemeResource Storyboard}" />--><!--
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                                Storyboard.TargetProperty="RenderTransform.Angle"
+                                                                From="0"
+                                                                To="360"
+                                                                Duration="0:0:1"
+                                                                RepeatBehavior="Forever" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Image.Style>-->
                         </Image>
                     </Border>
                     <Label x:Name="PictureLabel" Content="{Binding Path=PictureDateProperty}" 

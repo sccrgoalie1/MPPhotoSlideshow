@@ -9,7 +9,7 @@ namespace MPPhotoSlideshowCommon
 {
   public static class BuiltInTemplates
   {
-    public static ModuleVersion BuiltInTemplateVersion = new ModuleVersion(1, 0, 0, 3);
+    public static ModuleVersion BuiltInTemplateVersion = new ModuleVersion(1, 0, 0, 5);
     public static List<PhotoTemplate> BuiltInTemplatesList = new List<PhotoTemplate>();
 
     private static void BuildTemplates()
@@ -23,7 +23,9 @@ namespace MPPhotoSlideshowCommon
       FourTallTwoWide();
       EightPhotosSixWideTwoTall();
       OnePanorama();
+      OneSquareThreeWide();
     }
+
     /// <summary>
     /// Returns a bool as to whether there is a new template version available
     /// </summary>
@@ -33,6 +35,11 @@ namespace MPPhotoSlideshowCommon
     {
       return BuiltInTemplateVersion > currentVersion;
     }
+    /// <summary>
+    /// Updates a Binding List of templates to the latest version
+    /// </summary>
+    /// <param name="exisitingTemplates">Your current template list to be updated</param>
+    /// <returns>Returns an updated list of templates</returns>
     public static BindingList<PhotoTemplate> UpdateTemplates(BindingList<PhotoTemplate> exisitingTemplates)
     {
       BuildTemplates();
@@ -57,10 +64,31 @@ namespace MPPhotoSlideshowCommon
           updatedTemplates.Add(template);
         }
       }
-
+      //add any new templates that don't currently exist
+      foreach (PhotoTemplate template in BuiltInTemplatesList)
+      {
+        bool exists = false;
+        foreach (PhotoTemplate uTemplate in updatedTemplates)
+        {
+          if (template.Id == uTemplate.Id)
+          {
+            exists = true;
+            break;
+          }
+        }
+        if (!exists)
+        {
+          updatedTemplates.Add(template);
+        }
+      }
       return updatedTemplates;
     }
 
+    /// <summary>
+    /// Updates a List of templates to the latest version
+    /// </summary>
+    /// <param name="exisitingTemplates">You current template list to be updated</param>
+    /// <returns>Returns an updated list of templates</returns>
     public static List<PhotoTemplate> UpdateTemplates(List<PhotoTemplate> exisitingTemplates)
     {
       BuildTemplates();
@@ -85,7 +113,23 @@ namespace MPPhotoSlideshowCommon
           updatedTemplates.Add(template);
         }
       }
-
+      //add any new templates that don't currently exist
+      foreach (PhotoTemplate template in BuiltInTemplatesList)
+      {
+        bool exists = false;
+        foreach (PhotoTemplate uTemplate in updatedTemplates)
+        {
+          if (template.Id == uTemplate.Id)
+          {
+            exists = true;
+            break;
+          }
+        }
+        if (!exists)
+        {
+          updatedTemplates.Add(template);
+        }
+      }
       return updatedTemplates;
     }
 
@@ -2678,6 +2722,294 @@ namespace MPPhotoSlideshowCommon
         Version = new ModuleVersion(1, 0, 0, 0),
         Id = new Guid("C8B21038-BB43-433C-8348-E55E3A7B81C0"),
         TemplateName = "OnePanorama"
+      });
+    }
+
+    private static void OneSquareThreeWide()
+    {
+      //Stores each of the photos for adding to the template
+      BindingList<PhotoControl> photos = new BindingList<PhotoControl>();
+      //The image
+      ImageControl picture1 = new ImageControl()
+      {
+        posX = 147,
+        posY = 40,
+        Width = 1000,
+        Height = 1000,
+        RotateAngle = 0,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label1 = new LabelControl()
+      {
+        Font = "fontB12",
+        FontSize = "12",
+        TextColor = "#FFFFFF",
+        Height = 40,
+        Width = 1000,
+        posX = 40,
+        posY = 1040
+      };
+      //The entire photo
+      PhotoControl photo1 = new PhotoControl()
+      {
+        Enabled = true,
+        Image = picture1,
+        Label = label1,
+        PhotoName = "Picture1"
+      };
+      photos.Add(photo1);
+
+      ImageControl picture2 = new ImageControl()
+      {
+        posX = 1294,
+        posY = 45,
+        Width = 400,
+        Height = 300,
+        RotateAngle = 10,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label2 = new LabelControl()
+      {
+        Font = "font10",
+        FontSize = "12",
+        TextColor = "#FFFFFF",
+        Height = 20,
+        Width = 400,
+        posX = 1294,
+        posY = 345
+      };
+      //The entire photo
+      PhotoControl photo2 = new PhotoControl()
+      {
+        Enabled = true,
+        Image = picture2,
+        Label = label2,
+        PhotoName = "Picture2"
+      };
+      photos.Add(photo2);
+
+      ImageControl picture3 = new ImageControl()
+      {
+        posX = 1294,
+        posY = 390,
+        Width = 400,
+        Height = 300,
+        RotateAngle = -10,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label3 = new LabelControl()
+      {
+        Font = "font10",
+        FontSize = "12",
+        TextColor = "#FFFFFF",
+        Height = 20,
+        Width = 400,
+        posX = 1294,
+        posY = 435
+      };
+      //The entire photo
+      PhotoControl photo3 = new PhotoControl()
+      {
+        Enabled = true,
+        Image = picture3,
+        Label = label3,
+        PhotoName = "Picture3"
+      };
+      photos.Add(photo3);
+
+      ImageControl picture4 = new ImageControl()
+      {
+        posX = 1294,
+        posY = 735,
+        Width = 400,
+        Height = 300,
+        RotateAngle = 10,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label4 = new LabelControl()
+      {
+        Font = "font10",
+        FontSize = "12",
+        TextColor = "#FFFFFF",
+        Height = 20,
+        Width = 400,
+        posX = 1294,
+        posY = 780
+      };
+      //The entire photo
+      PhotoControl photo4 = new PhotoControl()
+      {
+        Enabled = true,
+        Image = picture4,
+        Label = label4,
+        PhotoName = "Picture4"
+      };
+      photos.Add(photo4);
+
+      ImageControl picture5 = new ImageControl()
+      {
+        posX = 0,
+        posY = 0,
+        Width = 0,
+        Height = 0,
+        RotateAngle = 0,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label5 = new LabelControl()
+      {
+        Font = "",
+        FontSize = "",
+        TextColor = "",
+        Height = 0,
+        Width = 0,
+        posX = 0,
+        posY = 0
+      };
+      //The entire photo
+      PhotoControl photo5 = new PhotoControl()
+      {
+        Enabled = false,
+        Image = picture5,
+        Label = label5,
+        PhotoName = "Picture5"
+      };
+      photos.Add(photo5);
+
+      ImageControl picture6 = new ImageControl()
+      {
+        posX = 0,
+        posY = 0,
+        Width = 0,
+        Height = 0,
+        RotateAngle = 0,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label6 = new LabelControl()
+      {
+        Font = "",
+        FontSize = "",
+        TextColor = "",
+        Height = 0,
+        Width = 0,
+        posX = 0,
+        posY = 0
+      };
+      //The entire photo
+      PhotoControl photo6 = new PhotoControl()
+      {
+        Enabled = false,
+        Image = picture6,
+        Label = label6,
+        PhotoName = "Picture6"
+      };
+      photos.Add(photo6);
+
+      ImageControl picture7 = new ImageControl()
+      {
+        posX = 0,
+        posY = 0,
+        Width = 0,
+        Height = 0,
+        RotateAngle = 0,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label7 = new LabelControl()
+      {
+        Font = "",
+        FontSize = "",
+        TextColor = "",
+        Height = 0,
+        Width = 0,
+        posX = 0,
+        posY = 0
+      };
+      //The entire photo
+      PhotoControl photo7 = new PhotoControl()
+      {
+        Enabled = false,
+        Image = picture7,
+        Label = label7,
+        PhotoName = "Picture7"
+      };
+      photos.Add(photo7);
+
+      ImageControl picture8 = new ImageControl()
+      {
+        posX = 0,
+        posY = 0,
+        Width = 0,
+        Height = 0,
+        RotateAngle = 0,
+        BorderBottom = "0",
+        BorderLeft = "0",
+        BorderRight = "0",
+        BorderPath = "mpslideshow_image_border.png",
+        BorderTop = "0"
+      };
+      //The label
+      LabelControl label8 = new LabelControl()
+      {
+        Font = "",
+        FontSize = "",
+        TextColor = "",
+        Height = 0,
+        Width = 0,
+        posX = 0,
+        posY = 0
+      };
+      //The entire photo
+      PhotoControl photo8 = new PhotoControl()
+      {
+        Enabled = false,
+        Image = picture8,
+        Label = label8,
+        PhotoName = "Picture8"
+      };
+      photos.Add(photo8);
+
+      //Add all the photos to the template list
+      BuiltInTemplatesList.Add(new PhotoTemplate()
+      {
+        Enabled = true,
+        Photos = photos,
+        Version = new ModuleVersion(1, 0, 0, 0),
+        Id = new Guid("4BAA87E8-B661-4BF4-A3DD-D27C75A44369"),
+        TemplateName = "OneSquareThreeWide"
       });
     }
   }

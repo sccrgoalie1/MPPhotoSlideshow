@@ -85,12 +85,15 @@ namespace MPPhotoSlideshowCommon
         ///<param name="arg">The args of information that is being sent</param>
         public static void Debug(string format, params object[] arg)
         {
-          if (logType == LogType.Debug)
+          if (format != null)
           {
-            checkFileSize();
-            using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
+            if (logType == LogType.Debug)
             {
-              streamWriter.WriteLine(DateTime.Now.ToString() + "   DEBUG         " + String.Format(format, arg));
+              checkFileSize();
+              using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
+              {
+                streamWriter.WriteLine(DateTime.Now.ToString() + "   DEBUG         " + String.Format(format, arg));
+              }
             }
           }
         }

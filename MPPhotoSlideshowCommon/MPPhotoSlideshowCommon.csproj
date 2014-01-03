@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MPPhotoSlideshowCommon</RootNamespace>
     <AssemblyName>MPPhotoSlideshowCommon</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -33,33 +33,53 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adorners\SizeChrome.cs" />
+    <Compile Include="Adorners\SizeAdorner.cs" />
+    <Compile Include="Adorners\ResizeRotateChrome.cs" />
+    <Compile Include="Adorners\ResizeRotateAdorner.cs" />
     <Compile Include="BuiltInTemplates.cs" />
-    <Compile Include="ExifMetadata.cs" />
-    <Compile Include="ImageControl.cs" />
+    <Compile Include="HelperClasses\DesignerItemDecorator.cs" />
+    <Compile Include="HelperClasses\ExifMetadata.cs" />
+    <Compile Include="HelperClasses\MoveThumb.cs" />
+    <Compile Include="HelperClasses\ResizeThumb.cs" />
+    <Compile Include="HelperClasses\RotateThumb.cs" />
+    <Compile Include="HelperClasses\TemplateBuilderHelper.cs" />
+    <Compile Include="HelperClasses\UIHelper.cs" />
+    <Compile Include="SerializationObjects\ImageControl.cs" />
     <Compile Include="InputBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="LabelControl.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="PhotoControl.cs" />
-    <Compile Include="Templates.cs" />
-    <Compile Include="PhotoTemplate.cs" />
-    <Compile Include="Picture.cs" />
+    <Compile Include="SerializationObjects\LabelControl.cs" />
+    <Compile Include="HelperClasses\Log.cs" />
+    <Compile Include="SerializationObjects\PhotoControl.cs" />
+    <Compile Include="TemplateBuilder.xaml.cs">
+      <DependentUpon>TemplateBuilder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SerializationObjects\Templates.cs" />
+    <Compile Include="SerializationObjects\PhotoTemplate.cs" />
+    <Compile Include="SerializationObjects\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupForm.cs">
       <SubType>Form</SubType>
@@ -67,9 +87,12 @@
     <Compile Include="SetupForm.Designer.cs">
       <DependentUpon>SetupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModuleVersion.cs" />
-    <Compile Include="XMLHelper.cs" />
-    <Compile Include="XMLSettings.cs" />
+    <Compile Include="HelperClasses\ModuleVersion.cs" />
+    <Compile Include="HelperClasses\XMLHelper.cs" />
+    <Compile Include="HelperClasses\XMLSettings.cs" />
+    <Compile Include="WindowResources\DesignerCanvas.cs" />
+    <Compile Include="WindowResources\DesignerItem.cs" />
+    <Compile Include="WindowResources\DesignerItemResourceDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="InputBox.resx">
@@ -79,6 +102,25 @@
       <DependentUpon>SetupForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="TemplateBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowResources\SizeChrome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowResources\ResizeRotateChrome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowResources\DesignerItem.xaml">
+      <SubType>UserControl</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -80,28 +80,13 @@ namespace MPPhotoSlideshow.Models
 
     private bool exifRotate = false;
     private ModuleVersion currentTemplateVersion = new ModuleVersion(1,0,0,0);
-    private static int templateWidth = 1920;
-    private static int templateHeight=1080;
+
     private int timerInterval = 10000;
     private XMLSettings settings;
     private Timer timer = new Timer();
-    private Random _vertical4x3Rnd = new Random();
-    private Random _horizontal4x3Rnd = new Random();
-    private Random _verticalPanoramasRnd = new Random();
-    private Random _horizontalPanoramasRnd = new Random();
-    private Random _verticalSquareRnd = new Random();
-    private Random _horizontalSquareRnd = new Random();
-    private Random _vertical16x9Rnd = new Random();
-    private Random _horizontal16x9Rnd = new Random();
+
     private Random _templateRnd = new Random();
-    private List<Picture> _vertical4x3Pictures = new List<Picture>();
-    private List<Picture> _horizontal4x3Pictures = new List<Picture>();
-    private List<Picture> _verticalPanoramasPictures = new List<Picture>();
-    private List<Picture> _horizontalPanoramasPictures = new List<Picture>();
-    private List<Picture> _verticalSquarePictures = new List<Picture>();
-    private List<Picture> _horizontalSquarePictures = new List<Picture>();
-    private List<Picture> _vertical16x9Pictures = new List<Picture>();
-    private List<Picture> _horizontal16x9Pictures = new List<Picture>();
+  
     private List<PhotoTemplate> _photoTemplates = new List<PhotoTemplate>();
     #endregion
 
@@ -120,6 +105,10 @@ namespace MPPhotoSlideshow.Models
         ////_helloStringProperty = new WProperty(typeof(string), HELLOWORLD_RESOURCE);
         _slideshowBackgroundProperty = new WProperty(typeof(object), null);
         LoadSettings();
+
+        //if there are no photos tell the user to run setup and exit
+        //IDialogManager dialogManager = ServiceRegistration.Get<IDialogManager>();
+        //dialogManager.ShowDialog("No Photo Cache","No photo cache built, please run the setup tool before launching the pluging",DialogType.OkDialog,false,null);
         if (BuiltInTemplates.NewTemplatesAvailable(currentTemplateVersion))
         {
           _photoTemplates = BuiltInTemplates.UpdateTemplates(_photoTemplates);
@@ -206,21 +195,7 @@ namespace MPPhotoSlideshow.Models
         Int32.TryParse(settings.getXmlAttribute("Interval","10000"), out timerInterval);
         SlideshowBackground= settings.getXmlAttribute("BackgroundPath");
         exifRotate = Convert.ToBoolean(settings.getXmlAttribute("EXIFRotate", "false"));
-        List<Picture> _allPictures = new List<Picture>();
         string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow";
-        if (File.Exists(folder + @"\MPSlideshowCache.xml"))
-        {
-          using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowCache.xml"))
-          {
-            string stream = streamReader.ReadToEnd();
-            if (stream.Length > 0)
-            {
-              _allPictures = XMLHelper.Deserialize<List<Picture>>(stream);
-            }
-            streamReader.Close();
-          }
-
-        }
         if (File.Exists(folder + @"\SlideshowTemplates.xml"))
         {
           using (StreamReader streamReader = new StreamReader(folder + @"\SlideshowTemplates.xml"))
@@ -260,65 +235,18 @@ namespace MPPhotoSlideshow.Models
           } 
         }
         //}
-        if (_allPictures.Count > 0)
-        {
-          foreach (Picture picture in _allPictures)
-          {
-            double aspectratio = 0;
-            double.TryParse(picture.AspectRatio, out aspectratio);
-            if (picture.Width > picture.Height)
-            {
-              if (aspectratio == 1)
-              {
-                _horizontalSquarePictures.Add(picture);
-              }
-              else if (1 < aspectratio & aspectratio <= 1.5)
-              {
-                _horizontal4x3Pictures.Add(picture);
-              }
-              else if (1.5 < aspectratio & aspectratio < 2)
-              {
-                _horizontal16x9Pictures.Add(picture);
-              }
-              else if (aspectratio >= 2)
-              {
-                _horizontalPanoramasPictures.Add(picture);
-              }
-            }
-            else
-            {
-              if (aspectratio == 1)
-              {
-                _verticalSquarePictures.Add(picture);
-              }
-              else if (1 < aspectratio & aspectratio <= 1.5)
-              {
-                _vertical4x3Pictures.Add(picture);
-              }
-              else if (1.5 < aspectratio & aspectratio < 2)
-              {
-                _vertical16x9Pictures.Add(picture);
-              }
-              else if (aspectratio >= 2)
-              {
-                _verticalPanoramasPictures.Add(picture);
-              }
-            }
-          }
+        
           //_horizontalPictures = _allPictures.Where(s => s.Width > s.Height).ToList<Picture>();
           //_verticalPictures = _allPictures.Where(s => s.Width < s.Height).ToList<Picture>();
           //_allPictures = null;
+          TemplateBuilderHelper.Init();
           Log.Debug("MPSlideshow - Just finished loading horizontal and vertical pictures");
           timer.Elapsed += new ElapsedEventHandler(timer_Tick);
           timer.Interval = timerInterval;
           timer.Start();
-          Log.Debug("MPSlideshow.OnPageLoad() - Pictures count {0}", _allPictures.Count);
-        }
-        else
-        {
-          //ServiceRegistration.Get<IScreenManager>().ShowDialog(
-        }
-        _allPictures = null;
+          //Log.Debug("MPSlideshow.OnPageLoad() - Pictures count {0}", _allPictures.Count);
+        
+   
       }
       catch (Exception ex)
       {
@@ -336,10 +264,10 @@ namespace MPPhotoSlideshow.Models
         {
           if (template.Photos[i].Enabled)
           {
-            Picture pictureFileName = GetPicture(template, i);
+            Picture pictureFileName = TemplateBuilderHelper.GetPicture(template, i);
             Log.Debug(pictureFileName.FilePath);
-            Size ImageMargin = ScaleToScreen(template.Photos[i].Image.posY, template.Photos[i].Image.posX);
-            Size ImageSize = ScaleToScreen(template.Photos[i].Image.Height, template.Photos[i].Image.Width);
+            Size ImageMargin = TemplateBuilderHelper.ScaleToScreen(template.Photos[i].Image.posY, template.Photos[i].Image.posX);
+            Size ImageSize = TemplateBuilderHelper.ScaleToScreen(template.Photos[i].Image.Height, template.Photos[i].Image.Width);
             int rotateAngle = template.Photos[i].Image.RotateAngle;
             //only rotate photos based on exif info if requested
             if (exifRotate)
@@ -402,103 +330,14 @@ namespace MPPhotoSlideshow.Models
         Log.Error(ex.ToString());
       }
     }
-    private Picture GetPicture(PhotoTemplate template, int index)
-    {
-      Picture imageFileName = new Picture();
-      try
-      {        
-        if (template.Photos[index].Image.Height > template.Photos[index].Image.Width)
-        {
-          double value = (double)template.Photos[index].Image.Height / template.Photos[index].Image.Width;
-          double aspectratio = Math.Truncate(10 * (value)) / 10;
-          if (aspectratio == 1)
-          {
-            if (_verticalSquarePictures.Count > 0)
-            {
-              imageFileName = _verticalSquarePictures[_verticalSquareRnd.Next(_verticalSquarePictures.Count)];
-            }
-          }
-          else if (1.3 <= aspectratio & aspectratio <= 1.5)
-          {
-            if (_vertical4x3Pictures.Count > 0)
-            {
-              imageFileName = _vertical4x3Pictures[_vertical4x3Rnd.Next(_vertical4x3Pictures.Count)];
-            }
-          }
-          else if (1.5 < aspectratio & aspectratio < 2)
-          {
-            if (_vertical16x9Pictures.Count > 0)
-            {
-              imageFileName = _vertical16x9Pictures[_vertical16x9Rnd.Next(_vertical16x9Pictures.Count)];
-            }
-          }
-          else if (aspectratio >= 2)
-          {
-            if (_verticalPanoramasPictures.Count > 0)
-            {
-              imageFileName = _verticalPanoramasPictures[_verticalPanoramasRnd.Next(_verticalPanoramasPictures.Count)];
-            }
-          }
-        }
-        else
-        {
-          double value = (double)template.Photos[index].Image.Width / template.Photos[index].Image.Height;
-          double aspectratio = Math.Truncate(10 * (value)) / 10;
-          if (aspectratio == 1)
-          {
-            if (_horizontalSquarePictures.Count > 0)
-            {
-              imageFileName = _horizontalSquarePictures[_horizontalSquareRnd.Next(_horizontalSquarePictures.Count)];
-            }
-          }
-          else if (1.3 <= aspectratio & aspectratio <= 1.5)
-          {
-            if (_horizontal4x3Pictures.Count > 0)
-            {
-              imageFileName = _horizontal4x3Pictures[_horizontal4x3Rnd.Next(_horizontal4x3Pictures.Count)];
-            }
-          }
-          else if (1.5 < aspectratio & aspectratio < 2)
-          {
-            if (_horizontal16x9Pictures.Count > 0)
-            {
-              imageFileName = _horizontal16x9Pictures[_horizontal16x9Rnd.Next(_horizontal16x9Pictures.Count)];
-            }
-          }
-          else if (aspectratio >= 2)
-          {
-            if (_horizontalPanoramasPictures.Count > 0)
-            {
-              imageFileName = _horizontalPanoramasPictures[_horizontalPanoramasRnd.Next(_horizontalPanoramasPictures.Count)];
-            }
-          }
-        }
-        return imageFileName;
-      }
-      catch (Exception ex)
-      {
-        Log.Error(ex.ToString());
-        return imageFileName;
-      }
-     
-    }
+    
+
     private void timer_Tick(Object sender, EventArgs e)
     {
       //log.writeLog("MPSlideshow.timer_Tick() - Timer passed loading new page",LogInfoType.Debug); 
       LoadPage();
     }
-    private Size ScaleToScreen(int height, int width)
-    {
-      double screenheight = 720;//System.Windows.SystemParameters.WorkArea.Height;
-      double screenwidth = 1280;//System.Windows.SystemParameters.WorkArea.Width;
-      double heightMultiplier = screenheight/templateHeight;
-      double widthMultiplier = screenwidth / templateWidth;
-      int imageHeight = Convert.ToInt32(height * heightMultiplier);
-      int imageWidth = Convert.ToInt32(width * widthMultiplier);
-      //log.writeLog(String.Format("MPPhotoSlideshow.ScaleToScreen() - Incoming height {0}, width {1}, screen height {2}, screen width {3}, outgoing height {4}, outgoing width {5}",height,width,screenheight,screenwidth,imageHeight,imageWidth), LogInfoType.Debug);
-      return new Size(imageWidth, imageHeight);
 
-    }
     #endregion
 
     #region IWorkflowModel implementation

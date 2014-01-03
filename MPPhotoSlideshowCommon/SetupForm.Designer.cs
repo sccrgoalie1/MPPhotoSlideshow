@@ -32,6 +32,11 @@
       this.buildCacheButton = new System.Windows.Forms.Button();
       this.addNewTemplateButton = new System.Windows.Forms.Button();
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+      this.button1 = new System.Windows.Forms.Button();
+      this.photosInYourCollectionLabel = new System.Windows.Forms.Label();
+      this.label13 = new System.Windows.Forms.Label();
+      this.aspectRatioLabel = new System.Windows.Forms.Label();
+      this.label9 = new System.Windows.Forms.Label();
       this.addPictureButton = new System.Windows.Forms.Button();
       this.labelColorToggleButton = new System.Windows.Forms.Button();
       this.borderToggleButton = new System.Windows.Forms.Button();
@@ -126,6 +131,11 @@
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
       this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+      this.tableLayoutPanel1.Controls.Add(this.button1, 0, 21);
+      this.tableLayoutPanel1.Controls.Add(this.photosInYourCollectionLabel, 4, 15);
+      this.tableLayoutPanel1.Controls.Add(this.label13, 4, 14);
+      this.tableLayoutPanel1.Controls.Add(this.aspectRatioLabel, 4, 13);
+      this.tableLayoutPanel1.Controls.Add(this.label9, 4, 12);
       this.tableLayoutPanel1.Controls.Add(this.addPictureButton, 4, 11);
       this.tableLayoutPanel1.Controls.Add(this.labelColorToggleButton, 2, 9);
       this.tableLayoutPanel1.Controls.Add(this.borderToggleButton, 3, 9);
@@ -210,6 +220,61 @@
       this.tableLayoutPanel1.Size = new System.Drawing.Size(516, 667);
       this.tableLayoutPanel1.TabIndex = 2;
       // 
+      // button1
+      // 
+      this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.button1.Location = new System.Drawing.Point(3, 633);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(94, 31);
+      this.button1.TabIndex = 54;
+      this.button1.Text = "View Template";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
+      // 
+      // photosInYourCollectionLabel
+      // 
+      this.photosInYourCollectionLabel.AutoSize = true;
+      this.photosInYourCollectionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.photosInYourCollectionLabel.Location = new System.Drawing.Point(403, 450);
+      this.photosInYourCollectionLabel.Name = "photosInYourCollectionLabel";
+      this.photosInYourCollectionLabel.Size = new System.Drawing.Size(94, 30);
+      this.photosInYourCollectionLabel.TabIndex = 53;
+      this.photosInYourCollectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.toolTip1.SetToolTip(this.photosInYourCollectionLabel, "Number of photos in your collection that will fit this template slot");
+      // 
+      // label13
+      // 
+      this.label13.AutoSize = true;
+      this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.label13.Location = new System.Drawing.Point(403, 420);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(94, 30);
+      this.label13.TabIndex = 52;
+      this.label13.Text = "Photos Count in Your Collection";
+      this.label13.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+      // 
+      // aspectRatioLabel
+      // 
+      this.aspectRatioLabel.AutoSize = true;
+      this.aspectRatioLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.aspectRatioLabel.Location = new System.Drawing.Point(403, 390);
+      this.aspectRatioLabel.Name = "aspectRatioLabel";
+      this.aspectRatioLabel.Size = new System.Drawing.Size(94, 30);
+      this.aspectRatioLabel.TabIndex = 51;
+      this.aspectRatioLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.toolTip1.SetToolTip(this.aspectRatioLabel, "The current pictures aspect ratio");
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.label9.Location = new System.Drawing.Point(403, 360);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(94, 30);
+      this.label9.TabIndex = 50;
+      this.label9.Text = "Calculated Aspect Ratio";
+      this.label9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+      // 
       // addPictureButton
       // 
       this.addPictureButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -218,6 +283,7 @@
       this.addPictureButton.Size = new System.Drawing.Size(94, 24);
       this.addPictureButton.TabIndex = 49;
       this.addPictureButton.Text = "Add Picture";
+      this.toolTip1.SetToolTip(this.addPictureButton, "Add an additional picture from the standard 8");
       this.addPictureButton.UseVisualStyleBackColor = true;
       this.addPictureButton.Click += new System.EventHandler(this.addPictureButton_Click);
       // 
@@ -229,7 +295,7 @@
       this.labelColorToggleButton.Size = new System.Drawing.Size(94, 24);
       this.labelColorToggleButton.TabIndex = 48;
       this.labelColorToggleButton.Text = "Label Clr Tgl";
-      this.toolTip1.SetToolTip(this.labelColorToggleButton, "\"Changes ALL pictures for all templates label color at once");
+      this.toolTip1.SetToolTip(this.labelColorToggleButton, "Changes ALL pictures for all templates label color at once");
       this.labelColorToggleButton.UseVisualStyleBackColor = true;
       this.labelColorToggleButton.Click += new System.EventHandler(this.labelColorToggleButton_Click);
       // 
@@ -241,7 +307,7 @@
       this.borderToggleButton.Size = new System.Drawing.Size(94, 24);
       this.borderToggleButton.TabIndex = 47;
       this.borderToggleButton.Text = "Border Toggle";
-      this.toolTip1.SetToolTip(this.borderToggleButton, "\"Changes ALL pictures for all templates border values at once");
+      this.toolTip1.SetToolTip(this.borderToggleButton, "Changes ALL pictures for all templates border values at once");
       this.borderToggleButton.UseVisualStyleBackColor = true;
       this.borderToggleButton.Click += new System.EventHandler(this.borderToggleButton_Click);
       // 
@@ -254,6 +320,8 @@
       this.exifRotateCheckBox.Size = new System.Drawing.Size(94, 24);
       this.exifRotateCheckBox.TabIndex = 46;
       this.exifRotateCheckBox.Text = "EXIF Rotate";
+      this.toolTip1.SetToolTip(this.exifRotateCheckBox, "Photos will be rotated on the fly during the slideshow based on their EXIF inform" +
+        "ation");
       this.exifRotateCheckBox.UseVisualStyleBackColor = true;
       // 
       // templateEnabledCheckBox
@@ -265,6 +333,7 @@
       this.templateEnabledCheckBox.Size = new System.Drawing.Size(94, 24);
       this.templateEnabledCheckBox.TabIndex = 44;
       this.templateEnabledCheckBox.Text = "Enabled";
+      this.toolTip1.SetToolTip(this.templateEnabledCheckBox, "Whether this template is enabled for your slideshow");
       this.templateEnabledCheckBox.UseVisualStyleBackColor = true;
       // 
       // borderFilePathTextBox
@@ -275,6 +344,7 @@
       this.borderFilePathTextBox.Name = "borderFilePathTextBox";
       this.borderFilePathTextBox.Size = new System.Drawing.Size(194, 20);
       this.borderFilePathTextBox.TabIndex = 26;
+      this.toolTip1.SetToolTip(this.borderFilePathTextBox, "The image that will act as the border for your photos");
       this.borderFilePathTextBox.DoubleClick += new System.EventHandler(this.borderFilePathTextBox_DoubleClick);
       // 
       // borderBottomTextBox
@@ -372,6 +442,7 @@
       this.backgroundImageTextBox.Name = "backgroundImageTextBox";
       this.backgroundImageTextBox.Size = new System.Drawing.Size(194, 20);
       this.backgroundImageTextBox.TabIndex = 38;
+      this.toolTip1.SetToolTip(this.backgroundImageTextBox, "The image that will appear in the background when playing a slideshow");
       this.backgroundImageTextBox.DoubleClick += new System.EventHandler(this.backgroundImageTextBox_DoubleClick);
       // 
       // label16
@@ -596,6 +667,7 @@
       this.photoHeightTextBox.Name = "photoHeightTextBox";
       this.photoHeightTextBox.Size = new System.Drawing.Size(94, 20);
       this.photoHeightTextBox.TabIndex = 13;
+      this.photoHeightTextBox.TextChanged += new System.EventHandler(this.photoHeightTextBox_TextChanged);
       // 
       // photoWidthTextBox
       // 
@@ -654,6 +726,7 @@
       this.timerTextBox.Name = "timerTextBox";
       this.timerTextBox.Size = new System.Drawing.Size(94, 20);
       this.timerTextBox.TabIndex = 1;
+      this.toolTip1.SetToolTip(this.timerTextBox, "The time between slide templates");
       // 
       // photoFoldersListBox
       // 
@@ -674,6 +747,7 @@
       this.addNewFolderTextBox.Name = "addNewFolderTextBox";
       this.addNewFolderTextBox.Size = new System.Drawing.Size(194, 20);
       this.addNewFolderTextBox.TabIndex = 2;
+      this.toolTip1.SetToolTip(this.addNewFolderTextBox, "Double click to select a path");
       this.addNewFolderTextBox.DoubleClick += new System.EventHandler(this.addNewFolderTextBox_DoubleClick);
       // 
       // deleteFolderButton
@@ -695,6 +769,7 @@
       this.addFolderButton.Size = new System.Drawing.Size(94, 24);
       this.addFolderButton.TabIndex = 3;
       this.addFolderButton.Text = "Add";
+      this.toolTip1.SetToolTip(this.addFolderButton, "Add the path to the list of photo folders");
       this.addFolderButton.UseVisualStyleBackColor = true;
       this.addFolderButton.Click += new System.EventHandler(this.addFolderButton_Click);
       // 
@@ -739,6 +814,7 @@
       this.pictureEnabledTextBox.Size = new System.Drawing.Size(94, 24);
       this.pictureEnabledTextBox.TabIndex = 11;
       this.pictureEnabledTextBox.Text = "Pic Enabled";
+      this.toolTip1.SetToolTip(this.pictureEnabledTextBox, "Whether this picture will attempt to be filled during your slideshow");
       this.pictureEnabledTextBox.UseVisualStyleBackColor = true;
       // 
       // progressLabel
@@ -865,6 +941,11 @@
     private System.Windows.Forms.ToolTip toolTip1;
     private System.Windows.Forms.Button labelColorToggleButton;
     private System.Windows.Forms.Button addPictureButton;
+    private System.Windows.Forms.Label photosInYourCollectionLabel;
+    private System.Windows.Forms.Label label13;
+    private System.Windows.Forms.Label aspectRatioLabel;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Button button1;
   }
 }
 

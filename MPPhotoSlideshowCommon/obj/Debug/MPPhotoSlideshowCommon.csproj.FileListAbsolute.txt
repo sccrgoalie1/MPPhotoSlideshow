@@ -18,3 +18,14 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhoto
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.pdb
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.InputBox.resources
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csprojResolveAssemblyReference.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon_MarkupCompile.cache
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\TemplateBuilder.baml
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\TemplateBuilder.g.cs
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.g.resources
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon_MarkupCompile.lref
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\WindowResources\SizeChrome.baml
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\WindowResources\ResizeRotateChrome.baml
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\WindowResources\DesignerItem.baml
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\WindowResources\DesignerItem.g.cs
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\bin\Debug\Xceed.Wpf.Toolkit.dll

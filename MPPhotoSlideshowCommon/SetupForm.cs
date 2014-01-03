@@ -62,8 +62,6 @@ namespace MPPhotoSlideshowCommon
       SetupGUI();
     }
 
-    
-
     public void ToggleFieldsBasedOnMpSlideShowVersion()
     {
       string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -82,6 +80,7 @@ namespace MPPhotoSlideshowCommon
         labelFontLabel.Text = "Label Font Size";
       }
     }
+
     public void LoadSettings()
     {
       try
@@ -131,6 +130,19 @@ namespace MPPhotoSlideshowCommon
             File.Delete(folder + @"\MPSlideshowTemplates.xml");
           }
         }
+        if (File.Exists(folder + @"\MPSlideshowCache.xml"))
+        {
+          using (StreamReader streamReader = new StreamReader(folder + @"\MPSlideshowCache.xml"))
+          {
+            string stream = streamReader.ReadToEnd();
+            if (stream.Length > 0)
+            {
+              _allPictures = XMLHelper.Deserialize<List<Picture>>(stream);
+            }
+            streamReader.Close();
+          }
+
+        }
         int interval = 10000;
         DateTime lastPictureLoad = new DateTime(1901, 1, 1);
         settings = new XMLSettings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\MPPhotoSlideshow\", "MPPhotoSlideshow2.xml");
@@ -167,154 +179,6 @@ namespace MPPhotoSlideshowCommon
         Log.Error(ex.ToString());
       }
     }
-
-    //private void button1_Click(object sender, EventArgs e)
-    //{
-    //  using (Settings xmlreader = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPPhotoSlideshow.xml"))
-    //  {
-    //    _pictureFolders = xmlreader.GetValue("MyConfig", "FolderPaths");
-    //  }
-    //  List<string> loadPictures = Directory.GetFiles(_pictureFolders, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".png", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase)).ToList<string>();
-    //  MediaPortal.GUI.Pictures.ExifMetadata exifMetaData = new MediaPortal.GUI.Pictures.ExifMetadata();
-    //  foreach (string pictureFile in loadPictures)
-    //  {
-    //    MediaPortal.GUI.Pictures.ExifMetadata.Metadata metaData = exifMetaData.GetExifMetadata(pictureFile);
-    //    DateTime pictureDate = new DateTime(1901,1,1);
-    //    DateTime.TryParse(metaData.DatePictureTaken.DisplayValue,out pictureDate);
-    //    int width = 0;
-    //    int height = 0;
-    //    string[] res = metaData.ImageDimensions.DisplayValue.Split('x');
-    //    Int32.TryParse(res[0], out width);
-    //    Int32.TryParse(res[1], out height);
-    //    //using (FileStream stream = new FileStream(pictureFile, FileMode.Open, FileAccess.Read))
-    //    //{
-    //    //  Bitmap pictureImage = new Bitmap(stream);
-    //    //  width = pictureImage.Width;
-    //    //  height = pictureImage.Height;
-    //    //  stream.Close();
-    //    //}
-    //    _allPictures.Add(new Picture() { FilePath = pictureFile, DateTaken = pictureDate, Height = height, Width = width });
-    //  }
-    //  using (Settings xmlreader = new Settings(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal\MPPhotoSlideshow.xml"))
-    //  {
-    //    xmlreader.SetValue("MyConfig", "LastLoadCache", DateTime.Now);
-    //  }
-    //  string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal";
-    //  File.Delete(folder + @"\MPSlideshowCache.xml");
-    //  using (StreamWriter streamWriter = new StreamWriter(folder + @"\MPSlideshowCache.xml"))
-    //  {
-    //    string serialized = XMLHelper.Serialize<List<Picture>>(_allPictures);
-    //    streamWriter.Write(serialized);
-    //    streamWriter.Close();
-    //  }
-    
-    //}
-
-    //private void button2_Click(object sender, EventArgs e)
-    //{
-    //  List<PhotoTemplate> templates = new List<PhotoTemplate>();
-    //  PhotoTemplate template1 = new PhotoTemplate() 
-    //  { 
-    //    picture1 = new ImageControl() 
-    //    { 
-    //      Width = 500, Height = 667,posX=38,posY=206 
-    //    }, 
-    //    picture1Label = new LabelControl() 
-    //    { 
-    //      posX = 38, posY = 873, Font= "fontB12", Height=50, Width=500, TextColor=System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    },
-    //    picture2 = new ImageControl() 
-    //    { 
-    //      Width = 700, Height = 525,posX=610,posY=277 
-    //    }, 
-    //    picture2Label = new LabelControl() 
-    //    { 
-    //      posX = 610, 
-    //      posY = 802, 
-    //      Font= "fontB12", 
-    //      Height=50, 
-    //      Width=700, 
-    //      TextColor=System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    },
-    //    picture3 = new ImageControl() 
-    //    { 
-    //      Width = 500, 
-    //      Height = 667,
-    //      posX=1382,
-    //      posY=206 
-    //    }, 
-    //    picture3Label = new LabelControl() 
-    //    { 
-    //      posX = 1382, 
-    //      posY = 873, 
-    //      Font= "fontB12", 
-    //      Height=50, 
-    //      Width=500, 
-    //      TextColor=System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    } 
-    //  };
-    //  templates.Add(template1);
-    //  PhotoTemplate template2 = new PhotoTemplate()
-    //  {
-    //    picture1 = new ImageControl()
-    //    {
-    //      Width = 500,
-    //      Height = 667,
-    //      posX = 38,
-    //      posY = 0
-    //    },
-    //    picture1Label = new LabelControl()
-    //    {
-    //      posX = 38,
-    //      posY = 667,
-    //      Font = "fontB12",
-    //      Height = 50,
-    //      Width = 500,
-    //      TextColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    },
-    //    picture2 = new ImageControl()
-    //    {
-    //      Width = 700,
-    //      Height = 525,
-    //      posX = 610,
-    //      posY = 277
-    //    },
-    //    picture2Label = new LabelControl()
-    //    {
-    //      posX = 610,
-    //      posY = 802,
-    //      Font = "fontB12",
-    //      Height = 50,
-    //      Width = 700,
-    //      TextColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    },
-    //    picture3 = new ImageControl()
-    //    {
-    //      Width = 500,
-    //      Height = 667,
-    //      posX = 1382,
-    //      posY = 206
-    //    },
-    //    picture3Label = new LabelControl()
-    //    {
-    //      posX = 1382,
-    //      posY = 873,
-    //      Font = "fontB12",
-    //      Height = 50,
-    //      Width = 500,
-    //      TextColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF").ToArgb()
-    //    }
-    //  };
-    //  templates.Add(template2);
-    //  string folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Team MediaPortal\MediaPortal";
-    //  File.Delete(folder + @"\MPSlideshowTemplates.xml");
-    //  using (StreamWriter streamWriter = new StreamWriter(folder + @"\MPSlideshowTemplates.xml"))
-    //  {
-    //    string serialized = XMLHelper.Serialize<List<PhotoTemplate>>(templates);
-    //    streamWriter.Write(serialized);
-    //    streamWriter.Close();
-    //  }
-    //}
 
     private void templateComboBox_SelectionChangeCommitted(object sender, EventArgs e)
     {
@@ -353,6 +217,7 @@ namespace MPPhotoSlideshowCommon
         Log.Debug("MPPhotoslideshow.SetupForm() - Error {0}", ex.ToString());
       }
     }
+    
     private void Save()
     {
       try
@@ -428,6 +293,7 @@ namespace MPPhotoSlideshowCommon
         Log.Debug("MPPhotoslideshow.SetupForm() - Error {0}", ex.ToString());
       }
     }
+
     public void ResetGUI()
     {
       try
@@ -455,6 +321,7 @@ namespace MPPhotoSlideshowCommon
         Log.Debug("MPPhotoslideshow.SetupForm() - Error {0}", ex.ToString());
       }
     }
+
     private void StoreCurrentTemplate()
     {
       try
@@ -473,6 +340,7 @@ namespace MPPhotoSlideshowCommon
         Log.Debug("MPPhotoslideshow.SetupForm() - Error {0}", ex.ToString());
       }
     }
+
     private void SetupGUI()
     {
       if (pictureSelectorComboBox.SelectedIndex > -1)
@@ -513,8 +381,10 @@ namespace MPPhotoSlideshowCommon
           }
         }
         pictureEnabledTextBox.Checked = control.Enabled;
+        SetPhotoHelperLabels();
       }
     }
+
     private void StoreCurrentPhoto()
     {
       try
@@ -788,12 +658,14 @@ namespace MPPhotoSlideshowCommon
         }
       }
     }
+
     public decimal TruncateDecimal(decimal value, int precision)
     {
       decimal step = (decimal)Math.Pow(10, precision);
       int tmp = (int)Math.Truncate(step * value);
       return tmp / step;
     }
+
     private void buildCacheButton_Click(object sender, EventArgs e)
     {
       progressLabel.Text = "";
@@ -852,6 +724,61 @@ namespace MPPhotoSlideshowCommon
     private void photoWidthTextBox_TextChanged(object sender, EventArgs e)
     {
       //labelWidthTextBox.Text = photoWidthTextBox.Text;
+      SetPhotoHelperLabels();
+    }
+
+    private void SetPhotoHelperLabels()
+    {
+      if (_allPictures.Count == 0)
+      {
+        photosInYourCollectionLabel.Text = "No cache built";
+      }
+      else
+      {
+        if (photoWidthTextBox.Text != "" & photoHeightTextBox.Text != "")
+        {
+          int height = 0;
+          int width = 0;
+          int.TryParse(photoWidthTextBox.Text, out width);
+          int.TryParse(photoHeightTextBox.Text, out height);
+          double value = 0;
+          List<Picture> restrictedList = new List<Picture>();
+          if (height > width)
+          {
+            value = (double) height/width;
+            restrictedList = _allPictures.FindAll(t => t.Height > t.Width);
+          }
+          else
+          {
+            value = (double) width/height;
+            restrictedList = _allPictures.FindAll(t => t.Width >= t.Height);
+          }
+          double aspectratio = Math.Truncate(10*(value))/10;
+          aspectRatioLabel.Text = aspectratio.ToString();
+          if (aspectratio == 1)
+          {
+            photosInYourCollectionLabel.Text = restrictedList.FindAll(t => t.AspectRatio == "1").Count.ToString();
+          }
+          else if (1.3 <= aspectratio & aspectratio <= 1.5)
+          {
+            photosInYourCollectionLabel.Text =
+              restrictedList.FindAll(t => 1.3 <= Convert.ToDouble(t.AspectRatio) & Convert.ToDouble(t.AspectRatio) <= 1.5)
+                .Count.ToString();
+          }
+          else if (1.5 < aspectratio & aspectratio < 2)
+          {
+            photosInYourCollectionLabel.Text =
+              restrictedList.FindAll(t => 1.5 < Convert.ToDouble(t.AspectRatio) & Convert.ToDouble(t.AspectRatio) < 2)
+                .Count.ToString();
+          }
+          else if (aspectratio >= 2)
+          {
+            photosInYourCollectionLabel.Text =
+              restrictedList.FindAll(t => Convert.ToDouble(t.AspectRatio) >= 2).Count.ToString();
+          }
+
+        }
+      }
     }
 
     private void backgroundImageTextBox_DoubleClick(object sender, EventArgs e)
@@ -950,6 +877,17 @@ namespace MPPhotoSlideshowCommon
       previousSelectedPictureIndex = photoControls.Count -1;
       pictureSelectorComboBox.SelectedIndex = photoControls.Count - 1;
       ResetGUI();
+    }
+
+    private void photoHeightTextBox_TextChanged(object sender, EventArgs e)
+    {
+      SetPhotoHelperLabels();
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      TemplateBuilder templateViewer = new TemplateBuilder(photoTemplates[templateComboBox.SelectedIndex]);
+      templateViewer.Show();
     }
    
 
