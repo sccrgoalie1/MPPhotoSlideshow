@@ -17,7 +17,6 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhoto
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.pdb
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.InputBox.resources
-C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon.csprojResolveAssemblyReference.cache
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\MPPhotoSlideshowCommon_MarkupCompile.cache
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\TemplateBuilder.baml
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowCommon\obj\Debug\TemplateBuilder.g.cs

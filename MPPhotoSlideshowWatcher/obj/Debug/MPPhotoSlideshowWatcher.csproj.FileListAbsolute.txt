@@ -34,3 +34,4 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhot
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.exe
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\obj\Debug\MPPhotoSlideshowWatcher.pdb
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshowWatcher\bin\Debug\MPPhotoSlideshowWatcher.exe.config

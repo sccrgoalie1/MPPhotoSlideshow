@@ -31,3 +31,6 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MediaPortal.
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\HttpServer.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\UPnP.dll
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MediaPortal.Common.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\MediaPortal.Utilities.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\MPPhotoSlideshow2\bin\Debug\log4net.dll

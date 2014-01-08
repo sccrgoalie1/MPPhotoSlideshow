@@ -19,3 +19,4 @@ C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlide
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.Properties.Resources.resources
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\obj\Debug\MPPhotoSlideShowConfig.csproj.GenerateResource.Cache
 C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\dev\MPPhotoSlidshow\MPPhotoSlideshow\ExecutableProject\bin\Debug\MPPhotoSlideShowConfig.exe.config

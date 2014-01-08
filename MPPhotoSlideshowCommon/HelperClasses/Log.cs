@@ -104,10 +104,13 @@ namespace MPPhotoSlideshowCommon
         ///<param name="arg">The args of information that is being sent</param>
         public static void Error(string format, params object[] arg)
         {
-          checkFileSize();
-          using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
+          if (format != null)
           {
-            streamWriter.WriteLine(DateTime.Now.ToString() + "   ERROR         " + String.Format(format, arg));
+            checkFileSize();
+            using (StreamWriter streamWriter = new StreamWriter(FullPath, AppendLog))
+            {
+              streamWriter.WriteLine(DateTime.Now.ToString() + "   ERROR         " + String.Format(format, arg));
+            }
           }
         }
         private static void checkFileSize()

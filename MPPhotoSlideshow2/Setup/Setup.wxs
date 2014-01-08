@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<?define Property_ProductVersion = "1.0.3" ?>
+<?define Property_ProductVersion = "1.0.4" ?>
 <?define Property_ProductCode = "*" ?>
 <?define Property_UpgradeCode = "E29F1AFD-9626-4EB7-BEBD-8B052713FF86" ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
@@ -35,6 +35,10 @@
                   Error="!(loc.LaunchCondition_LaterVersion)" />
     <Condition Message="!(loc.LaunchCondition_AdminPrivs)">       
       <![CDATA[Privileged]]>     
+    </Condition>
+    <!--Require .NET 4.5.1-->
+    <Condition Message="!(loc.LaunchCondition_NET451)">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
     </Condition>
     <Directory Id="TARGETDIR"
                Name="SourceDir">
@@ -363,6 +367,7 @@
         <![CDATA[NEWERVERSIONDETECTED]]>
       </Custom>
     </InstallUISequence>
+    <PropertyRef Id="NETFRAMEWORK45"/>
     <!--<Property Id="REINSTALLMODE" Value="amus"/>  fORCES OVERWRITE OF FILES-->
     <Property Id="ARPHELPLINK"
               Value="!(loc.Property_ArpHelpLink)" />
